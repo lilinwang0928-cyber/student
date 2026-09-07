@@ -1,0 +1,2779 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>國七學習指引・學生自學互動手冊</title>
+<style>
+:root{
+  --ink:#1B3A32;
+  --ink2:#3D5A51;
+  --paper:#F4F6F4;
+  --card:#FFFFFF;
+  --line:#CBD8D2;
+  --soft:#E6EFEA;
+  --red:#D64545;
+  --redsoft:#FBE9E9;
+  --hi:#FBE38A;
+  --slate:#66786F;
+  --serif:"Songti TC","Noto Serif TC","Source Han Serif TC","PMingLiU",serif;
+  --sans:"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.85;letter-spacing:.01em;
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 18px 80px;}
+
+/* hero */
+.hero{background:var(--ink);color:#EAF2EE;padding:36px 0 28px;}
+.hero .wrap{padding-bottom:0;}
+.hero .kicker{font-size:.8rem;color:#93B3A8;letter-spacing:.24em;margin:0 0 10px;}
+.hero h1{
+  font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,6.4vw,2.4rem);
+  line-height:1.35;margin:0 0 10px;letter-spacing:.02em;
+}
+.hero p{margin:0 0 18px;color:#AFC8BF;font-size:.95rem;}
+.steps{display:flex;gap:6px;margin-bottom:8px;}
+.steps span{
+  flex:1;text-align:center;padding:9px 4px;border-radius:3px;
+  font-family:var(--serif);font-size:.92rem;
+}
+.steps .a{background:#2C5347;color:#C7DED6;}
+.steps .b{background:var(--hi);color:#4A3A00;}
+.steps .c{background:#EAF2EE;color:#1B3A32;}
+.hero small{font-size:.78rem;color:#8CAA9F;}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(244,246,244,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(6px);}
+.navrow{display:flex;gap:6px;overflow-x:auto;padding:10px 18px;max-width:720px;margin:0 auto;scrollbar-width:none;}
+.navrow::-webkit-scrollbar{display:none;}
+.chip{
+  flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--ink2);
+  font-size:.9rem;padding:7px 14px;border-radius:20px;cursor:pointer;position:relative;
+  font-family:var(--sans);
+}
+.chip:hover{border-color:var(--ink2);}
+.chip[aria-selected="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+.chip .pin{
+  position:absolute;top:4px;right:6px;font-size:.6rem;color:var(--red);display:none;
+}
+.chip.part .pin{display:block;}
+.chip.full .pin{display:block;color:#2E9E6B;}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px;}
+
+/* panels */
+.panel{display:none;padding-top:26px;}
+.panel.on{display:block;}
+h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;margin:0 0 4px;letter-spacing:.03em;}
+.lead{color:var(--slate);font-size:.93rem;margin:0 0 20px;}
+h3{
+  font-family:var(--serif);font-size:1.1rem;font-weight:600;margin:28px 0 10px;
+  padding-bottom:5px;border-bottom:2px solid var(--soft);letter-spacing:.03em;
+}
+p{margin:0 0 12px;}
+ul,ol{margin:0 0 14px;padding-left:1.3em;}
+li{margin-bottom:7px;}
+mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;padding:0 1px;}
+.say{
+  font-family:var(--serif);font-size:1.12rem;line-height:1.8;
+  background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:16px 18px;margin:0 0 18px;
+}
+.redbox{
+  background:var(--redsoft);border-left:3px solid var(--red);border-radius:0 6px 6px 0;
+  padding:13px 16px;margin:0 0 16px;font-size:.94rem;
+}
+.redbox b{color:var(--red);}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 16px;font-size:.9rem;}
+.flow b{background:#fff;border:1px solid var(--line);border-radius:4px;padding:6px 11px;font-weight:500;}
+.flow i{color:var(--red);font-style:normal;font-weight:700;}
+.cmp{width:100%;border-collapse:collapse;font-size:.94rem;margin-bottom:14px;}
+.cmp th,.cmp td{border:1px solid var(--line);padding:9px 11px;text-align:left;}
+.cmp th{background:var(--soft);font-family:var(--serif);font-weight:600;}
+
+/* subject list on home */
+.subjects{border-top:1px solid var(--line);margin:0 0 24px;}
+.subjrow{
+  display:grid;grid-template-columns:52px 1fr auto;gap:0 14px;align-items:center;
+  width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);
+  padding:14px 2px;cursor:pointer;font-family:var(--sans);color:var(--ink);
+}
+.subjrow:hover{background:#fff;}
+.subjrow .nm{font-family:var(--serif);font-size:1.05rem;font-weight:600;letter-spacing:.06em;}
+.subjrow .core{font-size:.93rem;}
+.subjrow .cnt{font-size:.8rem;color:var(--slate);}
+
+/* checklist */
+.list{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:6px 16px 12px;margin-bottom:8px;}
+.checkline{
+  display:flex;gap:11px;align-items:flex-start;padding:10px 0;
+  border-bottom:1px dashed var(--line);cursor:pointer;font-size:.95rem;
+}
+.checkline:last-child{border-bottom:0;}
+.checkline input{margin-top:6px;width:18px;height:18px;accent-color:var(--ink);flex:0 0 auto;}
+.checkline.on span{color:var(--slate);text-decoration:line-through;}
+.bar{height:7px;background:var(--soft);border-radius:5px;overflow:hidden;margin:4px 0;}
+.bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .35s;}
+.barlabel{font-size:.84rem;color:var(--slate);margin:0 0 16px;}
+
+/* tools */
+.tool{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:18px;margin-bottom:18px;}
+.tool h3{margin-top:0;}
+.card{
+  background:var(--ink);color:#EAF2EE;border-radius:10px;padding:26px 20px;text-align:center;
+  font-family:var(--serif);font-size:1.22rem;line-height:1.7;min-height:118px;
+  display:flex;flex-direction:column;justify-content:center;gap:8px;
+}
+.card small{font-family:var(--sans);font-size:.76rem;color:#93B3A8;letter-spacing:.1em;}
+.btn{background:var(--ink);color:#fff;border:0;border-radius:6px;padding:11px 20px;font-family:var(--sans);font-size:.95rem;cursor:pointer;}
+.btn:hover{background:#2C5347;}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+.btn.ghost:hover{background:var(--soft);}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;}
+.qtext{font-family:var(--serif);font-size:1.14rem;margin:4px 0 14px;padding:16px;background:var(--soft);border-radius:8px;}
+.opts{display:flex;flex-direction:column;gap:8px;}
+.opts button{
+  padding:13px 14px;border:1px solid var(--line);background:#fff;border-radius:8px;
+  font-family:var(--sans);font-size:.95rem;cursor:pointer;color:var(--ink);text-align:left;
+}
+.opts button:hover{border-color:var(--ink2);}
+.fb{margin-top:14px;font-size:.94rem;min-height:1.5em;}
+.fb.ok{color:#227A55;}
+.fb.no{color:var(--red);}
+.score{font-size:.84rem;color:var(--slate);margin-top:10px;}
+/* 語音導覽 */
+.guide{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--soft);border-radius:8px;padding:10px 12px;margin:0 0 18px;}
+.mini{
+  padding:7px 13px;font-size:.86rem;border-radius:6px;border:1px solid var(--line);
+  background:#fff;cursor:pointer;color:var(--ink);font-family:var(--sans);
+}
+.mini:hover{border-color:var(--ink2);}
+.mini.on{background:var(--ink);color:#fff;border-color:var(--ink);}
+.guide .gtxt{flex-basis:100%;font-size:.87rem;color:var(--ink2);min-height:1.4em;}
+
+.hint{font-size:.88rem;color:var(--slate);margin:0 0 10px;line-height:1.7;}
+[hidden]{display:none !important;}
+.outbox{
+  background:var(--soft);border-radius:8px;padding:14px 16px;margin:0 0 18px;
+}
+.outbox h4{margin:0 0 8px;font-family:var(--serif);font-size:1rem;font-weight:600;letter-spacing:.03em;}
+.outbox ul{margin:0 0 10px;padding-left:1.2em;font-size:.93rem;}
+.outbox li{margin-bottom:5px;}
+.keybox{
+  background:var(--soft);border-radius:8px;padding:12px 15px;margin-top:12px;font-size:.93rem;
+}
+.keybox ul{margin:6px 0 0;padding-left:1.2em;}
+.selfrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.wrote{
+  font-size:.88rem;color:var(--slate);background:#fff;border:1px solid var(--line);
+  border-radius:6px;padding:8px 10px;margin-top:10px;white-space:pre-wrap;
+}
+
+/* 今天 */
+.today{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:18px;margin-bottom:18px;}
+.today h3:first-child{margin-top:0;}
+.streak{display:flex;gap:22px;}
+.streak div{text-align:center;}
+.streak b{display:block;font-family:var(--serif);font-size:1.7rem;line-height:1.2;}
+.streak span{font-size:.78rem;color:var(--slate);}
+.logrow{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:.88rem;}
+.logrow:last-child{border-bottom:0;}
+.logrow b{font-weight:500;color:var(--slate);}
+.pill{display:inline-block;font-size:.78rem;background:var(--soft);border-radius:20px;padding:1px 10px;margin:0 6px 4px 0;color:var(--ink2);}
+.noteinput{
+  width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 12px;
+  font-family:var(--sans);font-size:.95rem;resize:vertical;min-height:62px;color:var(--ink);background:#fff;
+}
+.pts{margin:0 0 4px;padding-left:1.2em;font-size:.94rem;}
+.wrongbox{background:var(--redsoft);border-left:3px solid var(--red);border-radius:0 6px 6px 0;padding:12px 14px;margin-top:12px;font-size:.92rem;}
+.wrongbox a{color:var(--red);font-weight:600;}
+
+/* 鼓勵小語 */
+.toast{
+  position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(18px);
+  max-width:min(520px,calc(100% - 32px));background:var(--ink);color:#EAF2EE;
+  padding:14px 18px;border-radius:10px;font-family:var(--serif);font-size:1.04rem;
+  line-height:1.6;box-shadow:0 6px 24px rgba(27,58,50,.28);opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;z-index:60;text-align:left;cursor:pointer;
+  display:flex;align-items:center;gap:12px;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto;}
+.toast .ten{font-family:var(--sans);font-size:.84rem;color:#9DBBB0;margin-top:7px;line-height:1.55;}
+#cheerEn{font-family:var(--sans);font-size:.86rem;color:#93B3A8;margin-top:7px;line-height:1.6;}
+
+/* 傑倫老師 */
+.gate{position:fixed;inset:0;background:rgba(27,58,50,.58);z-index:80;
+  display:none;align-items:center;justify-content:center;padding:18px;}
+.gate.show{display:flex;}
+.gatebox{background:var(--card);border-radius:14px;max-width:440px;width:100%;
+  padding:24px 22px 20px;box-shadow:0 18px 50px rgba(27,58,50,.34);
+  text-align:center;max-height:88vh;overflow:auto;position:relative;}
+.gatebox .gx{position:absolute;top:10px;right:12px;background:none;border:0;
+  font-size:1.2rem;color:var(--slate);cursor:pointer;line-height:1;padding:4px 6px;}
+.gatebox .avbig{width:92px;height:92px;display:block;margin:2px auto 12px;}
+.gatebox .gname{font-family:var(--serif);font-size:1.3rem;margin:0;}
+.gatebox .grole{font-family:var(--sans);font-size:.74rem;color:var(--slate);
+  letter-spacing:.16em;margin:5px 0 15px;}
+.gatebox .gquote{font-family:var(--serif);font-size:1.05rem;line-height:1.85;
+  background:var(--soft);border-radius:8px;padding:13px 15px;margin:0 0 15px;}
+.gatebox ol{text-align:left;font-size:.94rem;margin:0 0 6px;padding-left:1.35em;line-height:1.85;}
+.gatebox .gsub{font-family:var(--sans);font-size:.78rem;color:var(--slate);
+  letter-spacing:.12em;text-align:left;margin:0 0 6px;}
+.coach{border:1px solid var(--line);border-radius:12px;background:var(--card);
+  padding:20px 20px 18px;margin-bottom:28px;}
+.coach .top{display:flex;gap:14px;align-items:center;margin-bottom:13px;}
+.coach .avmid{width:62px;height:62px;flex:0 0 auto;}
+.coach .nm{font-family:var(--serif);font-size:1.16rem;line-height:1.4;}
+.coach .nm em{display:block;font-style:normal;font-family:var(--sans);
+  font-size:.74rem;color:var(--slate);letter-spacing:.12em;margin-top:4px;}
+.coach .cq{font-family:var(--serif);font-size:1.02rem;line-height:1.8;
+  background:var(--soft);border-radius:8px;padding:12px 14px;margin:0 0 14px;}
+.play{border-left:3px solid var(--hi);padding:3px 0 3px 12px;margin-bottom:10px;}
+.play b{font-size:.95rem;font-weight:600;}
+.play span{display:block;font-size:.9rem;color:var(--ink2);line-height:1.7;margin-top:2px;}
+.play button{margin-top:5px;}
+.toast .cav{width:38px;height:38px;flex:0 0 auto;}
+.toast .tspk{flex:0 0 auto;background:rgba(255,255,255,.12);color:#EAF2EE;border:0;
+  border-radius:6px;padding:7px 9px;font-size:.74rem;cursor:pointer;
+  font-family:var(--sans);white-space:nowrap;}
+.toast .tspk:hover{background:rgba(255,255,255,.22);}
+.vpick{margin-top:16px;}
+.vpick label{display:block;font-size:.84rem;color:var(--slate);margin-bottom:6px;}
+.vpick select{width:100%;border:1px solid var(--line);border-radius:7px;padding:9px 10px;
+  font-size:.92rem;font-family:var(--sans);color:var(--ink);background:#fff;margin-bottom:8px;}
+.toast .ctxt{flex:1;min-width:0;}
+@media print{.gate{display:none!important;}}
+
+/* 讀書方法：七個開關 */
+.sw{border:1px solid var(--line);border-radius:10px;background:var(--card);margin-bottom:10px;overflow:hidden;}
+.swh{width:100%;text-align:left;background:none;border:0;padding:14px 15px;cursor:pointer;
+  font-family:var(--serif);font-size:1.05rem;color:var(--ink);display:flex;gap:11px;align-items:flex-start;line-height:1.5;}
+.swh:hover{background:var(--soft);}
+.sw .no{flex:0 0 auto;font-size:.76rem;color:#fff;background:var(--ink);border-radius:50%;
+  width:21px;height:21px;line-height:21px;text-align:center;font-family:var(--sans);margin-top:3px;}
+.sw .ttl{flex:1;}
+.sw .ttl em{display:block;font-style:normal;font-family:var(--sans);font-size:.74rem;
+  color:var(--slate);letter-spacing:.08em;margin-top:3px;}
+.sw .arw{flex:0 0 auto;color:var(--slate);font-size:.72rem;margin-top:6px;}
+.sw .swb{display:none;padding:0 15px 16px;}
+.sw.open .swb{display:block;}
+.sw.open .arw{color:var(--red);}
+.sw .one{font-family:var(--serif);font-size:1.02rem;line-height:1.75;background:var(--soft);
+  border-radius:6px;padding:11px 13px;margin:0 0 12px;}
+.sw h4{margin:14px 0 6px;font-size:.78rem;color:var(--slate);letter-spacing:.14em;
+  font-weight:600;font-family:var(--sans);border:0;padding:0;}
+.sw ul{margin:0;padding-left:1.25em;font-size:.95rem;}
+.sw .meet{font-size:.93rem;color:var(--ink2);margin:0;}
+.sw .rem{font-size:.9rem;color:var(--ink2);border-left:3px solid var(--hi);padding-left:11px;margin:14px 0 0;}
+.sw .swgo{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;}
+.mrow{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;
+  padding:10px 0;border-bottom:1px dashed var(--line);font-size:.93rem;line-height:1.65;}
+.mrow:last-child{border-bottom:0;}
+.mseg{display:flex;gap:4px;}
+.mseg button{border:1px solid var(--line);background:#fff;border-radius:5px;padding:6px 8px;
+  font-size:.74rem;cursor:pointer;color:var(--slate);font-family:var(--sans);white-space:nowrap;}
+.mseg button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+.dim{display:grid;grid-template-columns:108px 1fr 62px;gap:8px;align-items:center;font-size:.86rem;margin-bottom:7px;}
+.dim .track{background:var(--soft);border-radius:5px;overflow:hidden;height:8px;}
+.dim .track i{display:block;height:100%;width:0;background:var(--ink);border-radius:5px;transition:width .35s;}
+.dim b{font-weight:500;color:var(--slate);font-size:.78rem;}
+.dim.low .track i{background:var(--red);}
+.dim.low b{color:var(--red);}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 4px;}
+.calc label{font-size:.82rem;color:var(--slate);display:block;margin-bottom:4px;}
+.calc input{width:100%;border:1px solid var(--line);border-radius:7px;padding:9px 10px;
+  font-size:.95rem;font-family:var(--sans);color:var(--ink);background:#fff;}
+.calcout{background:var(--soft);border-radius:8px;padding:13px 15px;font-size:.93rem;line-height:1.75;margin-top:8px;}
+.calcout b{font-family:var(--serif);font-size:1.12rem;}
+@media (max-width:420px){.calc{grid-template-columns:1fr;}.mrow{grid-template-columns:1fr;}.dim{grid-template-columns:92px 1fr 56px;}}
+
+.lnkgroup{margin-bottom:26px;}
+.lnk{
+  display:block;background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:13px 16px;margin-bottom:8px;text-decoration:none;color:inherit;
+}
+.lnk:hover{border-color:var(--ink2);background:var(--soft);}
+.lnk .t{font-family:var(--serif);font-size:1.02rem;font-weight:600;display:block;letter-spacing:.02em;}
+.lnk .d{font-size:.88rem;color:var(--slate);display:block;line-height:1.65;}
+.lnk .u{font-size:.74rem;color:#2E7D63;display:block;margin-top:5px;word-break:break-all;}
+.empty{border:1px dashed var(--line);border-radius:8px;padding:13px 16px;font-size:.9rem;color:var(--slate);}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:.82rem;color:var(--slate);text-align:center;}
+@media (max-width:480px){body{font-size:15.5px;}.steps span{font-size:.82rem;}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+@media print{nav,.btnrow,.opts,.mseg,.swgo{display:none;}.sw .swb{display:block!important;}.sw .arw{display:none;}.panel{display:block!important;page-break-before:always;}.hero{background:none;color:#000;}.hero h1,.hero p,.hero .kicker{color:#000;}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">給國七的你</p>
+    <h1>八科怎麼學<br>自學互動手冊</h1>
+    <p>這一年最重要的不是考幾分，是找到自己的方法：知道怎麼讀、遇到不懂時知道怎麼辦。</p>
+    <div class="steps"><span class="a">記住</span><span class="b">理解</span><span class="c">應用與表達</span></div>
+    <small>八科內容不同，路是同一條。</small>
+  </div>
+</header>
+
+<nav><div class="navrow" role="tablist" id="nav"></div></nav>
+
+<main class="wrap">
+
+<!-- 總覽 -->
+<section class="panel on" id="p-home" role="tabpanel">
+  <div class="coach">
+    <div class="top">
+      <span id="coachAv"></span>
+      <div class="nm">傑倫老師 Jalen<em>戰術學長 × 心智教練</em></div>
+    </div>
+    <p class="cq">「這題有破綻，我們換個節奏打。」<br>國中三年是一個賽季。每一次段考是一場客場比賽，每一次做錯題是一次錄影回放。我不把你當學生，我把你當先發球員——你不是一個人在打。</p>
+    <p style="font-size:.9rem;color:var(--slate);margin:0 0 12px;">把課業變成身體記憶，讓學習像打球一樣有節奏。這是我的五個戰術：</p>
+    <div class="play"><b>1・試探步</b><span>先用已經會的小觀念去試題目，找到破綻再切進去。不要盲猜，也不要死背。</span><button class="mini" type="button" data-target="p-mat">用在數學</button></div>
+    <div class="play"><b>2・肌肉記憶</b><span>發音跟投籃一樣是動作。練的是氣流控制和口腔的施力，不是硬記。</span><button class="mini" type="button" data-target="p-eng">用在英文</button></div>
+    <div class="play"><b>3・拋投記憶法</b><span>像讀防守一樣讀考卷：先掃一遍，快攻題先拿分，陷阱題留到最後。難背的用聯想口訣輕巧越過。</span><button class="mini" type="button" data-target="p-method">用在讀書方法</button></div>
+    <div class="play"><b>4・節奏變換</b><span>新進度和複習交替，緊繃和放鬆交替。長時間死讀會彈性疲乏，休息也是戰術。</span><button class="mini" type="button" data-target="p-today">用在今天</button></div>
+    <div class="play"><b>5・擋拆與 Timeout</b><span>卡住、心煩就喊暫停，去動一動，回來再冷靜復盤。團隊順暢運轉勝過個人表現。</span><button class="mini" type="button" data-target="p-tools">用在自學工具</button></div>
+    <div class="btnrow">
+      <button class="btn" type="button" data-target="p-today">上場：今天要做什麼</button>
+      <button class="mini" type="button" id="coachSpeak">▶ 聽傑倫老師自我介紹</button>
+      <button class="mini" type="button" id="gateAgain">再看一次教練開場</button>
+    </div>
+  </div>
+
+  <h2>先看一眼全貌</h2>
+  <p class="lead">點一科進去，裡面有這科在學什麼、老師怎麼上、你可以怎麼做，還有一張自我檢核表。</p>
+  <div class="subjects" id="subjTable"></div>
+
+  <h3>這本手冊怎麼用：用輸出檢查輸入</h3>
+  <div class="say">讀過不等於讀懂。要檢查有沒有真的讀進去，方法只有一個——<mark>闔上課本，把它說出來或寫下來</mark>。講得零零落落的地方，就是還沒讀懂的地方。</div>
+  <ol>
+    <li><strong>先輸入</strong>：讀一遍，或按每一科的語音導覽聽一遍。</li>
+    <li><strong>再輸出</strong>：闔上，用自己的話說一次、寫三句。</li>
+    <li><strong>後對照</strong>：這時才打開重點，看自己漏掉什麼——那就是今天要補的。</li>
+  </ol>
+  <p style="font-size:.93rem;color:var(--slate);">每一科頁面下方都有「換你說」的輸出練習；「今天」分頁會帶你把這三步走完一輪。</p>
+
+  <h3>不管哪一科，都適用的五件事</h3>
+  <ol>
+    <li>考完先問自己<mark>「哪裡還不懂」</mark>，而不是只看分數。</li>
+    <li>學完的東西，試著用自己的話說一次。說得清楚，才是真的懂。</li>
+    <li>訂正不是把答案改對，是找出<mark>錯的原因</mark>。</li>
+    <li>把課本裡的東西，在生活中找到一次。</li>
+    <li>國七先建立方法，成果會慢慢累積。</li>
+  </ol>
+
+  <div class="redbox">
+    <b>從「記住」到「理解」，再走向「應用與表達」。</b><br>
+    這句話八科老師都寫了一遍——不是巧合，是同一個目標。
+  </div>
+
+  <div class="btnrow">
+    <button class="btn" type="button" data-target="p-method">七個讀書方法</button>
+    <button class="btn ghost" type="button" data-target="p-today">今天要做什麼</button>
+    <button class="btn ghost" type="button" data-target="p-tools">自學工具</button>
+  </div>
+</section>
+
+<!-- 讀書方法 -->
+<section class="panel" id="p-method" role="tabpanel">
+  <h2>讀書方法</h2>
+  <p class="lead">八科的內容不一樣，讀書的方法只有一套。這裡是七個開關，一天裝一個，七天裝完。</p>
+
+  <div class="say">這七個開關在別的地方有很厲害的名字——外掛、秒殺、飆分。<mark>真正有用的不是名字，是名字底下那三個動作。</mark>動作做出來，名字忘掉也沒關係。</div>
+
+  <div class="flow"><b>篩選重點</b><i>→</i><b>提升吸收</b><i>→</i><b>寫對答案</b></div>
+  <p style="font-size:.9rem;color:var(--slate);margin:-8px 0 20px;">這三步，就是手冊裡一直在說的<mark>記住 → 理解 → 應用與表達</mark>。七個開關都是裝在這三步上面的。</p>
+
+  <div class="tool">
+    <h3>先做一次方法健檢</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:6px;">十四題，一分鐘。沒有及格不及格，只是要找出你目前最缺的那兩個開關——先補那兩個，進步最快。</p>
+    <div id="mCheck"></div>
+    <div class="btnrow">
+      <button class="btn" type="button" id="mCheckGo">看結果</button>
+      <button class="mini" type="button" id="mCheckClear">重做</button>
+    </div>
+    <div id="mResult"></div>
+  </div>
+
+  <h3>七個開關</h3>
+  <p class="hint" style="margin:-4px 0 14px;">點標題展開。每一個都有：一句話、你可能遇到的情況、三個動作、套到哪一科。</p>
+  <div id="mSwitch"></div>
+
+  <div class="tool">
+    <h3>段考倒數換算器</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:2px;">第三個開關「從考試那天倒著排」用的。填考試日期和範圍頁數，考前三天會自動留給訂正。</p>
+    <div class="calc">
+      <div>
+        <label for="mDate">段考第一天</label>
+        <input type="date" id="mDate">
+      </div>
+      <div>
+        <label for="mPages">範圍總頁數（八科加起來）</label>
+        <input type="number" id="mPages" min="1" max="3000" placeholder="例如 120">
+      </div>
+    </div>
+    <div class="btnrow" style="margin-top:4px;">
+      <button class="btn ghost" type="button" id="mCalc">算一次</button>
+    </div>
+    <div class="calcout" id="mCalcOut">填好上面兩格，按「算一次」。</div>
+  </div>
+
+  <div class="tool">
+    <h3>七日安裝表</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:12px;">一天裝一個開關，一次只練一件事。做到就打勾，紀錄存在這台裝置上。</p>
+    <div class="bar"><i id="mFill"></i></div>
+    <p class="barlabel" id="mLabel">還沒開始</p>
+    <div id="mInstall"></div>
+    <div class="btnrow"><button class="mini" type="button" id="mInstallClear">清空七日表</button></div>
+  </div>
+
+  <div class="redbox">
+    <b>一段實話。</b><br>
+    有些說法會告訴你，方法一換，速度馬上變三倍、分數立刻飆起來。實際會發生的是：第一個星期你反而覺得比較累，因為你開始做以前沒做的事——講出來、自己出題、訂正找原因。大約兩三個星期之後，你會發現同樣的時間讀完更多，而且記得住。<br>
+    方法會讓努力有回報，但它不會替你努力。
+  </div>
+
+  <div class="btnrow">
+    <button class="btn" type="button" data-target="p-today">到「今天」走一輪</button>
+    <button class="btn ghost" type="button" data-target="p-links">各科學習連結</button>
+  </div>
+</section>
+
+<!-- 國文 -->
+<section class="panel" id="p-chi" role="tabpanel">
+  <h2>國文</h2>
+  <p class="lead">閱讀 × 理解 × 表達</p>
+  <div class="say">國文是日積月累的科目。眼睛閱讀、頭腦分析、文字練習——基本功夠了，考場上才發揮得出來。</div>
+
+  <h3>基本功怎麼練</h3>
+  <ul>
+    <li>每一課都要熟讀：<mark>形、音、義、作者、課文賞析</mark>。</li>
+    <li>多做題目，並且從題目中反過來彙整每課重點。</li>
+    <li>課外多讀時事、散文、科普類文章，讀完寫 100～200 字心得。</li>
+  </ul>
+
+  <h3>三種閱讀題型</h3>
+  <div class="flow"><b>古典散文（文言文）</b><i>·</i><b>韻文（詩、詞、曲、新詩）</b><i>·</i><b>白話散文與新詩</b></div>
+
+  <h3>文言文：三個解題重點</h3>
+  <ol>
+    <li>哪些字詞可以用白話文替換。</li>
+    <li>虛字怎麼判斷。</li>
+    <li>比較古今差異，分析人、事、時、地、物、心理變化與哲思啟發。</li>
+  </ol>
+
+  <h3>韻文：三種考法</h3>
+  <ol>
+    <li>依格律找出排列方式：押韻、對仗、平仄。</li>
+    <li>看出背後的深意，或作者借景抒情、借物言志的手法。</li>
+    <li>找出<mark>詩眼</mark>（關鍵字詞），就掌握了古詩理解的要領。</li>
+  </ol>
+
+  <h3>現代散文與新詩：三個步驟</h3>
+  <ol>
+    <li>不管文章多長，先看清楚題目問什麼方向。</li>
+    <li>找出關鍵句或段落，逐條劃線，判斷主詞與主旨。</li>
+    <li>把答案放回題幹驗證一次，看是否符合文意。</li>
+  </ol>
+  <p style="font-size:.92rem;color:var(--slate);">新詩的意象常常就藏在題目裡，而且多半和生活經驗有關——平常多注意身邊的人事物。</p>
+
+  <div class="redbox">考題會取材自題辭、寒暄用語、徵人啟事這類應用文，也會用名人軼事、報章雜誌、媒體廣告、科普文章。課本以外的閱讀，不是額外，是範圍。</div>
+
+  <div id="ck-chi"></div>
+</section>
+
+<!-- 英文 -->
+<section class="panel" id="p-eng" role="tabpanel">
+  <h2>英文</h2>
+  <p class="lead">單字 × 文法 × 閱讀</p>
+  <div class="say">會考題型不外乎單字、文法、閱讀理解。回家作業只要確實認真寫，英文不難拿高分。</div>
+
+  <h3>課會這樣上</h3>
+  <ol>
+    <li>上課分成四塊：單字、文法、課文、對話。</li>
+    <li>上完單字、課文、對話 → 單字、課文及對話克漏字小考。</li>
+    <li>上完單字及文法 → 指定作業，演練該課文法及句型結構。</li>
+    <li>每上完一課 → 學習講義練習及測驗。</li>
+    <li>雜誌及核心單字是<mark>自學課程</mark>，每週都有測試，依排定考程準備。</li>
+  </ol>
+
+  <h3>你可以自己做的事</h3>
+  <ul>
+    <li>小考前自己先默寫一次，不要等到補考。</li>
+    <li>當天的文法作業當天寫，趁記憶還熱。</li>
+    <li>每天讀一點雜誌，單字量是這樣累積的。</li>
+  </ul>
+
+  <div class="redbox">
+    <b>寫作弱不是你的問題，是進度的問題。</b><br>
+    聽、說本來就比讀、寫容易學。寫作弱，通常是文法與句型結構還沒建構完成——那正是國中英文課要幫你補起來的。<mark>小學沒學好，國中一樣能學好。</mark>
+  </div>
+
+  <div id="ck-eng"></div>
+</section>
+
+<!-- ESL -->
+<section class="panel" id="p-esl" role="tabpanel">
+  <h2>ESL</h2>
+  <p class="lead">敢開口，把英文用出來</p>
+  <div class="say">ESL 的目標是讓你習慣使用生活英語、大膽開口，最後能獨立自主地用英語完成表演及報告。</div>
+
+  <h3>課程長怎樣</h3>
+  <ul>
+    <li><strong>Smart Choice</strong>：紙本＋線上系統，課本有級數，每學期隨能力提升更換。</li>
+    <li><strong>適性教學</strong>：老師依你的進度與課堂表現搭配教材與多元媒體。</li>
+    <li><strong>國際交流／期末成發</strong>：每學期有姊妹校交流，期末固定舉辦成果發表會，全英語完成表演及報告。</li>
+  </ul>
+
+  <h3>在家要完成的三件事</h3>
+  <ol>
+    <li>Smart Choice 線上系統，依老師進度完成。</li>
+    <li>英文雜誌，依日程表養成每日閱讀。</li>
+    <li>ESL 作業準時交。作業不算多，但考前會有複習及練習作業。</li>
+  </ol>
+
+  <h3>測驗有三種</h3>
+  <table class="cmp">
+    <tbody>
+      <tr><th style="width:34%">期中、期末測驗</th><td>依各組進度與內容，規範如學校重要考試，要提早準備。</td></tr>
+      <tr><th>OPT 分級測驗</th><td>期末辦理，讓外師了解你的程度變化，是分級參考依據之一。</td></tr>
+      <tr><th>Toeic Bridge</th><td>每學年一次。國七考多益普及，<mark>成績達 84 分以上</mark>，國八會確認是否改考多益。</td></tr>
+    </tbody>
+  </table>
+
+  <div class="redbox">和外師之間有需要溝通的事，第一時間找導師，或向雙語組長提出。</div>
+
+  <div id="ck-esl"></div>
+</section>
+
+<!-- 數學 -->
+<section class="panel" id="p-mat" role="tabpanel">
+  <h2>數學</h2>
+  <p class="lead">理解 × 練習 × 訂正</p>
+  <div class="say">數學不只是記住公式或解題步驟，更要理解<mark>「為什麼這樣算」</mark>。理解之後再適量練習，新知才會變成穩定的能力。</div>
+
+  <h3>四個學習重點</h3>
+  <ol>
+    <li><strong>先理解，再練習。</strong>順序反了，練再多也只是重複。</li>
+    <li><strong>讀懂題目，找出關鍵。</strong>國中的文字敘述與情境變多了，要練習找出已知條件、問題重點與數量關係。</li>
+    <li><strong>算式依序、完整寫下。</strong>方便檢查，也是在整理自己的思路，減少計算錯誤。</li>
+    <li><strong>從錯題找出要加強的觀念。</strong>是題意、觀念、計算，還是步驟出問題？</li>
+  </ol>
+
+  <h3>平常怎麼做</h3>
+  <ul>
+    <li>上課專心聽，不懂就主動問。</li>
+    <li>習作、講義、指定練習確實完成，熟悉不同題型。</li>
+    <li>錯題訂正後<mark>隔一段時間再做一次</mark>，確認是真的懂了。</li>
+  </ul>
+
+  <div class="redbox"><b>訂正時問自己兩句：</b>原本錯在哪裡？現在知道怎麼做了嗎？<br>還是不清楚，就去問老師。</div>
+
+  <div id="ck-mat"></div>
+</section>
+
+<!-- 歷史 -->
+<section class="panel" id="p-his" role="tabpanel">
+  <h2>歷史</h2>
+  <p class="lead">從「記住」走向「理解」</p>
+  <p>國小社會和國中歷史最大的差別，不是內容變多，是<mark>問題換了</mark>。</p>
+
+  <table class="cmp">
+    <thead><tr><th style="width:44%">國小社會這樣問</th><th>國中歷史這樣問</th></tr></thead>
+    <tbody>
+      <tr><td>發生了什麼？</td><td>為什麼發生？</td></tr>
+      <tr><td>誰做了什麼？</td><td>為什麼這樣做？</td></tr>
+      <tr><td>認識人物</td><td>理解人物與時代</td></tr>
+      <tr><td>認識事件</td><td>理解事件的原因與影響</td></tr>
+      <tr><td>老師引導</td><td>自己逐漸能整理</td></tr>
+      <tr><td>找答案</td><td>找線索、找證據</td></tr>
+    </tbody>
+  </table>
+
+  <h3>五個常見困難，這樣解</h3>
+  <ol>
+    <li><strong>人物太多</strong>：不要只背名字。記　人物＋時代＋重要行動＋影響。</li>
+    <li><strong>年代混亂</strong>：先後順序 → 時代位置 → 重要年代，照這個次序建立。</li>
+    <li><strong>背了卻不會做題</strong>：代表還停在記憶。問：為什麼？→ 結果呢？→ 造成什麼影響？</li>
+    <li><strong>史料題看不懂</strong>：先找　時間｜人物｜地點｜關鍵字｜題目要求。</li>
+    <li><strong>不知道怎麼讀</strong>：別再反覆看同一頁。</li>
+  </ol>
+  <div class="flow"><b>閱讀</b><i>→</i><b>整理</b><i>→</i><b>解釋</b><i>→</i><b>練習</b><i>→</i><b>修正</b></div>
+
+  <h3>歷史五問</h3>
+  <ol>
+    <li>何時？哪個時代？</li>
+    <li>哪裡？什麼地方？</li>
+    <li>誰？哪些人物或群體？</li>
+    <li>為什麼？背景與原因？</li>
+    <li>後來呢？結果與影響？</li>
+  </ol>
+  <div class="redbox"><b>最後一定要問：這件事為什麼重要？</b><br>能回答這一題，你就有歷史思維了。</div>
+
+  <div id="ck-his"></div>
+</section>
+
+<!-- 地理 -->
+<section class="panel" id="p-geo" role="tabpanel">
+  <h2>地理</h2>
+  <p class="lead">讀圖 × 空間 × 數據 × 推理</p>
+  <div class="say">地理不是背地名。每次上課前有約 <mark>10 題小測驗</mark>，用小量、持續的複習，換掉考前臨時抱佛腳。</div>
+
+  <h3>四種要練起來的能力</h3>
+  <ol>
+    <li><strong>閱讀與理解</strong>：從課本文字、題目敘述、資料中抓出重要訊息。</li>
+    <li><strong>圖表與空間思考</strong>：讀地圖、統計圖表，把文字敘述轉成圖像，再比較、判斷、推理。</li>
+    <li><strong>數據判讀與推理</strong>：人口密度、成長率、時差、比例尺——重點不是複雜計算，是<mark>理解數字代表的地理意義</mark>。</li>
+    <li><strong>知識統整與連結</strong>：題目常常跨單元，所以除了準備這次範圍，也要持續整理核心概念。</li>
+  </ol>
+
+  <div class="redbox">地理科希望你帶走的不只是分數，而是圖像思考、空間概念、語文理解、數據判讀及統整推理。這些能力建立起來，分數自然會跟上。</div>
+
+  <h3>老師也想提醒</h3>
+  <p style="font-size:.94rem;">國七還在適應階段，課堂專注、聆聽、主動參與都還在建立中。學會在<mark>適當的時間</mark>發言、討論，把注意力放回課程內容，是這學期的功課之一。</p>
+
+  <div id="ck-geo"></div>
+</section>
+
+<!-- 公民 -->
+<section class="panel" id="p-civ" role="tabpanel">
+  <h2>公民</h2>
+  <p class="lead">有想法，也能說出理由</p>
+  <div class="flow"><b>生活經驗</b><i>→</i><b>概念理解</b><i>→</i><b>情境分析</b><i>→</i><b>理性判斷</b></div>
+
+  <h3>五個要跨過去的轉變</h3>
+  <ol>
+    <li><strong>生活常識 → 公民概念</strong>：你知道「每個人都有自由」。公民課會再問：自由有沒有界線？為什麼社會需要為自由設定合理的界線？</li>
+    <li><strong>記住名詞 → 分辨概念</strong>：權利／義務、權力／權利、自由／平等、法律／規則、政府／國家、公平／平等。</li>
+    <li><strong>知道答案 → 分析情境</strong>：找出問題 → 連結概念 → 分析理由 → 做出判斷。</li>
+    <li><strong>「我覺得」→ 說出「為什麼」</strong>：你的判斷依據是什麼？站在另一方的立場，又會怎麼看？</li>
+    <li><strong>表達意見 → 理性討論</strong>：用理由與證據支持觀點，也願意聽不同的聲音。</li>
+  </ol>
+
+  <div class="redbox"><b>分辨概念的四個動作：</b>概念 → 特徵 → 生活案例 → 比較與判斷。只背定義是不夠的。</div>
+
+  <h3>公民學習四步驟</h3>
+  <ol>
+    <li><strong>理解概念</strong>｜這個概念是什麼？什麼是權利？什麼是義務？什麼是民主？</li>
+    <li><strong>連結生活</strong>｜生活中哪裡看得到？「公平」跟校園生活有什麼關係？</li>
+    <li><strong>分析問題</strong>｜誰受到影響？不同的人有什麼立場？可能有哪些衝突？</li>
+    <li><strong>提出判斷</strong>｜我的看法是什麼？為什麼？</li>
+  </ol>
+  <div class="say" style="text-align:center;">我的主張　＋　理由　＋　證據／例子</div>
+
+  <div id="ck-civ"></div>
+</section>
+
+<!-- 生物 -->
+<section class="panel" id="p-bio" role="tabpanel">
+  <h2>生物</h2>
+  <p class="lead">記憶 → 理解 → 應用</p>
+  <div class="say">生物不是「不用背」，而是要從<mark>記得</mark>進一步做到<mark>理解</mark>，最後能夠<mark>應用</mark>。記憶是起點，不是終點。</div>
+
+  <h3>三個學習重點</h3>
+  <ol>
+    <li><strong>建立扎實的基礎知識</strong>：名詞、構造、功能要熟。基本知識累積夠了，才有辦法比較、統整與推理。</li>
+    <li><strong>善用圖表理解與統整</strong>：不只是把文字背起來，還要看懂圖、讀懂表格、說明構造與功能之間的關係。</li>
+    <li><strong>透過題目練習應用</strong>：「記得」不一定代表「會用」。</li>
+  </ol>
+
+  <h3>課堂上會走的路</h3>
+  <div class="flow"><b>認識基本知識</b><i>→</i><b>看懂圖表與現象</b><i>→</i><b>理解概念關係</b><i>→</i><b>運用知識解決問題</b></div>
+  <p style="font-size:.93rem;color:var(--slate);">這條路也會是之後學理化與其他自然科學的基礎。</p>
+
+  <div class="redbox"><b>遇到錯題，先別急著看答案。</b>先想一句：我原本哪個觀念沒有弄清楚？<br>訂正加上重新理解，錯題才會變成學習。</div>
+
+  <div id="ck-bio"></div>
+</section>
+
+<!-- 今天 -->
+<section class="panel" id="p-today" role="tabpanel">
+  <h2>今天</h2>
+  <p class="lead">每天十分鐘：打勾、複習一科、做四題小測驗，順手記一句。紀錄存在這台裝置上。</p>
+
+  <div class="today">
+    <h3>今天的五件事</h3>
+    <div class="bar"><i id="dayFill"></i></div>
+    <p class="barlabel" id="dayLabel">還沒開始</p>
+    <div id="dayChecks"></div>
+  </div>
+
+  <div class="today">
+    <h3>今日複習：<span id="focusName">—</span></h3>
+    <div class="btnrow" style="margin-top:0;">
+      <button class="mini" type="button" id="focusSpeak">① 先聽一遍</button>
+      <button class="mini" type="button" id="focusSwap">換一科</button>
+      <button class="mini" type="button" id="focusGo">看完整說明</button>
+    </div>
+
+    <h3>② 先寫下來</h3>
+    <p class="hint">先不要看重點。闔上課本，把答案說一次再打下來。寫得卡住的地方，就是還沒讀進去的地方。</p>
+    <div id="recall"></div>
+
+    <h3>③ 對照重點</h3>
+    <div class="btnrow" style="margin-top:0;">
+      <button class="mini" type="button" id="focusReveal">顯示今日重點</button>
+    </div>
+    <ul class="pts" id="focusPoints" hidden></ul>
+
+    <h3>④ 四題快篩</h3>
+    <div id="dq"></div>
+  </div>
+
+  <div class="today">
+    <h3>學習紀錄</h3>
+    <div class="streak">
+      <div><b id="stStreak">0</b><span>連續天數</span></div>
+      <div><b id="stDays">0</b><span>累計輸出段數</span></div>
+      <div><b id="stQuiz">0</b><span>快篩答對題數</span></div>
+    </div>
+    <h3>三句話筆記</h3>
+    <p class="hint">讀完一段就寫三句：這段在說什麼／我怎麼判斷／我還不懂的是。寫得出來，才是真的讀懂。國文的課外閱讀心得，目標是 100～200 字。</p>
+    <textarea class="noteinput" id="dayNote" placeholder="1. 這段在說什麼……&#10;2. 我怎麼判斷的……&#10;3. 我還不懂的是……"></textarea>
+    <p class="hint" id="noteCount">0 字</p>
+    <h3>最近十四天</h3>
+    <div id="logList"></div>
+    <div class="btnrow"><button class="mini" type="button" id="resetDay">清空今天的紀錄</button></div>
+  </div>
+</section>
+
+<!-- 學習連結 -->
+<section class="panel" id="p-links" role="tabpanel">
+  <h2>各科學習連結</h2>
+  <p class="lead">老師做的線上互動學習單，依科目分區。手機、平板、電腦都能開，作答紀錄存在你開啟的那台裝置上。連結會陸續增加。</p>
+  <div id="linkList"></div>
+</section>
+
+<!-- 工具 -->
+<section class="panel" id="p-tools" role="tabpanel">
+  <h2>自學工具</h2>
+  <p class="lead">三個可以每天或每週用一次的小工具。紀錄存在這台裝置上。</p>
+
+  <div class="tool">
+    <h3>鼓勵小語</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:12px;">108 句，中英對照，讀書的時候會不定時跳出來。按「唸一句」可以聽中文和英文各唸一次。不想被打擾就把下面的開關關掉。</p>
+    <div class="card">
+      <small>108 句・中英雙語</small>
+      <div id="cheerText">按下面的按鈕抽一句</div>
+      <div id="cheerEn"></div>
+    </div>
+    <div class="btnrow">
+      <button class="btn" type="button" id="cheerBtn">抽一句</button>
+      <button class="mini" type="button" id="cheerSpeak">▶ 唸一句</button>
+    </div>
+    <label class="checkline" style="border-bottom:0;">
+      <input type="checkbox" id="cheerOn">
+      <span>讀書時不定時跳出傑倫老師的鼓勵</span>
+    </label>
+    <label class="checkline" style="border-bottom:0;">
+      <input type="checkbox" id="gateOn">
+      <span>每天第一次打開時，先看教練開場</span>
+    </label>
+    <div class="vpick">
+      <label for="voicePick">傑倫老師的中文聲音（不同裝置可選的聲音不一樣，挑一個最像男教練的）</label>
+      <select id="voicePick"></select>
+      <button class="mini" type="button" id="voiceTest">▶ 試聽這個聲音</button>
+    </div>
+  </div>
+
+  <div class="tool">
+    <h3>三分鐘自問</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:12px;">抽一題，闔上課本，自己回答一次。答不出來的地方，就是明天要讀的地方。</p>
+    <div class="card" id="card">
+      <small id="cardTag">準備好了</small>
+      <div id="cardText">按下面的按鈕抽一題</div>
+    </div>
+    <div class="btnrow">
+      <button class="btn" type="button" id="drawBtn">抽一題</button>
+      <button class="mini" type="button" id="askSpeak">▶ 唸給我聽</button>
+    </div>
+  </div>
+
+  <div class="tool">
+    <h3>哪一種做法比較有效？</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:12px;">十題情境，選一個你會採取的做法。</p>
+    <div class="qtext" id="qText">按「開始」出題</div>
+    <div class="opts" id="qOpts"></div>
+    <p class="fb" id="qFb"></p>
+    <p class="score" id="qScore"></p>
+    <div class="btnrow">
+      <button class="btn ghost" type="button" id="qStart">開始／重新出題</button>
+      <button class="mini" type="button" id="qSpeak">▶ 唸題目與選項</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  依各科任課老師提供之課程內容、教學方式及學習建議整理。<br>
+  記住 → 理解 → 應用與表達。
+</footer>
+
+</main>
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateName">
+  <div class="gatebox">
+    <button class="gx" type="button" id="gateX" aria-label="關閉">×</button>
+    <span id="gateAv"></span>
+    <p class="gname" id="gateName">傑倫老師 Jalen</p>
+    <p class="grole">戰術學長 × 心智教練</p>
+    <p class="gquote">不用比別人高，<br>但你的腳步要比別人穩。</p>
+    <div class="btnrow" style="justify-content:center;margin-bottom:16px;">
+      <button class="mini" type="button" id="gateSpeak">▶ 聽教練說一段</button>
+    </div>
+    <p class="gsub">今天的比賽計畫</p>
+    <ol>
+      <li>先到「今天」：五件事，一次做一件。</li>
+      <li>卡住就翻「方法」：七個開關挑一個用。</li>
+      <li>收工前輸出一次：闔上課本，說三句。</li>
+    </ol>
+    <div class="btnrow" style="justify-content:center;">
+      <button class="btn" type="button" id="gateGo">開始今天的練習</button>
+      <button class="btn ghost" type="button" id="gateHome">先看全貌</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var SUBJECTS = [
+    {id:"p-home", nav:"總覽"},
+    {id:"p-method",nav:"方法"},
+    {id:"p-chi",  nav:"國文", nm:"國文", core:"閱讀 × 理解 × 表達"},
+    {id:"p-eng",  nav:"英文", nm:"英文", core:"單字 × 文法 × 閱讀"},
+    {id:"p-esl",  nav:"ESL",  nm:"ESL",  core:"敢開口，把英文用出來"},
+    {id:"p-mat",  nav:"數學", nm:"數學", core:"理解 × 練習 × 訂正"},
+    {id:"p-his",  nav:"歷史", nm:"歷史", core:"從「記住」走向「理解」"},
+    {id:"p-geo",  nav:"地理", nm:"地理", core:"讀圖 × 空間 × 數據 × 推理"},
+    {id:"p-civ",  nav:"公民", nm:"公民", core:"有想法，也能說出理由"},
+    {id:"p-bio",  nav:"生物", nm:"生物", core:"記憶 → 理解 → 應用"},
+    {id:"p-today",nav:"今天"},
+    {id:"p-links",nav:"學習連結"},
+    {id:"p-tools",nav:"自學工具"}
+  ];
+
+  /* 學習連結：新增連結時，在對應科目的陣列加一列即可 */
+  var LINKS = [
+    {subject:"國文", items:[
+      {t:"國文 1 上・互動學習單彙整（康軒版）", d:"第一冊十四份學習單、共 112 個關卡，另附成語典故延伸教材。", u:"https://lilinwang0928-cyber.github.io/Chinese/"},
+      {t:"國中字音字形・互動學習單", d:"國中三年高頻字：學習單、筆順練習、闖關遊戲、錯題分析與每日打卡。", u:"https://lilinwang0928-cyber.github.io/mandarin/"},
+      {t:"國語文戲谷互動學習單", d:"《國語文戲谷》①＋②闖關地圖，答錯的題目可回測到全對為止。", u:"https://lilinwang0928-cyber.github.io/Mandarin2/"},
+      {t:"國一上《Ten叔叔的國文好好聽》", d:"頻道「Ten叔叔的10%學習法」，35 部。逐課用聽的走一遍。", u:"https://www.youtube.com/playlist?list=PLtuOxBK-eL5lapXAGqiclFNEvSMZQCflL"}
+    ]},
+    {subject:"英文", items:[
+      {t:"互動背單字學習平台 Aero", d:"單字卡、測驗、語境短文閱讀、聽說練習與錯題診斷，可安裝離線使用。", u:"https://lilinwang0928-cyber.github.io/Aero/"},
+      {t:"國中英文轉運站：文法直達車", d:"國中英語文法二十站，四條路線從時態走到長句子句，附總複習與時態全景。", u:"https://lilinwang0928-cyber.github.io/BiBi/"}
+    ]},
+    {subject:"ESL", items:[
+      {t:"ABC 互動英語 No.291・六週學習單", d:"配合雜誌九月號的六週課表，每天 15 分鐘：聽課文、跟讀、單字與造句。", u:"https://lilinwang0928-cyber.github.io/ABC/"}
+    ]},
+    {subject:"數學", items:[
+      {t:"國一數學 互動學習單・總覽", d:"單元一～三共 14 份學習單、242 個關卡，含總複習測驗與麥斯道館隨機刷題。", u:"https://lilinwang0928-cyber.github.io/math/"}
+    ]},
+    {subject:"歷史", items:[
+      {t:"國七歷史學習資源（Notion）", d:"老師整理的歷史學習頁面，需連網開啟。", u:"https://spell0227.notion.site/Done-2d498e9ab3a280d586dbdf0307bfd8d3"},
+      {t:"七年級台灣史・課程教學影片", d:"頻道「宜蓉的歷史課」逐課講解，共 35 部，114 學年起陸續更新。", u:"https://www.youtube.com/playlist?list=PL-oHJmlmfN2yGBiormizO0AMNIkS3vxiQ"},
+      {t:"臺灣史快速複習影片（2025 更新）", d:"5 部影片把台灣史串一遍，適合考前總複習。", u:"https://www.youtube.com/playlist?list=PL-oHJmlmfN2z2VMmeRlf4-ctyS2vMkDCZ"},
+      {t:"國一上《Ten叔叔的歷史好好聽》", d:"頻道「Ten叔叔的10%學習法」，10 部。用聽的複習，通勤或睡前都能用。", u:"https://www.youtube.com/playlist?list=PLtuOxBK-eL5k2v8dsliqGpdRyQ7e3gqZ7"},
+      {t:"八年級中國史・課程教學影片", d:"同一位老師的中國史課程，共 54 部。國八的範圍，想提前看也可以。", u:"https://www.youtube.com/playlist?list=PL-oHJmlmfN2wQt8Tmjbt6-vtyTU88_WGb"},
+      {t:"九年級世界史・歷史課教學影片", d:"世界史課程，共 58 部。國九的範圍，先放著備用。", u:"https://www.youtube.com/playlist?list=PL-oHJmlmfN2ybwtA6ly2zAB0Mb_HhEPso"}
+    ]},
+    {subject:"地理", items:[
+      {t:"國七地理學習資源（Notion）", d:"老師整理的地理學習頁面，需連網開啟。", u:"https://spell0227.notion.site/Done-2e998e9ab3a280898d62fa462cdf2de7"},
+      {t:"國一上《Ten叔叔的地理好好聽》", d:"頻道「Ten叔叔的10%學習法」，8 部。用聽的複習，通勤或睡前都能用。", u:"https://www.youtube.com/playlist?list=PLtuOxBK-eL5le63sH1eQy1GH08qWubVJm"}
+    ]},
+    {subject:"公民", items:[
+      {t:"國七公民學習資源（Notion）", d:"老師整理的公民學習頁面，需連網開啟。", u:"https://spell0227.notion.site/2d998e9ab3a280f7b802d36c10b54574"},
+      {t:"國一上《Ten叔叔的公民好好聽》", d:"頻道「Ten叔叔的10%學習法」，8 部。用聽的複習，適合零碎時間。", u:"https://www.youtube.com/playlist?list=PLtuOxBK-eL5lOLxVPmpod-pyTsjORSd1c"}
+    ]},
+    {subject:"生物", items:[
+      {t:"國一生物（上）康軒 2026・影片播放清單", d:"YouTube 頻道「麥斯」的逐課講解，共 24 部影片。", u:"https://www.youtube.com/playlist?list=PLKHqRb2SM4i7Et3W3z0nBosm7QkzNtIcR"},
+      {t:"國一生物（下）康軒 2026・影片播放清單", d:"下學期的逐課講解，共 26 部影片。", u:"https://www.youtube.com/playlist?list=PLKHqRb2SM4i4DLU91Xc3PJgjPhhsmx3D0"},
+      {t:"國一上《Ten叔叔的生物好好聽》", d:"頻道「Ten叔叔的10%學習法」，7 部。用聽的複習，適合零碎時間。", u:"https://www.youtube.com/playlist?list=PLtuOxBK-eL5mBWzBHolE93PZktQFU5APH"}
+    ]},
+    {subject:"課外延伸閱讀", items:[
+      {t:"學習吧 LearnMode", d:"免費線上學習平台，齊備康軒、翰林、南一三個版本的課程。除了各科課文、影片與測驗，還有《國語日報》、《大家說英語》和國際新聞等閱讀素養內容。", u:"https://www.learnmode.net/home/"},
+      {t:"生命科學音典", d:"生物名詞查詢：臺灣雙語注音符號搭配 MW 發音與中英解釋，可依音節或主題查，收錄 1118 詞。", u:"https://formosa-life.vercel.app/tools/sci-life-dictionary.html"},
+      {t:"Stink #3 臭臭鞋大賽・互動閱讀學習單", d:"全書十章，拆音節認單字、句型語調、篇章朗讀與理解測驗，可錄音比對。", u:"https://lilinwang0928-cyber.github.io/stink3/"}
+    ]}
+  ];
+
+  var LISTS = {
+    "p-chi":["每課的形、音、義我都熟了","知道這課作者是誰、什麼時代","課文賞析看過並抓出重點","這週讀了一篇課外文章並寫了心得","文言文標出可以換成白話的字詞","做題目時有把答案放回題幹驗證"],
+    "p-eng":["小考前自己先默寫過一次","當天的文法作業當天寫完","今天讀了雜誌","核心單字依考程進度準備了","課文和對話唸過一次"],
+    "p-esl":["Smart Choice 線上進度跟上了","今天讀了英文雜誌","ESL 作業準時交了","這節課我有開口說英文","成發／測驗前先複習過"],
+    "p-mat":["先弄懂觀念才開始寫題目","把題目的已知條件圈出來","算式完整寫下，沒有跳步","錯題找出原因，不只改答案","訂正過的題目隔幾天再做一次"],
+    "p-his":["人物記了：時代＋重要行動＋影響","先排好先後順序再記年代","史料題先找時間、人物、地點、關鍵字","讀完有整理，不是只反覆看","問過自己：這件事為什麼重要？"],
+    "p-geo":["上課前的 10 題小考有先複習","把文字敘述轉成圖像想一次","看得懂這張圖表在說什麼","數字代表的地理意義我說得出來","跨單元的核心概念有整理起來"],
+    "p-civ":["相近的概念我分得出差別","舉得出一個生活中的例子","分析時有想到不同人的立場","說看法時附上了理由","聽完不同意見才下判斷"],
+    "p-bio":["名詞、構造、功能記熟了","看得懂課本的圖和表格","說得出構造與功能的關係","錯題問過：我哪個觀念沒弄清楚","今天有簡單回顧一次課堂內容"]
+  };
+
+  var DAILY = [
+    "用自己的話說一次今天學了什麼（說給自己或家人聽）",
+    "把今天的作業寫完，沒有拖到明天",
+    "至少讀了一段英文，而且唸出聲音",
+    "今天的錯題有訂正，而且說得出錯在哪",
+    "讀書時把手機、平板收在看不到的地方"
+  ];
+
+  /* 各科語音導覽稿 */
+  var GUIDE = {
+    "p-method":"這一頁是讀書方法，一共七個開關。第一個，回到本質：讀不好通常不是不夠聰明，是方法還沒對，所以讀新東西之前先問三句：這在講什麼、為什麼會這樣、跟我已經會的哪一件事很像。第二個，站到出題老師那一邊：考卷是人出的，讀完一段自己出兩題，一題送分，一題有陷阱。第三個，從考試那天倒著排：先算出範圍有幾頁，除以剩下幾天，寫進行事曆，考前三天只留給訂正。第四個，先拿到一次成功：討厭讀書多半是努力很久卻沒有結果，所以先挑一個小到不可能失敗的目標，做到就打勾。第五個，只練還不會的：課本標上會、半會、不會，時間只花在半會和不會的地方。第六個，三步一條龍：篩選重點、提升吸收、寫對答案，這三步從明天的小考到會考都一樣，只是範圍變大。第七個，善用工具：五分鐘先掃一遍標題、黑體字和圖表，一課壓成一頁筆記，零碎時間用聽的複習。重點不是讀得久，是讀得對。",
+    "p-chi":"國文是日積月累的科目。每一課先熟讀形、音、義、作者和課文賞析，再多做題目，從題目回頭彙整重點。閱讀題分成文言文、韻文和白話文三類。文言文要判斷虛字，找出可以換成白話的字詞。韻文要找出詩眼，也就是關鍵字詞。白話文則先看清題目問的方向，再回文章找關鍵句，最後把答案放回題幹驗證一次。平常多讀時事、散文和科普文章，讀完寫一段一百到兩百字的心得。",
+    "p-eng":"會考的英文題型不外乎單字、文法和閱讀理解。上課分成單字、文法、課文和對話四塊，上完就會有小考和作業。雜誌和核心單字是自學課程，每週都有測試，要依照排定的考程準備。如果覺得自己寫作比較弱，那不是能力問題，而是文法和句型結構還沒有建構完成，國中英文課就是要幫你把這兩個能力補起來。小學沒學好，國中一樣可以學好。",
+    "p-esl":"ESL 的目標，是讓你習慣使用生活英語，敢開口說。主要教材是 Smart Choice，紙本搭配線上系統，課本有級數之分，每學期依能力更換。每學期有姊妹校交流活動，期末還有全英語的成果發表會。測驗有三種：期中期末測驗、期末的 OPT 分級測驗，還有每學年一次的多益普及測驗。成績達到八十四分以上，國八時會確認是否改考多益。",
+    "p-mat":"國七數學最重要的順序，是先理解，再練習。不只是記住公式，要弄懂為什麼這樣算。國中的題目文字變多了，要練習找出已知條件、問題重點和數量關係。算式依序完整寫下來，方便檢查，也是在整理自己的思路。訂正不是把答案改對，而是找出到底是題意、觀念、計算，還是步驟出錯。隔一段時間再做一次，才知道是不是真的懂了。",
+    "p-his":"國中歷史和國小社會最大的差別，是問題換了：從發生了什麼，變成為什麼發生。記人物不要只背名字，要記人物、時代、重要行動和影響。年代先建立先後順序，再放進時代位置。史料題先找時間、人物、地點、關鍵字和題目要求。讀不下去的時候，試試閱讀、整理、解釋、練習、修正這五個步驟。最後一定要問自己：這件事為什麼重要？",
+    "p-geo":"地理不是背地名。每次上課前有大約十題小測驗，用小量而持續的複習，取代考前臨時抱佛腳。要練起來的有四種能力：從課本文字和題目敘述中抓出重要訊息、把文字轉成圖像去比較和推理、理解人口密度和比例尺這些數字代表的地理意義，還有把不同單元的概念連起來。題目常常跨單元，所以核心概念要持續整理。",
+    "p-civ":"公民課的路線是：生活經驗、概念理解、情境分析，最後是理性判斷。很多概念看起來相近，意義卻不同，像權利和權力、公平和平等，光背定義不夠，要能舉出生活案例並且比較。遇到情境題，先找出問題、連結概念、分析理由，再做出判斷。說出看法的時候，記得完整表達：我的主張，加上理由，再加上證據或例子。",
+    "p-bio":"生物不是不用背，而是要從記得，進一步做到理解，最後能夠應用。名詞、構造和功能要先熟，基本知識累積夠了，才有辦法比較、統整和推理。課本和講義有很多圖表，除了把文字背起來，也要看得懂圖、讀得懂表格，說得出構造和功能之間的關係。遇到錯題，先別急著看答案，問自己一句：我原本哪個觀念沒有弄清楚？",
+    "p-tools":"自學工具有三個。第一個是三分鐘自問：抽一題，闔上課本，先用嘴巴說一次答案。說不出來的地方，就是明天要讀的地方。第二個是情境選擇：十個真實的讀書情境，選一個你會採取的做法，看看自己的方法對不對。第三個是鼓勵小語，一共一百零八句，中英對照，讀書的時候會不定時跳出來。按唸一句，可以聽中文和英文各唸一次，順便練聽力。不想被打擾，可以把開關關掉。這三個工具都是拿來檢查自己的，說不出來或選錯都沒關係，那正是它們存在的意義。"
+  };
+
+  var GUIDE_TIP = {
+    "p-method":"先聽一遍七個開關，大約一分半。",
+    "p-tools":"先聽一遍這三個工具怎麼用。"
+  };
+
+  /* 今日複習重點 */
+  var FOCUS_ORDER = ["p-chi","p-eng","p-esl","p-mat","p-his","p-geo","p-civ","p-bio"];
+  var FOCUS_NAME = {"p-chi":"國文","p-eng":"英文","p-esl":"ESL","p-mat":"數學","p-his":"歷史","p-geo":"地理","p-civ":"公民","p-bio":"生物"};
+  var FOCUS_POINTS = {
+    "p-chi":["每課先熟：形、音、義、作者、課文賞析。","文言文：可換成白話的字詞、虛字判斷、古今差異。","現代文：先看題目方向 → 找關鍵句 → 答案放回題幹驗證。"],
+    "p-eng":["上完單字、課文、對話就有小考，作業當天寫完。","雜誌與核心單字是自學課程，每週測試。","寫作弱是文法句型還沒建構完成，不是學不會。"],
+    "p-esl":["主要教材 Smart Choice，紙本搭配線上系統。","期末有 OPT 分級測驗與全英語成果發表會。","多益普及達 84 分以上，國八確認是否改考多益。"],
+    "p-mat":["先理解再練習，弄懂「為什麼這樣算」。","算式依序完整寫下，方便檢查也整理思路。","訂正找原因：題意、觀念、計算，還是步驟？"],
+    "p-his":["人物記四件事：人物＋時代＋重要行動＋影響。","史料題先找：時間｜人物｜地點｜關鍵字｜題目要求。","讀法五步：閱讀→整理→解釋→練習→修正。"],
+    "p-geo":["上課前約 10 題小測驗，用小量持續複習取代臨時抱佛腳。","把文字敘述轉成圖像，再比較、判斷、推理。","數字的重點不是計算，是它代表的地理意義。"],
+    "p-civ":["路線：生活經驗→概念理解→情境分析→理性判斷。","相近概念要能分辨：權利／權力、公平／平等。","完整表達＝我的主張＋理由＋證據／例子。"],
+    "p-bio":["名詞、構造、功能先熟，才有辦法比較與推理。","看懂圖、讀懂表格，說出構造與功能的關係。","錯題先問：我原本哪個觀念沒弄清楚？"]
+  };
+
+  /* 每日小測驗題庫：答錯時 link 會帶到相關的線上學習單 */
+  var L_CHI = {t:"國文 1 上互動學習單", u:"https://lilinwang0928-cyber.github.io/Chinese/"};
+  var L_IDIOM = {t:"成語典故延伸教材", u:"https://lilinwang0928-cyber.github.io/Chinese/idioms.html"};
+  var L_ZIYIN = {t:"字音字形互動學習單", u:"https://lilinwang0928-cyber.github.io/mandarin/"};
+  var L_XIGU = {t:"國語文戲谷互動學習單", u:"https://lilinwang0928-cyber.github.io/Mandarin2/"};
+  var L_AERO = {t:"Aero 互動背單字", u:"https://lilinwang0928-cyber.github.io/Aero/"};
+  var L_BIBI = {t:"英文轉運站：文法直達車", u:"https://lilinwang0928-cyber.github.io/BiBi/"};
+  var L_MATH = {t:"國一數學互動學習單", u:"https://lilinwang0928-cyber.github.io/math/"};
+  var L_ABC = {t:"ABC 互動英語 No.291 六週學習單", u:"https://lilinwang0928-cyber.github.io/ABC/"};
+  var L_BIO = {t:"生命科學音典（生物名詞查詢）", u:"https://formosa-life.vercel.app/tools/sci-life-dictionary.html"};
+
+  /* 第一關：先輸出。闔上課本寫下來，再對照參考重點自評 */
+  var RECALL = {
+    "p-chi":[
+      {q:"闔上課本。今天讀的這一課，主旨是什麼？用兩三句話寫下來。", k:["說得出人、事、時、地、物","說得出作者想表達什麼","舉得出一句支持你判斷的句子"], link:L_CHI},
+      {q:"文言文遇到看不懂的句子，你會怎麼拆解？把步驟寫下來。", k:["先找出哪些字詞可以換成白話","判斷虛字，看清句子結構","比較古今差異，再分析人事時地物與心理變化"], link:L_CHI},
+      {q:"挑一個最近學到的成語，寫出它的意思，再造一個句子。", k:["寫得出字面意思","寫得出引申的用法","造句的情境用對了"], link:L_IDIOM}
+    ],
+    "p-eng":[
+      {q:"用今天學到的文法，自己造三個句子寫下來。", k:["三句都用到目標句型","主詞與動詞一致","時態前後一致"], link:L_BIBI},
+      {q:"不看課本，把這一課的五個單字寫出來，各造一個短句。", k:["拼字正確","詞性用對","句子有情境，不是硬套"], link:L_AERO},
+      {q:"用英文寫三句話介紹你的一天。", k:["每句都有主詞和動詞","時態一致","有連接詞讓句子接得起來"], link:L_BIBI}
+    ],
+    "p-esl":[
+      {q:"先用英語說三句話，講你昨天做了什麼。說完再把它打下來。", k:["先開口說，再寫下來","過去式動詞用對","三句之間接得起來"], link:L_ABC},
+      {q:"這週雜誌讀到的一篇，用英文兩句話說重點。", k:["說得出主題","說得出一個細節","不查字典也講得出大意"], link:L_ABC},
+      {q:"成果發表會上你要說什麼？先寫三句開場。", k:["有自我介紹","講清楚主題是什麼","開頭有一句抓得住人"], link:L_ABC}
+    ],
+    "p-mat":[
+      {q:"挑一題今天算過的題目，把解題步驟一步一步寫下來，像在教別人。", k:["先寫出已知條件","每一步都寫得出理由","算式依序完整，沒有跳步"], link:L_MATH},
+      {q:"用自己的話解釋：為什麼負負得正？不要用公式。", k:["用數線或生活情境說明","說得出乘法的意義","結論正確"], link:L_MATH},
+      {q:"把今天錯的那一題，錯的原因寫成一句話。", k:["指出是題意、觀念、計算還是步驟","寫得出正確的做法","寫下下次要注意什麼"], link:L_MATH}
+    ],
+    "p-his":[
+      {q:"挑一個這課的人物，用四句話寫：人物、時代、重要行動、影響。", k:["四項都寫到了","時代位置放對","影響寫得出來，不只是事件本身"], link:null},
+      {q:"用歷史五問講一遍今天的事件：何時、哪裡、誰、為什麼、後來呢。", k:["五問都答得出來","因果順序清楚","不是照抄課本句子"], link:null},
+      {q:"回答一句就好：這件事為什麼重要？", k:["說得出對當時的影響","說得出對後來的影響","有自己的說法"], link:null}
+    ],
+    "p-geo":[
+      {q:"找一張課本或生活中的圖表，寫下它在說什麼，以及你怎麼判斷的。", k:["說得出圖表的主題","指得出關鍵的那一段數據","說得出判斷的依據"], link:null},
+      {q:"用自己的話解釋比例尺（或時差）是什麼。", k:["說得出定義","舉得出一個生活例子","說得出它有什麼用"], link:null},
+      {q:"今天學的一、兩個重點，用五到十分鐘說一次，再寫成三行。", k:["重點抓得住，不是整段複述","三行之間有關聯","說得出跟前面單元的連結"], link:null}
+    ],
+    "p-civ":[
+      {q:"挑一則新聞或校園事件，寫下：我的主張＋理由＋證據／例子。", k:["主張講得清楚","理由不只是「我覺得」","有具體例子或證據"], link:null},
+      {q:"寫出權利和權力的差別，各舉一個生活例子。", k:["兩個概念的特徵說得出來","例子貼近生活","講得出差別在哪"], link:null},
+      {q:"同一件事，站在另一方的立場會怎麼說？寫兩句。", k:["說得出另一方在意什麼","不是為了反對而反對","看得出兩邊可能的衝突點"], link:null}
+    ],
+    "p-bio":[
+      {q:"挑一個構造，寫下它的功能，以及它為什麼長成那樣。", k:["功能寫對","講得出構造與功能的關係","舉得出課本的圖或例子"], link:L_BIO},
+      {q:"把課本的一張圖，用文字描述一遍。", k:["說得出圖在表達什麼現象","名詞用對","順序或流程講得清楚"], link:null},
+      {q:"今天生物課學了什麼？用自己的話寫三行。", k:["不是照抄課本","三行之間有連結","說得出一個自己還不確定的地方"], link:null}
+    ]
+  };
+
+  var DQ = {
+    "p-chi":[
+      {q:"古詩裡的「詩眼」指的是什麼？", o:["詩的作者","詩中的關鍵字詞","詩的題目"], a:1, e:"找出詩眼，就掌握了古詩理解的要領。", link:L_CHI},
+      {q:"文言文中的「虛字」，主要的功能是？", o:["表示語氣或連接句子","代表具體的人事物","標示朝代年份"], a:0, e:"虛字沒有具體意義，判斷它，句子的結構就清楚了。", link:L_XIGU},
+      {q:"遇到很長的現代散文考題，第一步該做什麼？", o:["從第一行讀到最後一行","先看清題目問的方向","先看選項猜答案"], a:1, e:"先知道要找什麼，才不會讀完還得重讀一次。", link:L_CHI},
+      {q:"成語「一鼓作氣」的「鼓」，意思是？", o:["鼓勵別人","擊鼓","鼓起的形狀"], a:1, e:"出自曹劌論戰，第一次擊鼓時士氣最盛。", link:L_IDIOM}
+    ],
+    "p-eng":[
+      {q:"He ____ to school every day.", o:["go","goes","going"], a:1, e:"主詞是第三人稱單數，現在簡單式動詞要加 s。", link:L_BIBI},
+      {q:"現在完成式的結構是？", o:["have / has ＋ 過去分詞","be 動詞 ＋ 現在分詞","will ＋ 原形動詞"], a:0, e:"have／has + p.p.，表示到現在為止的經驗或結果。", link:L_BIBI},
+      {q:"If it rains tomorrow, I ____ at home.", o:["stayed","will stay","staying"], a:1, e:"條件句：if 子句用現在式，主要子句用未來式。", link:L_BIBI},
+      {q:"單字容易忘，比較有效的做法是？", o:["一次背一百個","分成幾次、隔幾天再複習","只看不寫也不唸"], a:1, e:"分散多次複習，記憶才留得住。", link:L_AERO}
+    ],
+    "p-esl":[
+      {q:"ESL 課程的主要教材是？", o:["Smart Choice","ABC 互動英語","Let's Go"], a:0, e:"紙本書籍搭配線上學習系統，課本有級數之分。", link:null},
+      {q:"OPT 分級測驗在什麼時候辦理？", o:["每次段考","期末","開學第一週"], a:1, e:"期末辦理，讓外師了解你的程度變化，是分級參考依據之一。", link:null},
+      {q:"多益普及測驗成績達幾分以上，國八會確認是否改考多益？", o:["60 分","84 分","95 分"], a:1, e:"84 分以上，國八時會確認是否改考多益測驗。", link:null},
+      {q:"和外師之間有需要溝通的事，第一時間該找誰？", o:["自己想辦法","導師或雙語組長","等家長聯絡"], a:1, e:"第一時間向導師提出，或向雙語組長提出。", link:null}
+    ],
+    "p-mat":[
+      {q:"(−3) ＋ (−5) ＝ ?", o:["−8","−2","8"], a:0, e:"同號相加，數字相加、符號照抄。", link:L_MATH},
+      {q:"(−2) × (−3) × (−4) ＝ ?", o:["24","−24","−9"], a:1, e:"負號有三個，奇數個 → 積為負；數字部分 2×3×4＝24。", link:L_MATH},
+      {q:"12 和 18 的最大公因數是？", o:["3","6","36"], a:1, e:"12＝2²×3，18＝2×3²，取最小指數 → 2×3＝6。", link:L_MATH},
+      {q:"3×10⁴ 展開後是幾位數？", o:["4 位數","5 位數","6 位數"], a:1, e:"3×10⁴＝30000，共 5 位數。", link:L_MATH}
+    ],
+    "p-his":[
+      {q:"記歷史人物時，除了名字還要記哪三件事？", o:["時代、重要行動、影響","身高、家鄉、興趣","生日、朝代、官名"], a:0, e:"只背名字，題目一換就答不出來。", link:null},
+      {q:"史料題看不懂，第一步先找什麼？", o:["先看選項","時間、人物、地點、關鍵字、題目要求","先背下整段史料"], a:1, e:"五個要素找齊，史料就不再是天書。", link:null},
+      {q:"讀歷史的五個步驟：閱讀 → 整理 → ____ → 練習 → 修正", o:["解釋","背誦","抄寫"], a:0, e:"能解釋，才代表從記憶走到理解。", link:null},
+      {q:"讀完一個歷史事件，最後一定要問自己？", o:["會不會考","這件事為什麼重要","是哪一年"], a:1, e:"這一問，就是歷史思維的核心。", link:null}
+    ],
+    "p-geo":[
+      {q:"地理課碰到人口密度、比例尺這些數字，重點是？", o:["算得比別人快","理解數字代表的地理意義","背下所有數據"], a:1, e:"重點並非複雜的數學計算。", link:null},
+      {q:"地理課每次上課前，原則上會安排幾題小測驗？", o:["約 10 題","約 30 題","不固定"], a:0, e:"用小量而持續的複習，養成課後整理的習慣。", link:null},
+      {q:"把文字敘述轉換成圖像概念，練的是哪一種能力？", o:["閱讀與理解","圖表與空間思考","知識統整"], a:1, e:"轉成圖像後，才好進一步比較、判斷與推理。", link:null},
+      {q:"地理題目常常跨單元，所以除了準備考試範圍，還要？", o:["持續整理核心概念","只讀最新一課","把課本背下來"], a:0, e:"知識統整與連結，是國中地理的重要能力。", link:null}
+    ],
+    "p-civ":[
+      {q:"公民科完整的表達是：我的主張 ＋ ____ ＋ 證據／例子", o:["理由","結論","感覺"], a:0, e:"有想法，也要說得出理由。", link:null},
+      {q:"分析情境題的四個步驟，第一步是？", o:["做出判斷","找出問題","連結概念"], a:1, e:"找出問題 → 連結概念 → 分析理由 → 做出判斷。", link:null},
+      {q:"「權利」和「權力」的關係是？", o:["完全一樣","看起來相近但意義不同，要能分辨","只有考試會用到"], a:1, e:"概念 → 特徵 → 生活案例 → 比較與判斷。", link:null},
+      {q:"公民學習四步驟的正確順序是？", o:["理解概念 → 連結生活 → 分析問題 → 提出判斷","連結生活 → 理解概念 → 提出判斷 → 分析問題","提出判斷 → 分析問題 → 連結生活 → 理解概念"], a:0, e:"先懂概念，才有辦法分析與判斷。", link:null}
+    ],
+    "p-bio":[
+      {q:"遇到錯題時，最重要的是問自己？", o:["正確答案是哪一個","我原本哪個觀念沒有弄清楚","這題會不會再考"], a:1, e:"訂正加上重新理解，錯題才會變成學習。", link:null},
+      {q:"生物課堂的學習路徑，第一步是？", o:["認識基本知識","運用知識解決問題","理解概念關係"], a:0, e:"認識基本知識 → 看懂圖表與現象 → 理解概念關係 → 運用知識解決問題。", link:null},
+      {q:"除了把文字背起來，生物還要練什麼？", o:["看懂圖、讀懂表格","背得更快","抄寫課本"], a:0, e:"還要說得出構造與功能之間的關係。", link:null},
+      {q:"關於生物要不要背，正確的說法是？", o:["完全不用背","要從記得，進一步做到理解，最後能應用","只要背就夠了"], a:1, e:"記憶是起點，理解與應用才是目標。", link:null}
+    ]
+  };
+
+  /* 鼓勵小語 108 句（中英雙語） */
+  var CHEERS = [
+    ["今天打開課本，就已經比昨天前進一格。","Opening the book today already puts you ahead of yesterday."],
+    ["慢慢來，比較快。","Slow is smooth, and smooth is fast."],
+    ["不懂的地方寫下來，它就不會再逃走。","Write down what you don't get, and it can't slip away."],
+    ["錯題是地圖，不是傷口。","A wrong answer is a map, not a wound."],
+    ["你不是笨，你只是還沒練到。","You're not slow. You just haven't practiced it yet."],
+    ["讀十五分鐘，也算數。","Fifteen minutes of studying still counts."],
+    ["卡住的時候，先讀題目最後一句。","When you're stuck, reread the last line of the question."],
+    ["進步常常是無聲的。","Progress is often quiet."],
+    ["今天的專心，明天會替你考試。","Today's focus will take tomorrow's test for you."],
+    ["願意問問題的人，走得比較遠。","People who ask questions go further."],
+    ["別跟別人比，跟昨天的自己比。","Compare yourself with yesterday, not with others."],
+    ["弄懂一題，勝過抄十題。","Understanding one problem beats copying ten."],
+    ["想放棄的時候，再做一題就好。","When you want to quit, just do one more."],
+    ["你的筆記，是未來的你在感謝現在的你。","Your notes are future you thanking present you."],
+    ["記不住很正常，忘了再記一次。","Forgetting is normal. Just learn it again."],
+    ["先求會，再求快。","Get it right first, then get it fast."],
+    ["專心三十分鐘，比恍神三小時值錢。","Thirty focused minutes beat three distracted hours."],
+    ["把手機放遠一點，思緒會自己回來。","Put the phone far away and your focus will come back."],
+    ["讀不下去就換一科，別停下來。","Switch subjects if you must, but don't stop."],
+    ["今天的一小步，是三年後的一大步。","A small step today is a big one three years from now."],
+    ["你願意坐下來，就已經很不容易。","Just sitting down to study is already hard. You did it."],
+    ["訂正的那一刻，才是真的在學。","The moment you correct it is the moment you learn it."],
+    ["沒有人天生就會，只有人先開始。","Nobody is born knowing. Some people just started earlier."],
+    ["一次一關，慢慢來就好。","One level at a time. There is no rush."],
+    ["答錯不扣血，只掉情報。","A wrong answer costs you no health, only intel."],
+    ["說得出來，才是真的懂。","If you can explain it, you really understand it."],
+    ["今天先讀一頁，明天會想讀第二頁。","Read one page today and you'll want page two tomorrow."],
+    ["累了就休息，但別忘了回來。","Rest when you're tired, but come back."],
+    ["你比你想像中更有耐心。","You are more patient than you think."],
+    ["把大題目切成小塊，就沒那麼可怕。","Cut a big task into small pieces and it stops being scary."],
+    ["不會的地方，就是要長進的地方。","What you can't do yet is where you will grow."],
+    ["用自己的話講一次，知識才是你的。","Say it in your own words and it becomes yours."],
+    ["考卷是體檢表，不是判決書。","A test is a check-up, not a verdict."],
+    ["今天記住三個字，也是三個字。","Three new words today are still three words."],
+    ["讀書像存錢，一次一點才存得住。","Studying is like saving money: a little at a time adds up."],
+    ["你正在做的事，未來會替你說話。","What you do now will speak for you later."],
+    ["第一次看不懂，很正常。","Not getting it the first time is completely normal."],
+    ["把「我不會」改成「我還沒學會」。","Change 'I can't' into 'I can't yet.'"],
+    ["專注是可以練的，就從今天開始。","Focus is a skill. Start training it today."],
+    ["每天固定的十分鐘，勝過假日的三小時。","Ten minutes daily beats three hours on a weekend."],
+    ["先寫會的，再回頭想難的。","Do the easy ones first, then go back to the hard ones."],
+    ["遇到不懂就問，不丟臉。","Asking when you don't understand is not embarrassing."],
+    ["你的努力不會憑空消失。","Your effort does not disappear."],
+    ["一題想通，整個單元都亮了。","Crack one problem and the whole unit lights up."],
+    ["今天翻開的這一頁，就是你的起點。","The page you opened today is your starting line."],
+    ["別急著找答案，先想想為什麼。","Don't rush to the answer. Ask why first."],
+    ["慢一點沒關係，方向對就好。","Slow is fine as long as the direction is right."],
+    ["準備考試最好的時間，是今天。","The best day to start preparing is today."],
+    ["你已經比昨天多會一點了。","You know a little more than you did yesterday."],
+    ["把錯的題目再做一次，它就變成你的。","Redo a wrong problem and it becomes yours."],
+    ["讀書沒有捷徑，但有方法。","There is no shortcut in studying, but there is a method."],
+    ["專心的人，時間會站在他那邊。","Time is on the side of those who focus."],
+    ["學會安靜坐下來，是一種能力。","Sitting still and quiet is a skill of its own."],
+    ["這一題難，代表你正在往上爬。","A hard question means you are climbing."],
+    ["進度落後沒關係，別停下來就好。","Falling behind is fine. Stopping is not."],
+    ["現在的辛苦，是為了以後的從容。","Work hard now so that later feels easy."],
+    ["把課本讀薄，再把筆記讀厚。","Make the textbook thin and your notes thick."],
+    ["你能撐到現在，就證明你可以。","You have made it this far, so you can."],
+    ["沒有白讀的書。","No book is ever read for nothing."],
+    ["想清楚再下筆，會少走很多冤枉路。","Think first, then write. You will save many detours."],
+    ["今天做的複習，考前的你會很感謝。","The you before the exam will thank today's review."],
+    ["一天一點，三年就是一大片。","A little each day becomes a lot in three years."],
+    ["讀不懂，就先讀慢一點。","If you don't understand, slow down and read it again."],
+    ["主動舉手的那一秒，你就贏了。","The second you raise your hand, you have already won."],
+    ["錯過的不重要，錯了學到的才重要。","What you missed matters less than what you learned from it."],
+    ["今天的目標：比昨天多懂一件事。","Today's goal: understand one thing more than yesterday."],
+    ["準備好的人，運氣會比較好。","Luck favors the prepared."],
+    ["每個高手都曾經是新手。","Every expert was once a beginner."],
+    ["你不需要完美，只需要繼續。","You don't need to be perfect. You need to keep going."],
+    ["睡飽再讀，效率會加倍。","Sleep well first. You will study twice as fast."],
+    ["把難的放白天，簡單的放晚上。","Save the hard work for daytime and the easy work for night."],
+    ["寫下來的目標，比較容易做到。","A goal you write down is easier to reach."],
+    ["讀書的敵人不是難，是拖。","The enemy of studying is not difficulty. It is delay."],
+    ["現在開始，永遠不算晚。","It is never too late to start now."],
+    ["有人在為你加油，也請你為自己加油。","People are cheering for you. Cheer for yourself too."],
+    ["一步一步走，路會愈走愈寬。","Step by step, the road gets wider."],
+    ["你今天很棒，因為你來了。","You did well today, because you showed up."],
+    ["專注的時候，時間會過得特別快。","Time flies when you are truly focused."],
+    ["把「等一下」換成「現在」。","Replace 'later' with 'now.'"],
+    ["你的名字，值得寫在很好的成績旁邊。","Your name deserves to sit next to a good score."],
+    ["一道題卡住，就代表你正在長。","Getting stuck means you are growing."],
+    ["把課文唸出聲音，會記得比較牢。","Read the text out loud and it sticks better."],
+    ["你不需要贏過所有人，只要不放棄自己。","You don't have to beat everyone. Just don't give up on yourself."],
+    ["今天再多讀十分鐘，就贏過昨天。","Ten more minutes today beats yesterday."],
+    ["讀完一段就休息一下，這樣才走得遠。","Take a break after each section. That is how you go far."],
+    ["該問的問題，不會自己消失。","A question you avoid will not disappear on its own."],
+    ["學習是自己的事，成果也是。","Learning is yours, and so are the results."],
+    ["你有能力搞懂它，只是需要時間。","You can figure it out. You just need time."],
+    ["認真的人，很好看。","People who try hard look good."],
+    ["沒有人記得你錯過幾題，只有你會記得你學會什麼。","Nobody remembers how many you missed. You will remember what you learned."],
+    ["起步慢沒關係，只要不掉頭。","A slow start is fine. Just don't turn back."],
+    ["每天進步一點點，一年會差很多。","A little progress every day adds up to a lot in a year."],
+    ["有紀律的人最自由。","Disciplined people are the most free."],
+    ["這一頁讀完，就給自己一個讚。","Finish this page, then give yourself credit."],
+    ["別怕慢，只怕站。","Don't fear going slow. Fear standing still."],
+    ["你在為自己讀書，不是為誰。","You study for yourself, not for anyone else."],
+    ["今天的專注，是明天的底氣。","Today's focus is tomorrow's confidence."],
+    ["弄懂一個觀念，比背十個答案有用。","Understanding one idea beats memorizing ten answers."],
+    ["難的科目，值得多一點耐心。","Hard subjects deserve a little more patience."],
+    ["你已經走了這麼遠，別在這裡停。","You have come this far. Don't stop here."],
+    ["明天的你，會謝謝今天沒偷懶的你。","Tomorrow you will thank today you for not slacking off."],
+    ["保持好奇，學習就不會太苦。","Stay curious and studying will not feel so bitter."],
+    ["練習不會背叛你。","Practice will never betray you."],
+    ["今天讀的每一個字，都在替你鋪路。","Every word you read today paves your road."],
+    ["相信慢慢來的力量。","Trust the power of going slowly."],
+    ["你正在變成更好的自己。","You are becoming a better version of yourself."],
+    ["收起手機的那一刻，你就開始了。","The moment you put the phone away, you have begun."],
+    ["加油，我會一直在這裡等你回來。","Keep going. I'll be here when you come back."]
+  ];
+
+  var KEY = "g7student.v1";
+  var state = {lists:{}, log:{}, cheer:1, voice:"", gate:{on:1, day:""}, method:{check:{}, install:{}, exam:{}}};
+
+  function load(){
+    try{
+      var raw = window.localStorage.getItem(KEY);
+      if(raw){
+        var o = JSON.parse(raw);
+        if(o && typeof o === "object"){
+          state.lists = o.lists || {};
+          state.log = o.log || {};
+          state.cheer = (o.cheer === 0) ? 0 : 1;
+          state.voice = o.voice || "";
+          if(o.gate && typeof o.gate === "object"){
+            state.gate.on  = (o.gate.on === 0) ? 0 : 1;
+            state.gate.day = o.gate.day || "";
+          }
+          if(o.method && typeof o.method === "object"){
+            state.method.check   = o.method.check   || {};
+            state.method.install = o.method.install || {};
+            state.method.exam    = o.method.exam    || {};
+          }
+        }
+      }
+    }catch(e){ /* 讀不到就從空的開始 */ }
+  }
+  function save(){
+    try{ window.localStorage.setItem(KEY, JSON.stringify(state)); }
+    catch(e){ /* 無痕模式不儲存 */ }
+  }
+
+  /* 導覽 */
+  var nav = document.getElementById("nav");
+  SUBJECTS.forEach(function(s){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.setAttribute("role","tab");
+    b.setAttribute("data-target", s.id);
+    b.setAttribute("aria-selected", s.id === "p-home" ? "true" : "false");
+    b.innerHTML = s.nav + '<span class="pin">●</span>';
+    nav.appendChild(b);
+  });
+
+  function show(id){
+    stopSpeak();
+    var panels = document.querySelectorAll(".panel"), i;
+    for(i=0;i<panels.length;i++){ panels[i].classList.toggle("on", panels[i].id === id); }
+    var chips = nav.querySelectorAll(".chip");
+    for(i=0;i<chips.length;i++){
+      chips[i].setAttribute("aria-selected", chips[i].getAttribute("data-target") === id ? "true" : "false");
+    }
+    window.scrollTo(0,0);
+  }
+
+  document.addEventListener("click", function(ev){
+    var t = ev.target;
+    while(t && t !== document.body){
+      if(t.getAttribute && t.getAttribute("data-target")){
+        show(t.getAttribute("data-target"));
+        return;
+      }
+      t = t.parentNode;
+    }
+  });
+
+  /* 總覽清單 */
+  var tbl = document.getElementById("subjTable");
+  SUBJECTS.forEach(function(s){
+    if(!s.nm){ return; }
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "subjrow";
+    b.setAttribute("data-target", s.id);
+    b.innerHTML = '<span class="nm">' + s.nm + '</span>' +
+      '<span class="core">' + s.core + '</span>' +
+      '<span class="cnt" data-cnt="' + s.id + '"></span>';
+    tbl.appendChild(b);
+  });
+
+  /* 各科檢核表 */
+  function countDone(pid){
+    var o = state.lists[pid] || {}, n = 0;
+    for(var k in o){ if(Object.prototype.hasOwnProperty.call(o,k) && o[k]){ n++; } }
+    return n;
+  }
+  function refreshMarks(){
+    var chips = nav.querySelectorAll(".chip"), i;
+    for(i=0;i<chips.length;i++){
+      var id = chips[i].getAttribute("data-target");
+      var total = LISTS[id] ? LISTS[id].length : 0;
+      var n = total ? countDone(id) : 0;
+      chips[i].classList.toggle("part", n > 0 && n < total);
+      chips[i].classList.toggle("full", total > 0 && n === total);
+    }
+    var cnts = document.querySelectorAll("[data-cnt]");
+    for(i=0;i<cnts.length;i++){
+      var pid = cnts[i].getAttribute("data-cnt");
+      var tt = LISTS[pid] ? LISTS[pid].length : 0;
+      cnts[i].textContent = tt ? (countDone(pid) + "/" + tt) : "";
+    }
+  }
+
+  function buildList(pid){
+    var host = document.getElementById("ck-" + pid.split("-")[1]);
+    if(!host){ return; }
+    var items = LISTS[pid];
+    var h3 = document.createElement("h3");
+    h3.textContent = "自我檢核";
+    host.appendChild(h3);
+    var box = document.createElement("div");
+    box.className = "list";
+    items.forEach(function(txt, i){
+      var lab = document.createElement("label");
+      var on = !!(state.lists[pid] && state.lists[pid][i]);
+      lab.className = "checkline" + (on ? " on" : "");
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.checked = on;
+      var sp = document.createElement("span");
+      sp.textContent = txt;
+      input.addEventListener("change", function(){
+        if(!state.lists[pid]){ state.lists[pid] = {}; }
+        if(input.checked){ state.lists[pid][i] = 1; } else { delete state.lists[pid][i]; }
+        save();
+        lab.classList.toggle("on", input.checked);
+        refreshMarks();
+      });
+      lab.appendChild(input);
+      lab.appendChild(sp);
+      box.appendChild(lab);
+    });
+    host.appendChild(box);
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn ghost";
+    btn.textContent = "清空這一科";
+    btn.addEventListener("click", function(){
+      delete state.lists[pid];
+      save();
+      host.innerHTML = "";
+      buildList(pid);
+      refreshMarks();
+    });
+    var row = document.createElement("div");
+    row.className = "btnrow";
+    row.appendChild(btn);
+    host.appendChild(row);
+  }
+
+  /* ── 日期與每日紀錄 ── */
+  function keyOf(d){
+    return d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0"+d.getDate()).slice(-2);
+  }
+  function backKey(n){
+    var d = new Date();
+    d.setDate(d.getDate() - n);
+    return keyOf(d);
+  }
+  var TODAY = keyOf(new Date());
+  function rec(k){
+    if(!state.log[k]){ state.log[k] = {daily:{}, focus:null, quiz:{r:0,t:0}, note:""}; }
+    var r = state.log[k];
+    if(!r.daily){ r.daily = {}; }
+    if(!r.quiz){ r.quiz = {r:0,t:0}; }
+    if(typeof r.note !== "string"){ r.note = ""; }
+    return r;
+  }
+  function doneCount(r){
+    var n = 0, k;
+    for(k in r.daily){ if(Object.prototype.hasOwnProperty.call(r.daily,k) && r.daily[k]){ n++; } }
+    return n;
+  }
+  function hasRecord(k){
+    var r = state.log[k];
+    if(!r){ return false; }
+    return doneCount(rec(k)) > 0 ||
+           (r.quiz && r.quiz.t > 0) ||
+           (r.writes && r.writes.length > 0) ||
+           (r.recall && (r.recall.ok + r.recall.half + r.recall.no) > 0) ||
+           (r.note && r.note.length > 0);
+  }
+
+  /* ── 今天的五件事 ── */
+  var dayBox = document.getElementById("dayChecks");
+  var dayFill = document.getElementById("dayFill");
+  var dayLabel = document.getElementById("dayLabel");
+
+  function renderDaily(){
+    var r = rec(TODAY);
+    dayBox.innerHTML = "";
+    var list = document.createElement("div");
+    list.className = "list";
+    DAILY.forEach(function(txt, i){
+      var lab = document.createElement("label");
+      lab.className = "checkline" + (r.daily[i] ? " on" : "");
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.checked = !!r.daily[i];
+      var sp = document.createElement("span");
+      sp.textContent = txt;
+      input.addEventListener("change", function(){
+        if(input.checked){ r.daily[i] = 1; } else { delete r.daily[i]; }
+        save();
+        lab.classList.toggle("on", input.checked);
+        updateDayBar();
+        renderStats();
+        renderLog();
+        if(input.checked && doneCount(r) === DAILY.length){
+          popCheer(["五件事全部完成，今天可以收工了。","All five done. You can call it a day."]);
+        }
+      });
+      lab.appendChild(input);
+      lab.appendChild(sp);
+      list.appendChild(lab);
+    });
+    dayBox.appendChild(list);
+    updateDayBar();
+  }
+  function updateDayBar(){
+    var n = doneCount(rec(TODAY));
+    dayFill.style.width = Math.round(n / DAILY.length * 100) + "%";
+    if(n === 0){ dayLabel.textContent = "還沒開始"; }
+    else if(n === DAILY.length){ dayLabel.textContent = "五件事都做到了。"; }
+    else { dayLabel.textContent = "已完成 " + n + " / " + DAILY.length + " 件"; }
+  }
+
+  /* ── 今日複習一科 ── */
+  var focusName = document.getElementById("focusName");
+  var focusPoints = document.getElementById("focusPoints");
+  var dqBox = document.getElementById("dq");
+
+  function todayFocus(){
+    var r = rec(TODAY);
+    if(!r.focus || FOCUS_ORDER.indexOf(r.focus) === -1){
+      var d = new Date();
+      var n = Math.floor((d.getTime() - new Date(d.getFullYear(),0,0).getTime()) / 86400000);
+      r.focus = FOCUS_ORDER[n % FOCUS_ORDER.length];
+      save();
+    }
+    return r.focus;
+  }
+  function renderFocus(){
+    var pid = todayFocus();
+    focusName.textContent = FOCUS_NAME[pid];
+    focusPoints.innerHTML = "";
+    FOCUS_POINTS[pid].forEach(function(t){
+      var li = document.createElement("li");
+      li.textContent = t;
+      focusPoints.appendChild(li);
+    });
+    focusPoints.hidden = true;
+    document.getElementById("focusReveal").textContent = "顯示今日重點";
+    document.getElementById("focusGo").setAttribute("data-target", pid);
+    renderRecall();
+    renderDQ();
+  }
+  document.getElementById("focusReveal").addEventListener("click", function(){
+    focusPoints.hidden = !focusPoints.hidden;
+    this.textContent = focusPoints.hidden ? "顯示今日重點" : "收起重點";
+  });
+  document.getElementById("focusSwap").addEventListener("click", function(){
+    var r = rec(TODAY);
+    var i = FOCUS_ORDER.indexOf(todayFocus());
+    r.focus = FOCUS_ORDER[(i + 1) % FOCUS_ORDER.length];
+    save();
+    renderFocus();
+  });
+  document.getElementById("focusSpeak").addEventListener("click", function(){
+    speak(GUIDE[todayFocus()], this);
+  });
+
+  /* 第一關：先輸出 */
+  var recallBox = document.getElementById("recall");
+  var ri = 0;
+
+  function renderRecall(){
+    ri = 0;
+    showRecall();
+  }
+  function showRecall(){
+    var pid = todayFocus();
+    var bank = RECALL[pid];
+    recallBox.innerHTML = "";
+    if(ri >= bank.length){
+      var p = document.createElement("p");
+      p.className = "fb ok";
+      p.textContent = "三題都寫過一遍了。接下來打開重點，看看自己漏掉什麼。";
+      recallBox.appendChild(p);
+      var again = document.createElement("button");
+      again.type = "button";
+      again.className = "mini";
+      again.textContent = "再寫一次";
+      again.addEventListener("click", renderRecall);
+      recallBox.appendChild(again);
+      return;
+    }
+    var item = bank[ri];
+    var q = document.createElement("div");
+    q.className = "qtext";
+    q.textContent = "第 " + (ri+1) + " / " + bank.length + " 題　" + item.q;
+    recallBox.appendChild(q);
+
+    var ta = document.createElement("textarea");
+    ta.className = "noteinput";
+    ta.setAttribute("placeholder", "寫下你的答案。先說出聲再打字，效果更好。");
+    recallBox.appendChild(ta);
+
+    var row = document.createElement("div");
+    row.className = "btnrow";
+    var go = document.createElement("button");
+    go.type = "button";
+    go.className = "btn";
+    go.textContent = "我寫好了，對答案";
+    go.addEventListener("click", function(){
+      revealRecall(item, ta.value);
+      row.remove();
+      ta.setAttribute("readonly", "readonly");
+    });
+    row.appendChild(go);
+    recallBox.appendChild(row);
+  }
+  function revealRecall(item, text){
+    var r = rec(TODAY);
+    if(!r.recall){ r.recall = {ok:0, half:0, no:0}; }
+    if(!r.writes){ r.writes = []; }
+    var clean = text.replace(/^\s+|\s+$/g, "");
+    if(clean){ r.writes.push(clean); }
+    save();
+
+    var box = document.createElement("div");
+    box.className = "keybox";
+    var t = document.createElement("strong");
+    t.textContent = "對照看看，這些你都說到了嗎？";
+    box.appendChild(t);
+    var ul = document.createElement("ul");
+    item.k.forEach(function(k){
+      var li = document.createElement("li");
+      li.textContent = k;
+      ul.appendChild(li);
+    });
+    box.appendChild(ul);
+    recallBox.appendChild(box);
+
+    var ask = document.createElement("p");
+    ask.className = "hint";
+    ask.style.marginTop = "12px";
+    ask.textContent = "誠實一點，比較有用：";
+    recallBox.appendChild(ask);
+
+    var sel = document.createElement("div");
+    sel.className = "selfrow";
+    [["說到了","ok"],["差一點","half"],["還不會","no"]].forEach(function(pair){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "mini";
+      b.textContent = pair[0];
+      b.addEventListener("click", function(){
+        r.recall[pair[1]]++;
+        save();
+        sel.remove();
+        ask.remove();
+        renderStats();
+        renderLog();
+        if(pair[1] === "no"){
+          var w = document.createElement("div");
+          w.className = "wrongbox";
+          if(item.link){
+            w.innerHTML = "這個部分可以到這裡再練一次：<br>";
+            var a = document.createElement("a");
+            a.href = item.link.u;
+            a.target = "_blank";
+            a.rel = "noopener";
+            a.textContent = item.link.t + " ↗";
+            w.appendChild(a);
+          }else{
+            w.textContent = "回手冊把這一段讀一次，再回來寫：";
+            var gb = document.createElement("button");
+            gb.type = "button";
+            gb.className = "mini";
+            gb.style.marginLeft = "8px";
+            gb.setAttribute("data-target", todayFocus());
+            gb.textContent = "前往 " + FOCUS_NAME[todayFocus()];
+            w.appendChild(gb);
+          }
+          recallBox.appendChild(w);
+        }else if(pair[1] === "ok" && Math.random() < 0.5){
+          popCheer(["說得出來，就是真的懂了。","If you can say it, you really know it."]);
+        }
+        var nr = document.createElement("div");
+        nr.className = "btnrow";
+        var nb = document.createElement("button");
+        nb.type = "button";
+        nb.className = "btn";
+        nb.textContent = (ri + 1 >= RECALL[todayFocus()].length) ? "寫完了" : "下一題";
+        nb.addEventListener("click", function(){
+          ri++;
+          showRecall();
+        });
+        nr.appendChild(nb);
+        recallBox.appendChild(nr);
+      });
+      sel.appendChild(b);
+    });
+    recallBox.appendChild(sel);
+  }
+
+  /* 四題小測驗 */
+  var dqi = 0, dqLocked = false;
+  function renderDQ(){
+    dqi = 0; dqLocked = false;
+    dqBox.innerHTML = "";
+    showDQ();
+  }
+  function showDQ(){
+    var pid = todayFocus();
+    var bank = DQ[pid];
+    dqBox.innerHTML = "";
+    if(dqi >= bank.length){
+      var done = document.createElement("p");
+      done.className = "fb ok";
+      done.textContent = "四題做完了。明天換一科，今天的紀錄已經存下來。";
+      dqBox.appendChild(done);
+      var again = document.createElement("button");
+      again.type = "button";
+      again.className = "mini";
+      again.textContent = "再做一次";
+      again.addEventListener("click", renderDQ);
+      dqBox.appendChild(again);
+      return;
+    }
+    var item = bank[dqi];
+    var q = document.createElement("div");
+    q.className = "qtext";
+    q.textContent = "第 " + (dqi+1) + " 題　" + item.q;
+    dqBox.appendChild(q);
+    var opts = document.createElement("div");
+    opts.className = "opts";
+    item.o.forEach(function(txt, idx){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = txt;
+      b.addEventListener("click", function(){ answerDQ(idx, item); });
+      opts.appendChild(b);
+    });
+    dqBox.appendChild(opts);
+    var fb = document.createElement("p");
+    fb.className = "fb";
+    fb.id = "dqFb";
+    dqBox.appendChild(fb);
+  }
+  function answerDQ(pick, item){
+    if(dqLocked){ return; }
+    dqLocked = true;
+    var r = rec(TODAY);
+    r.quiz.t++;
+    var fb = document.getElementById("dqFb");
+    if(pick === item.a){
+      r.quiz.r++;
+      fb.className = "fb ok";
+      fb.textContent = "答對了。" + item.e;
+      if(Math.random() < 0.4){ popCheer(); }
+    }else{
+      fb.className = "fb no";
+      fb.textContent = "答錯了，正確答案是「" + item.o[item.a] + "」。" + item.e;
+      var box = document.createElement("div");
+      box.className = "wrongbox";
+      if(item.link){
+        box.innerHTML = "這個觀念可以到這裡再練一次：<br>";
+        var a = document.createElement("a");
+        a.href = item.link.u;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = item.link.t + " ↗";
+        box.appendChild(a);
+      }else{
+        box.textContent = "回手冊複習這一段：";
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "mini";
+        b.style.marginLeft = "8px";
+        b.setAttribute("data-target", todayFocus());
+        b.textContent = "前往 " + FOCUS_NAME[todayFocus()];
+        box.appendChild(b);
+      }
+      dqBox.appendChild(box);
+    }
+    save();
+    renderStats();
+    renderLog();
+    var next = document.createElement("div");
+    next.className = "btnrow";
+    var nb = document.createElement("button");
+    nb.type = "button";
+    nb.className = "btn";
+    nb.textContent = (dqi + 1 >= DQ[todayFocus()].length) ? "看結果" : "下一題";
+    nb.addEventListener("click", function(){
+      dqi++;
+      dqLocked = false;
+      showDQ();
+    });
+    next.appendChild(nb);
+    dqBox.appendChild(next);
+  }
+
+  /* ── 學習紀錄 ── */
+  var logList = document.getElementById("logList");
+  var dayNote = document.getElementById("dayNote");
+
+  function renderStats(){
+    var outs = 0, quiz = 0, k;
+    for(k in state.log){
+      if(!Object.prototype.hasOwnProperty.call(state.log,k)){ continue; }
+      var r = state.log[k];
+      if(r.writes){ outs += r.writes.length; }
+      if(r.quiz){ quiz += (r.quiz.r || 0); }
+    }
+    var streak = 0, start = hasRecord(TODAY) ? 0 : 1;
+    for(var i=start;i<400;i++){
+      if(hasRecord(backKey(i))){ streak++; } else { break; }
+    }
+    document.getElementById("stStreak").textContent = streak;
+    document.getElementById("stDays").textContent = outs;
+    document.getElementById("stQuiz").textContent = quiz;
+  }
+  function renderLog(){
+    logList.innerHTML = "";
+    var any = false;
+    for(var i=0;i<14;i++){
+      var k = backKey(i);
+      if(!hasRecord(k)){ continue; }
+      any = true;
+      var r = rec(k);
+      var row = document.createElement("div");
+      row.className = "logrow";
+      var d = document.createElement("b");
+      d.textContent = (i === 0 ? "今天" : k.slice(5).replace("-","/"));
+      var body = document.createElement("div");
+      var p1 = document.createElement("div");
+      var s1 = document.createElement("span");
+      s1.className = "pill";
+      s1.textContent = "五件事 " + doneCount(r) + "/" + DAILY.length;
+      p1.appendChild(s1);
+      if(r.writes && r.writes.length){
+        var s3 = document.createElement("span");
+        s3.className = "pill";
+        s3.textContent = (r.focus ? FOCUS_NAME[r.focus] + " " : "") + "輸出 " + r.writes.length + " 段";
+        p1.appendChild(s3);
+      }
+      if(r.recall && (r.recall.ok + r.recall.half + r.recall.no) > 0){
+        var s4 = document.createElement("span");
+        s4.className = "pill";
+        s4.textContent = "自評 說到 " + r.recall.ok + "／差一點 " + r.recall.half + "／還不會 " + r.recall.no;
+        p1.appendChild(s4);
+      }
+      if(r.quiz.t > 0){
+        var s2 = document.createElement("span");
+        s2.className = "pill";
+        s2.textContent = "快篩 " + r.quiz.r + "/" + r.quiz.t;
+        p1.appendChild(s2);
+      }
+      body.appendChild(p1);
+      if(r.note){
+        var n = document.createElement("div");
+        n.style.color = "var(--slate)";
+        n.textContent = r.note;
+        body.appendChild(n);
+      }
+      row.appendChild(d);
+      row.appendChild(body);
+      logList.appendChild(row);
+    }
+    if(!any){
+      var e = document.createElement("div");
+      e.className = "empty";
+      e.textContent = "還沒有紀錄。今天打第一個勾，這裡就會開始長出來。";
+      logList.appendChild(e);
+    }
+  }
+  var noteCount = document.getElementById("noteCount");
+  function updateNoteCount(){
+    var n = dayNote.value.replace(/\s/g, "").length;
+    var msg = n + " 字";
+    if(n === 0){ msg = "0 字　寫三句就好，不用寫成作文。"; }
+    else if(n < 100){ msg = n + " 字　再多一點，離 100 字還有 " + (100 - n) + " 字。"; }
+    else if(n <= 200){ msg = n + " 字　剛好在 100～200 字的區間。"; }
+    else { msg = n + " 字　寫得比目標還多，很好。"; }
+    noteCount.textContent = msg;
+  }
+  dayNote.value = rec(TODAY).note;
+  dayNote.addEventListener("input", function(){
+    rec(TODAY).note = dayNote.value;
+    save();
+    updateNoteCount();
+  });
+  dayNote.addEventListener("blur", function(){
+    renderStats();
+    renderLog();
+  });
+  document.getElementById("resetDay").addEventListener("click", function(){
+    delete state.log[TODAY];
+    save();
+    dayNote.value = "";
+    renderDaily();
+    renderFocus();
+    renderStats();
+    renderLog();
+  });
+
+  /* ── 語音導覽 ── */
+  var synth = window.speechSynthesis || null;
+  var speakingBtn = null;
+  function stopSpeak(){
+    if(synth){ synth.cancel(); }
+    if(speakingBtn){
+      speakingBtn.classList.remove("on");
+      speakingBtn.textContent = speakingBtn.getAttribute("data-idle") || "語音導覽";
+      speakingBtn = null;
+    }
+  }
+  var MALE_HINT = /male|男|yunjhe|雲哲|yunxi|yunyang|云希|云扬|zhiwei|志偉|kangkang|康康|li-?mu|立木|aaron|alex|daniel|fred|guy|eric|christopher|brian|thomas|reed/i;
+  var FEMALE_HINT = /female|女|meijia|mei-?jia|美佳|yu-?shu|語舒|hanhan|han-?han|yaoyao|xiaoxiao|xiaoyi|sinji|善怡|ting-?ting|tingting|samantha|karen|moira|zira|huihui|google 國語|google 普通話|google 粵語/i;
+  function voiceList(){
+    if(!synth || !synth.getVoices){ return []; }
+    try{ return synth.getVoices() || []; }catch(e){ return []; }
+  }
+  function maleVoice(lang){
+    var want = String(lang || "zh").slice(0,2).toLowerCase();
+    var vs = voiceList().filter(function(v){
+      return String(v.lang || "").toLowerCase().indexOf(want) === 0;
+    });
+    if(!vs.length){ return null; }
+    var i;
+    if(want === "zh" && state.voice){
+      for(i=0;i<vs.length;i++){ if(vs[i].name === state.voice){ return vs[i]; } }
+    }
+    for(i=0;i<vs.length;i++){ if(MALE_HINT.test(vs[i].name)){ return vs[i]; } }
+    for(i=0;i<vs.length;i++){ if(!FEMALE_HINT.test(vs[i].name)){ return vs[i]; } }
+    return vs[0];
+  }
+  function speakParts(parts, btn, opt){
+    if(!synth){ return; }
+    if(speakingBtn === btn){ stopSpeak(); return; }
+    stopSpeak();
+    speakingBtn = btn;
+    btn.setAttribute("data-idle", btn.textContent);
+    btn.textContent = "停止播放";
+    btn.classList.add("on");
+    var queued = 0;
+    parts.forEach(function(p){
+      var s = p.t.replace(/^\s+|\s+$/g, "");
+      if(!s){ return; }
+      queued++;
+      var u = new window.SpeechSynthesisUtterance(s);
+      u.lang = p.lang || "zh-TW";
+      u.rate = (u.lang.indexOf("en") === 0) ? 0.88 : 0.95;
+      if(opt && opt.male){
+        var mv = maleVoice(u.lang);
+        if(mv){ u.voice = mv; u.lang = mv.lang; }
+        u.pitch = 0.78;
+        u.rate = (u.lang.indexOf("en") === 0) ? 0.9 : 0.94;
+      }
+      u.onend = function(){
+        queued--;
+        if(queued <= 0){ stopSpeak(); }
+      };
+      synth.speak(u);
+    });
+    if(queued === 0){ stopSpeak(); }
+  }
+  function speak(text, btn){
+    var parts = [];
+    text.split("。").forEach(function(p){
+      if(p.replace(/^\s+|\s+$/g, "")){ parts.push({t:p + "。", lang:"zh-TW"}); }
+    });
+    speakParts(parts, btn);
+  }
+  window.addEventListener("beforeunload", stopSpeak);
+
+  function buildGuides(){
+    var pid;
+    for(pid in GUIDE){
+      if(!Object.prototype.hasOwnProperty.call(GUIDE,pid)){ continue; }
+      var panel = document.getElementById(pid);
+      if(!panel){ continue; }
+      var lead = panel.querySelector(".lead");
+      if(!lead){ continue; }
+      var bar = document.createElement("div");
+      bar.className = "guide";
+      if(!synth){
+        bar.innerHTML = '<span class="gtxt">這個瀏覽器不支援語音朗讀，建議用 Chrome 或 Edge 開啟。</span>';
+      }else{
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "mini";
+        b.textContent = "▶ 語音導覽";
+        (function(text, btn){
+          btn.addEventListener("click", function(){ speak(text, btn); });
+        })(GUIDE[pid], b);
+        var tip = document.createElement("span");
+        tip.className = "gtxt";
+        tip.textContent = GUIDE_TIP[pid] || "先聽一遍這一科的重點，大約一分鐘。";
+        bar.appendChild(b);
+        bar.appendChild(tip);
+      }
+      lead.parentNode.insertBefore(bar, lead.nextSibling);
+    }
+  }
+
+  function buildOutputs(){
+    var pid;
+    for(pid in RECALL){
+      if(!Object.prototype.hasOwnProperty.call(RECALL,pid)){ continue; }
+      var panel = document.getElementById(pid);
+      if(!panel){ continue; }
+      var host = panel.querySelector("[id^='ck-']");
+      var box = document.createElement("div");
+      box.className = "outbox";
+      var h = document.createElement("h4");
+      h.textContent = "換你說：這一科的輸出練習";
+      box.appendChild(h);
+      var p = document.createElement("p");
+      p.className = "hint";
+      p.style.margin = "0 0 8px";
+      p.textContent = "讀完上面這些，闔起來，挑一題說一次或寫下來。說得卡住的地方，就回去讀那一段。";
+      box.appendChild(p);
+      var ul = document.createElement("ul");
+      RECALL[pid].forEach(function(item){
+        var li = document.createElement("li");
+        li.textContent = item.q;
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "mini";
+      b.setAttribute("data-target", "p-today");
+      b.textContent = "到「今天」寫下來";
+      box.appendChild(b);
+      if(host){ panel.insertBefore(box, host); } else { panel.appendChild(box); }
+    }
+  }
+
+  /* ── 傑倫老師 Jalen ── */
+  var coachN = 0;
+  function coachSVG(cls){
+    coachN++;
+    var cid = "cclip" + coachN;
+    return '<svg class="' + cls + '" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">' +
+      '<defs><clipPath id="' + cid + '"><circle cx="50" cy="50" r="50"/></clipPath></defs>' +
+      '<g clip-path="url(#' + cid + ')">' +
+      '<circle cx="50" cy="50" r="50" fill="#1B3A32"/>' +
+      '<circle cx="80" cy="76" r="10" fill="#CE7130"/>' +
+      '<path d="M70 76h20M80 66v20M73 69c5 4 8 10 8 16M87 69c-5 4-8 10-8 16" stroke="#8C4A18" stroke-width="1" fill="none" opacity=".75"/>' +
+      '<path d="M20 102c2-17 13-28 30-28s28 11 30 28z" fill="#14312A"/>' +
+      '<path d="M36 76c4-3 9-4 14-4s10 1 14 4c-4 6-8 9-14 9s-10-3-14-9z" fill="#0E241F"/>' +
+      '<rect x="44" y="56" width="12" height="16" rx="6" fill="#8E5C36"/>' +
+      '<ellipse cx="50" cy="42" rx="16" ry="18" fill="#A97243"/>' +
+      '<path d="M34 41c-1-12 6-21 16-21s17 9 16 21c-3-8-8-12-16-12s-13 4-16 12z" fill="#2B1D14"/>' +
+      '<circle cx="37" cy="27" r="3.1" fill="#2B1D14"/><circle cx="45" cy="22" r="3.3" fill="#2B1D14"/>' +
+      '<circle cx="55" cy="22" r="3.3" fill="#2B1D14"/><circle cx="63" cy="27" r="3.1" fill="#2B1D14"/>' +
+      '<path d="M39 50c2 8 6 12 11 12s9-4 11-12c-3 4-7 6-11 6s-8-2-11-6z" fill="#2B1D14" opacity=".9"/>' +
+      '<circle cx="44" cy="41" r="1.9" fill="#22120A"/><circle cx="56" cy="41" r="1.9" fill="#22120A"/>' +
+      '<path d="M40.5 35.5c2-1.6 5.5-1.6 7.5 0M52 35.5c2-1.6 5.5-1.6 7.5 0" stroke="#22120A" stroke-width="1.4" fill="none" stroke-linecap="round"/>' +
+      '<path d="M41 70c2 8 6 13 9 16M59 70c-2 8-6 13-9 16" stroke="#DCE9E3" stroke-width="1.6" fill="none"/>' +
+      '<rect x="44.5" y="85" width="11" height="7" rx="2.6" fill="#FBE38A"/>' +
+      '<circle cx="52.5" cy="88.5" r="1.6" fill="#B8992D"/>' +
+      '</g></svg>';
+  }
+
+  var COACH_LINES = [
+    ["不用比別人高，但你的腳步要比別人穩。","You don't need to be taller than everyone else, but your footwork must be steadier."],
+    ["那些基礎題，就是你的罰球，一分都不能漏。","Those basic questions are your free throws. Don't miss a single one."],
+    ["冠軍不是一天拿下的，是一次次枯燥的運球練出來的。","Championships aren't won in a day; they're built on endless, boring dribbling drills."],
+    ["沒有「不是這塊料」，只有「肌肉記憶還沒建立」。","There's no such thing as 'not cut out for this,' only 'muscle memory hasn't been built yet.'"],
+    ["試探步踩穩了，你才知道防守者的重心在哪。","Plant your jab step firmly, then you'll know where the defender's weight is shifted."],
+    ["不要急著出手，先用試探步看清題目的陷阱。","Don't rush your shot. Use a jab step to spot the trap in the question first."],
+    ["天賦決定你的起點，汗水決定你的終點。","Talent determines your starting point; sweat determines your finish line."],
+    ["讀書沒有捷徑，只有扎實的擋拆和跑位。","There are no shortcuts in studying, only solid pick-and-rolls and off-ball movement."],
+    ["越是複雜的題目，越要回到最簡單的起手式。","The more complex the problem, the more you need to return to the simplest starting stance."],
+    ["把每一次練習都當成總決賽的最後一擊。","Treat every practice like the final shot of the championship game."],
+    ["防守不會讓你贏得掌聲，但會讓你贏得比賽。把基礎顧好。","Defense won't win you applause, but it will win you games. Secure your fundamentals."],
+    ["運球重心壓低，就像你面對挫折時需要沉住氣。","Keep your dribble low, just like you need to stay grounded when facing setbacks."],
+    ["深呼吸，肩膀放鬆，緊張只會鎖死你的大腦。","Take a deep breath and relax your shoulders. Tension only paralyzes your brain."],
+    ["感受身體的緊繃，然後在吐氣的瞬間把它釋放掉。","Feel the tension in your body, and release it the moment you exhale."],
+    ["讀不下去的時候就去跑個步，把腦袋裡的垃圾清空。","When you can't study anymore, go for a run. Clear the trash out of your head."],
+    ["收與放的節奏，才是你擺脫防守的最佳武器。","The rhythm of tension and release is your best weapon to shake off the defense."],
+    ["肌肉太緊繃是投不進三分球的，考試也一樣。","You can't make a three-pointer with tense muscles, and exams are the same."],
+    ["累了就喊 Timeout，休息是為了打好下一波戰術。","Call a Timeout when you're tired. Resting is for executing the next play perfectly."],
+    ["感受氣流通過喉嚨的震動，語言就是身體的律動。","Feel the vibration of airflow through your throat. Language is the rhythm of the body."],
+    ["把焦慮轉化為爆發力，在你最需要的時候釋放。","Convert anxiety into explosive power, and release it when you need it most."],
+    ["學習就像折返跑，有衝刺也要有緩步調息。","Learning is like running suicides; there are sprints, and there is time to catch your breath."],
+    ["閉上眼睛，在腦海裡預演一次完美的解題流程。","Close your eyes and mentally rehearse a perfect problem-solving sequence."],
+    ["今天打得很棒，去冰敷一下，明天繼續訓練。","Great game today. Go ice up, and we'll resume training tomorrow."],
+    ["控制你的呼吸，你就能控制比賽的節奏。","Control your breathing, and you can control the pace of the game."],
+    ["這題有破綻，我們換個節奏打。","There's a flaw in this problem. Let's change our pace and attack it."],
+    ["把不會的題目當成最強的防守者，過掉它！","Treat the problem you can't solve as the toughest defender. Cross it over!"],
+    ["考卷發下來先掃描全場，找出最好得分的空檔。","Scan the whole court when you get the exam paper; find the easiest open looks to score."],
+    ["不要硬闖禁區，學會用拋投輕巧地越過障礙。","Don't force your way into the paint. Learn to use a floater to gracefully clear obstacles."],
+    ["聰明的球員不靠蠻力，靠的是觀察對手的弱點。","Smart players don't rely on brute force; they rely on observing their opponent's weaknesses."],
+    ["陷阱題就像包夾防守，保持冷靜，把球傳給安全的觀念。","Trick questions are like a double-team. Stay calm and pass the ball to a safe concept."],
+    ["閱讀題目的意圖，比急著下筆計算更重要。","Reading the intention of the question is more important than rushing to calculate."],
+    ["籃球不會說謊，你的解題邏輯也是。","The ball doesn't lie, and neither does your problem-solving logic."],
+    ["調整你的防守步伐，把主動權拿回來。","Adjust your defensive stance and take back the initiative."],
+    ["找到這份考卷的節奏，讓題目跟著你的步調走。","Find the rhythm of this exam and make the questions follow your pace."],
+    ["假動作是為了欺騙對手，但你必須對自己的基本功誠實。","Fake moves are to deceive the opponent, but you must be honest about your fundamentals."],
+    ["懂得放棄太難的球，也是賽場智商的一部分。","Knowing when to give up on a too-difficult shot is also part of basketball IQ."],
+    ["落後十分算什麼？打好每一波陣地戰，一分一分追回來。","Down by ten? So what. Execute every half-court set and claw your way back point by point."],
+    ["失誤沒關係，重點是下一波進攻你要怎麼打。","Turnovers are fine. The key is how you execute the next possession."],
+    ["被蓋火鍋就再切進去一次，怕什麼？","If you get blocked, drive to the basket again. What are you afraid of?"],
+    ["客場連敗不算什麼，季後賽見真章。","A losing streak on the road means nothing. The real test is the playoffs."],
+    ["放棄很簡單，但堅持下來的樣子很帥。","Giving up is easy, but pushing through looks incredibly cool."],
+    ["就算投了個籃外空心，也要立刻回防。","Even if you shoot an airball, get back on defense immediately."],
+    ["下半場才剛開始，現在放棄還太早。","The second half just started. It's too early to give up now."],
+    ["這只是一次試煉，你的英雄之旅還長得很。","This is just a trial. Your hero's journey is still long."],
+    ["真正的強者，是在手感最冰冷的時候依然敢出手。","True strength is daring to take the shot even when your hands are ice cold."],
+    ["把它當作逆風局來打，逆轉勝的感覺才是最棒的。","Play it like you're facing a headwind. The feeling of a comeback win is the best."],
+    ["我們不當溫室裡的花朵，我們當球場上的野獸。","We aren't greenhouse flowers; we are beasts on the court."],
+    ["把觀眾的噓聲，當作你最強的推進燃料。","Use the crowd's boos as your strongest rocket fuel."],
+    ["我們是團隊，遇到卡關的題目，記得把球傳給我。","We are a team. When you're stuck on a problem, remember to pass the ball to me."],
+    ["今天狀態不好？沒關係，我們打陣地戰，一步一步來。","Not feeling it today? That's okay. Let's play a half-court game, one step at a time."],
+    ["專注在眼前的這一球，不要去想整場比賽的輸贏。","Focus on the possession right in front of you. Don't worry about winning or losing the whole game."],
+    ["不要只看分數，看看你為了這場比賽流了多少汗。","Don't just look at the score; look at how much you sweat for this game."],
+    ["相信你的訓練，你在場下流的汗不會背叛你。","Trust your training. The sweat you shed off the court won't betray you."],
+    ["準備好上場了嗎？今天也是我們的賽季。","Ready to take the court? Today is our season too."],
+    ["讀書就像重訓，感覺到吃力，那才是肌肉在成長的時候。","Studying is like weightlifting. When it feels tough, that's when your muscles are growing."],
+    ["汗水會蒸發，但留在肌肉裡的記憶會陪你上戰場。","Sweat evaporates, but the memory left in your muscles will go to battle with you."],
+    ["盯緊你的目標，不要被場邊的噓聲干擾。","Keep your eyes on the target. Don't let the booing from the sidelines distract you."],
+    ["你的背後有我，大膽地去切入吧！","I've got your back. Drive to the basket boldly!"],
+    ["做好你的掩護，團隊的勝利就是你的勝利。","Set your screens well. The team's victory is your victory."],
+    ["當你覺得撐不下去的時候，看看身邊的隊友。","When you feel like you can't hold on, look at the teammates beside you."],
+    ["沒有什麼運氣，所有的絕殺都是千百次練習的結果。","There is no luck. Every buzzer-beater is the result of thousands of practices."],
+    ["把專注力拉回現在，過去的失誤已經結束了。","Bring your focus back to the present. Past mistakes are over."],
+    ["上場前綁緊鞋帶，這是一種準備戰鬥的儀式。","Tie your shoelaces tight before stepping on the court. It's a ritual preparing for battle."],
+    ["把考卷當作對手，用你的實力去贏得它的尊重。","Treat the exam paper as an opponent. Use your true skill to earn its respect."],
+    ["不要在還沒聽見哨音前就停止跑動。","Don't stop running before you hear the whistle."],
+    ["保持飢渴，永遠不要對現在的分數感到滿足。","Stay hungry. Never be satisfied with your current score."],
+    ["每一次的訂正，都是在修補你防守陣型的漏洞。","Every correction you make is patching a hole in your defensive formation."],
+    ["態度決定你的高度，比天賦更重要的是紀律。","Attitude determines your altitude. Discipline is more important than talent."],
+    ["把平時的練習當作實戰，實戰時才能像平時一樣輕鬆。","Treat regular practice like a real game, so in a real game, you can be as relaxed as in practice."],
+    ["不要畏懼身體對抗，困難的題目就是用來衝撞的。","Don't fear physical contact. Difficult problems are meant to be crashed into."],
+    ["保持低調，讓你的成績在球場上為你發聲。","Stay humble, and let your results speak for you on the court."],
+    ["就算是被換下場，也要在板凳區用力為自己加油。","Even if you get benched, cheer hard for yourself from the sidelines."],
+    ["掌握氣流的節奏，單字就會自動從你嘴裡溜出來。","Master the rhythm of the airflow, and the words will automatically slip out of your mouth."],
+    ["舌頭的位置就像投籃的出手點，差一點點就不進了。","Tongue placement is like the release point of a shot. A tiny bit off, and it misses."],
+    ["把發音當作口腔的重訓，感覺到痠痛就對了。","Treat pronunciation as weightlifting for your mouth. If it feels sore, you're doing it right."],
+    ["不要用眼睛背單字，用你的喉嚨和嘴唇去記住它。","Don't memorize words with your eyes; use your throat and lips to remember them."],
+    ["聽見自己聲音的震動，那是最真實的學習反饋。","Hear the vibration of your own voice. That is the most authentic learning feedback."],
+    ["把冗長的句子切成幾個好發力的節拍，一步一步唸完。","Chop long sentences into a few easily pronounceable beats. Read them step by step."],
+    ["發音卡住？停下來，深吸一口氣，重新設定口腔肌肉。","Pronunciation stuck? Stop, take a deep breath, and reset your mouth muscles."],
+    ["說英語就像打快攻，流暢度比完美的文法更重要。","Speaking English is like running a fast break. Fluency is more important than perfect grammar."],
+    ["不要怕破音，那些破音都是你正在成長的證明。","Don't be afraid of voice cracks. Those cracks are proof that you are growing."],
+    ["找到語言的律動，就像找到運球的節奏一樣自然。","Find the groove of the language, just as naturally as finding your dribbling rhythm."],
+    ["勇敢地大聲唸出來，球場上沒有人會小聲講話。","Read it out loud bravely. No one whispers on the basketball court."],
+    ["讓正確的發音成為你的肌肉記憶，隨時都能精準出手。","Let correct pronunciation become your muscle memory, ready to shoot accurately at any time."],
+    ["拿紅筆訂正不是在扣分，是在畫下一次進攻的戰術線。","Correcting with a red pen isn't deducting points; it's drawing the tactical line for the next play."],
+    ["正視你的失誤畫面，那是你進步最快的捷徑。","Face the replay of your mistakes. That is the fastest shortcut to improvement."],
+    ["把錯題本當作對手的球探報告，下次就不會再上當。","Treat your mistake notebook as the opponent's scouting report. You won't be fooled next time."],
+    ["今天的挫折，就是明天賽前熱身的動力。","Today's frustration is the motivation for tomorrow's pre-game warm-up."],
+    ["贏球不用太高興，輸球也不用太難過，明天又是新的賽季。","Don't get too high on a win, and don't get too low on a loss. Tomorrow is a new season."],
+    ["把考卷揉掉解決不了問題，把它攤開來找出防守漏洞。","Crumpling the exam paper doesn't solve the problem. Unfold it and find the defensive holes."],
+    ["不要為同一個假動作吃虧兩次，學會記住教訓。","Don't bite on the same fake twice. Learn to remember the lesson."],
+    ["復盤時對自己殘酷一點，上場時比賽就會對你仁慈一點。","Be ruthless with yourself during the review, and the game will be kinder to you on the court."],
+    ["找出丟分的原因，比知道正確答案更重要。","Finding out why you lost points is more important than knowing the correct answer."],
+    ["每解開一道錯題，你就升級了一項籃球技能。","Every time you solve a missed question, you level up a basketball skill."],
+    ["接受自己的不完美，然後回體育館繼續練投。","Accept your imperfections, then head back to the gym and keep shooting."],
+    ["數據不會騙人，你的錯題會告訴你接下來該練什麼。","Stats don't lie. Your missed questions will tell you what to practice next."],
+    ["倒數十秒，這是屬於你的關鍵時刻。","Ten seconds left on the clock. This is your clutch time."],
+    ["不要害怕承擔最後一擊的責任，你已經準備好了。","Don't be afraid to take the responsibility of the final shot. You are ready."],
+    ["越是緊張的時刻，越要相信你練過千百次的基本功。","The tenser the moment, the more you must trust the fundamentals you've practiced thousands of times."],
+    ["封鎖外界的干擾，現在只剩下你和眼前的籃框。","Block out the external noise. Now it's just you and the rim."],
+    ["把最後的力氣擠出來，防守到最後一秒鐘。","Squeeze out your last bit of energy and defend until the final second."],
+    ["這是一記 Buzzer Beater，即使壓線交卷也要確保答案是對的。","This is a buzzer-beater. Even if you turn in the paper at the deadline, make sure the answers are right."],
+    ["關鍵時刻不猶豫，看準空檔就果斷出手。","No hesitation in clutch time. Spot the opening and shoot decisively."],
+    ["把壓力當作聚光燈，這是你發光發熱的舞台。","Treat pressure as a spotlight. This is your stage to shine."],
+    ["就算手在發抖，也要維持完美的投籃姿勢。","Even if your hands are shaking, maintain a perfect shooting form."],
+    ["戰術板上畫得很清楚了，接下來就看你的執行力。","The play is drawn clearly on the board. Now it's up to your execution."],
+    ["享受這種心跳加速的感覺，這代表你正在活著。","Enjoy the feeling of a racing heartbeat. It means you are truly alive."],
+    ["哨音響起前，永遠相信自己能投進那一球。","Before the whistle blows, always believe you can make that shot."]
+  ];
+  for(var ci = 0; ci < COACH_LINES.length; ci++){ CHEERS.push(COACH_LINES[ci]); }
+
+  /* 傑倫老師的自我介紹（男聲） */
+  var COACH_INTRO = [
+    {t:"我是傑倫老師，你可以叫我 Jalen。", lang:"zh-TW"},
+    {t:"我不是站在講台後面的那種老師。我是你的戰術學長，也是你的心智教練。", lang:"zh-TW"},
+    {t:"國中三年，我把它當成一個賽季。每一次段考，是一場客場比賽；每一次做錯題，是一次錄影回放。", lang:"zh-TW"},
+    {t:"我不需要你比別人高，我只要你的腳步比別人穩。基本功，就是你最強的超能力。", lang:"zh-TW"},
+    {t:"專注、重複、精進、變強。這四件事，會把你從板凳帶到先發。", lang:"zh-TW"},
+    {t:"卡住的時候，把球傳給我；心煩的時候，我們喊 Timeout，去動一動再回來。", lang:"zh-TW"},
+    {t:"球場上沒有永遠的贏家，只有拒絕放棄的球員。你不是一個人在打，我們是同一隊的。", lang:"zh-TW"},
+    {t:"準備好了嗎？上場吧。", lang:"zh-TW"},
+    {t:"You don't need to be taller than everyone else. Your footwork just needs to be steadier. Let's go.", lang:"en-US"}
+  ];
+  function speakIntro(btn){ speakParts(COACH_INTRO, btn, {male:true}); }
+
+  /* 聲音選擇 */
+  var voicePick = document.getElementById("voicePick");
+  function fillVoices(){
+    var vs = voiceList().filter(function(v){
+      return String(v.lang || "").toLowerCase().indexOf("zh") === 0;
+    });
+    voicePick.innerHTML = "";
+    var o0 = document.createElement("option");
+    o0.value = "";
+    o0.textContent = vs.length ? "自動挑選（優先找男聲）" : "這個瀏覽器沒有中文語音";
+    voicePick.appendChild(o0);
+    vs.forEach(function(v){
+      var o = document.createElement("option");
+      o.value = v.name;
+      o.textContent = v.name + "（" + v.lang + "）";
+      if(v.name === state.voice){ o.selected = true; }
+      voicePick.appendChild(o);
+    });
+  }
+  voicePick.addEventListener("change", function(){
+    state.voice = voicePick.value;
+    save();
+  });
+  document.getElementById("voiceTest").addEventListener("click", function(){
+    speakParts([{t:"我是傑倫老師。不用比別人高，但你的腳步要比別人穩。", lang:"zh-TW"}], this, {male:true});
+  });
+  if(synth && typeof synth.addEventListener === "function"){
+    synth.addEventListener("voiceschanged", fillVoices);
+  }
+
+  /* 開場 */
+  var gate = document.getElementById("gate");
+  function openGate(){
+    gate.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+  function closeGate(){
+    stopSpeak();
+    gate.classList.remove("show");
+    document.body.style.overflow = "";
+    state.gate.day = TODAY;
+    save();
+  }
+  document.getElementById("gateX").addEventListener("click", closeGate);
+  document.getElementById("gateHome").addEventListener("click", function(){
+    closeGate();
+    show("p-home");
+  });
+  document.getElementById("gateGo").addEventListener("click", function(){
+    closeGate();
+    show("p-today");
+  });
+  document.getElementById("gateAgain").addEventListener("click", openGate);
+  document.getElementById("gateSpeak").addEventListener("click", function(){ speakIntro(this); });
+  document.getElementById("coachSpeak").addEventListener("click", function(){ speakIntro(this); });
+  gate.addEventListener("click", function(e){ if(e.target === gate){ closeGate(); } });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && gate.classList.contains("show")){ closeGate(); }
+  });
+
+  var gateOn = document.getElementById("gateOn");
+  gateOn.addEventListener("change", function(){
+    state.gate.on = gateOn.checked ? 1 : 0;
+    save();
+  });
+
+  function initCoach(){
+    document.getElementById("coachAv").innerHTML = coachSVG("avmid");
+    document.getElementById("gateAv").innerHTML  = coachSVG("avbig");
+    gateOn.checked = !!state.gate.on;
+    fillVoices();
+    if(state.gate.on && state.gate.day !== TODAY){
+      window.setTimeout(openGate, 350);
+    }
+  }
+
+  /* ── 鼓勵小語 ── */
+  var toast = document.getElementById("toast");
+  var cheerText = document.getElementById("cheerText");
+  var cheerEn = document.getElementById("cheerEn");
+  var toastTimer = null, cheerTimer = null, lastCheer = -1, curCheer = null;
+  function pickCheer(){
+    var i = lastCheer;
+    while(i === lastCheer && CHEERS.length > 1){ i = Math.floor(Math.random()*CHEERS.length); }
+    lastCheer = i;
+    return CHEERS[i];
+  }
+  function asPair(x){
+    if(!x){ return pickCheer(); }
+    if(typeof x === "string"){ return [x, ""]; }
+    return x;
+  }
+  function popCheer(x){
+    var pair = asPair(x);
+    toast.innerHTML = coachSVG("cav");
+    var wrap = document.createElement("div");
+    wrap.className = "ctxt";
+    var a = document.createElement("div");
+    a.textContent = pair[0];
+    wrap.appendChild(a);
+    if(pair[1]){
+      var b = document.createElement("div");
+      b.className = "ten";
+      b.textContent = pair[1];
+      wrap.appendChild(b);
+    }
+    toast.appendChild(wrap);
+    if(synth){
+      var sp = document.createElement("button");
+      sp.type = "button";
+      sp.className = "tspk";
+      sp.textContent = "▶";
+      sp.setAttribute("aria-label", "唸這一句");
+      sp.addEventListener("click", function(e){
+        e.stopPropagation();
+        if(toastTimer){ window.clearTimeout(toastTimer); }
+        toastTimer = window.setTimeout(function(){ toast.classList.remove("show"); }, 30000);
+        var seg = [{t:pair[0], lang:"zh-TW"}];
+        if(pair[1]){ seg.push({t:pair[1], lang:"en-US"}); }
+        speakParts(seg, sp, {male:true});
+      });
+      toast.appendChild(sp);
+    }
+    toast.classList.add("show");
+    if(toastTimer){ window.clearTimeout(toastTimer); }
+    toastTimer = window.setTimeout(function(){ toast.classList.remove("show"); }, 7000);
+  }
+  toast.addEventListener("click", function(){ toast.classList.remove("show"); });
+  function scheduleCheer(){
+    if(cheerTimer){ window.clearTimeout(cheerTimer); }
+    if(!state.cheer){ return; }
+    var ms = 180000 + Math.floor(Math.random()*180000);
+    cheerTimer = window.setTimeout(function(){
+      if(state.cheer){ popCheer(); }
+      scheduleCheer();
+    }, ms);
+  }
+  var cheerOn = document.getElementById("cheerOn");
+  cheerOn.checked = !!state.cheer;
+  cheerOn.addEventListener("change", function(){
+    state.cheer = cheerOn.checked ? 1 : 0;
+    save();
+    if(state.cheer){ scheduleCheer(); }
+    else if(cheerTimer){ window.clearTimeout(cheerTimer); toast.classList.remove("show"); }
+  });
+  function showCheer(pair){
+    curCheer = pair;
+    cheerText.textContent = pair[0];
+    cheerEn.textContent = pair[1];
+  }
+  document.getElementById("cheerBtn").addEventListener("click", function(){
+    showCheer(pickCheer());
+  });
+
+  /* ── 自學工具的語音 ── */
+  document.getElementById("askSpeak").addEventListener("click", function(){
+    if(last < 0){ document.getElementById("drawBtn").click(); }
+    speak(cardTag.textContent + "。" + cardText.textContent, this);
+  });
+  document.getElementById("qSpeak").addEventListener("click", function(){
+    if(qi >= order.length || !order.length){ startQuiz(); }
+    var txt = qText.textContent;
+    var bs = qOpts.querySelectorAll("button");
+    for(var i=0;i<bs.length;i++){
+      txt += "。第 " + (i+1) + " 個做法：" + bs[i].textContent;
+    }
+    speak(txt, this);
+  });
+  document.getElementById("cheerSpeak").addEventListener("click", function(){
+    if(!curCheer){ showCheer(pickCheer()); }
+    var seg = [{t:curCheer[0], lang:"zh-TW"}];
+    if(curCheer[1]){ seg.push({t:curCheer[1], lang:"en-US"}); }
+    speakParts(seg, this, {male:true});
+  });
+
+  /* 三分鐘自問 */
+  var PROMPTS = [
+    ["國文","這一課的作者是誰？什麼時代？"],
+    ["國文","這篇的主旨，用兩句話說完。"],
+    ["國文","這首詩的詩眼是哪個字詞？"],
+    ["英文","這課的文法句型，造一個自己的句子。"],
+    ["英文","昨天小考錯的單字，現在拼得出來嗎？"],
+    ["ESL","今天學到的句子，怎麼用在生活裡？"],
+    ["數學","這一題為什麼要這樣算？"],
+    ["數學","上次錯的那題，現在做得出來嗎？"],
+    ["歷史","這件事為什麼重要？"],
+    ["歷史","這個人物：時代、重要行動、影響各是什麼？"],
+    ["地理","這張圖表在說什麼？我怎麼判斷的？"],
+    ["地理","這個數字代表什麼地理意義？"],
+    ["公民","這兩個相近的概念，差在哪裡？"],
+    ["公民","我的主張是什麼？理由和例子呢？"],
+    ["生物","這個構造的功能是什麼？"],
+    ["生物","今天生物課學了什麼？用自己的話說一次。"]
+  ];
+  var cardText = document.getElementById("cardText");
+  var cardTag = document.getElementById("cardTag");
+  var last = -1;
+  document.getElementById("drawBtn").addEventListener("click", function(){
+    var i = last;
+    while(i === last && PROMPTS.length > 1){ i = Math.floor(Math.random() * PROMPTS.length); }
+    last = i;
+    cardTag.textContent = PROMPTS[i][0];
+    cardText.textContent = PROMPTS[i][1];
+  });
+
+  /* 情境選擇 */
+  var QUIZ = [
+    ["數學考卷發下來，錯了三題。",["先看分數，然後把正確答案抄上去","一題一題找出是題意、觀念、計算還是步驟出錯"],1,"訂正不是改成正確答案，是找出錯誤原因，再重新練習一次。"],
+    ["明天英文小考。",["自己先默寫一次，錯的再看","把課本單字表從頭看三遍"],0,"自己先測一次，才知道哪些是真的記住了。"],
+    ["歷史人物太多記不住。",["把名字抄十遍","記人物＋時代＋重要行動＋影響"],1,"只背名字，題目一換就答不出來。"],
+    ["歷史課本讀了三遍還是沒印象。",["再讀第四遍","閱讀 → 整理 → 解釋 → 練習 → 修正"],1,"反覆閱讀是最容易讓人以為自己懂了的方式。"],
+    ["地理題目給了一張人口統計圖。",["先找選項裡看起來合理的","先讀懂圖在說什麼，再判斷數字的意義"],1,"重點不是計算，是理解數字代表的地理意義。"],
+    ["公民題問你覺得公不公平。",["寫下我覺得不公平","寫下主張，再加上理由和例子"],1,"主張＋理由＋證據／例子，才是完整的表達。"],
+    ["生物講義上有一張構造圖。",["把圖旁邊的文字背起來","練習說明構造和功能之間的關係"],1,"看懂圖、讀懂表格，跟背文字是兩件事。"],
+    ["國文閱讀測驗文章很長。",["先看清題目問什麼方向，再回文章找關鍵句","從第一行慢慢讀到最後一行再看題目"],0,"先知道要找什麼，才不會讀完還要重讀一次。"],
+    ["數學算式可以心算解決。",["直接寫答案，比較快","算式依序完整寫下"],1,"完整寫下方便檢查，也是在整理自己的解題思路。"],
+    ["訂正完的錯題。",["放著，反正已經懂了","隔一段時間再做一次"],1,"隔幾天再做一次，才知道是真懂還是剛好記得。"]
+  ];
+  var order = [], qi = 0, right = 0, answered = true;
+  var qText = document.getElementById("qText");
+  var qOpts = document.getElementById("qOpts");
+  var qFb = document.getElementById("qFb");
+  var qScore = document.getElementById("qScore");
+
+  function startQuiz(){
+    order = [];
+    for(var i=0;i<QUIZ.length;i++){ order.push(i); }
+    for(var j=order.length-1;j>0;j--){
+      var k = Math.floor(Math.random()*(j+1));
+      var tmp = order[j]; order[j] = order[k]; order[k] = tmp;
+    }
+    qi = 0; right = 0;
+    qFb.textContent = ""; qFb.className = "fb";
+    nextQ();
+  }
+  function nextQ(){
+    if(qi >= order.length){
+      qText.textContent = "答完了";
+      qOpts.innerHTML = "";
+      qFb.className = "fb ok";
+      qFb.textContent = "十題答對 " + right + " 題。方法對了，時間才不會白花。";
+      qScore.textContent = "";
+      answered = true;
+      return;
+    }
+    var item = QUIZ[order[qi]];
+    qText.textContent = item[0];
+    qOpts.innerHTML = "";
+    item[1].forEach(function(txt, idx){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = txt;
+      b.addEventListener("click", function(){ answer(idx); });
+      qOpts.appendChild(b);
+    });
+    qScore.textContent = "第 " + (qi+1) + " / " + order.length + " 題　目前答對 " + right + " 題";
+    answered = false;
+  }
+  function answer(pick){
+    if(answered){ return; }
+    answered = true;
+    var item = QUIZ[order[qi]];
+    if(pick === item[2]){
+      right++;
+      qFb.className = "fb ok";
+      qFb.textContent = "沒錯。" + item[3];
+    }else{
+      qFb.className = "fb no";
+      qFb.textContent = "再想想。" + item[3];
+    }
+    qi++;
+    window.setTimeout(nextQ, 1600);
+  }
+  document.getElementById("qStart").addEventListener("click", startQuiz);
+
+  /* ── 讀書方法：七個開關 ── */
+  var SWITCHES = [
+    {
+      nm:"回到本質", en:"第一性原理",
+      one:"讀不好，多半不是你的問題，是「方法」的問題。",
+      meet:"課文背了三遍，考出來換一個問法就不會了。",
+      acts:[
+        "讀新東西之前先問三句：<b>這在講什麼？為什麼會這樣？跟我已經會的哪一件事很像？</b>三句答得出來，才開始背。",
+        "背之前先講一次。講得零零落落的地方，就是還沒懂的地方——那才是今天真正要讀的。",
+        "素養題看起來很長，其實只是把課本的觀念放進生活情境。先找出「這題在考哪一個觀念」，題目就短了一半。"
+      ],
+      go:[{t:"數學：先理解再練習",id:"p-mat"},{t:"生物：從記得到理解",id:"p-bio"},{t:"公民：概念到案例",id:"p-civ"}],
+      rem:"能講出來才叫懂。背得起來，只是記得。"
+    },
+    {
+      nm:"站到出題老師那一邊", en:"換位思考",
+      one:"考卷是人出的。想一想，他為什麼要出這一題。",
+      meet:"看答案都懂，自己寫就寫錯。",
+      acts:[
+        "讀完一段，自己出兩題：<b>一題送分的，一題有陷阱的。</b>出得出來，代表你真的讀懂了。",
+        "訂正時多問一句：這題想考我哪個觀念？我是掉進哪個陷阱？（看錯條件、算錯、還是根本沒讀到那一段）",
+        "課本的黑體字、圖表，還有老師上課停下來重講的地方，通通標★。那些幾乎都會考。"
+      ],
+      go:[{t:"國文：先看題目方向",id:"p-chi"},{t:"歷史：史料題五要素",id:"p-his"},{t:"地理：讀懂圖表",id:"p-geo"}],
+      rem:"出得出題目的人，很難被題目騙。"
+    },
+    {
+      nm:"從考試那天倒著排", en:"目標反推",
+      one:"先寫下考試那天要會什麼，再往回切成每天要做的事。",
+      meet:"考前三天才發現範圍有八十頁。",
+      acts:[
+        "拿到範圍先算一次：<b>幾頁 ÷ 剩幾天 ＝ 每天幾頁。</b>寫在行事曆或聯絡簿上，不要放在腦袋裡。",
+        "考前三天不排新進度，只留給訂正和複習。這三天決定你能不能把讀過的變成分數。",
+        "用下面的「段考倒數換算器」算一次。多數人算完會發現：其實來得及，只是要今天開始。"
+      ],
+      go:[{t:"英文：依考程準備",id:"p-eng"},{t:"ESL：期末測驗",id:"p-esl"},{t:"到「今天」排進度",id:"p-today"}],
+      rem:"計畫寫下來才算數。想過而已，不算。"
+    },
+    {
+      nm:"先拿到一次成功", en:"成長思維",
+      one:"討厭讀書，多半是「努力很久卻沒有結果」造成的，不是懶。",
+      meet:"讀了也沒進步，那乾脆不要讀了。",
+      acts:[
+        "先挑一個<b>小到不可能失敗</b>的目標：今天只讀一頁、只背五個單字、只訂正一題。做到就打勾。",
+        "把「我不會」改成<b>「我還沒學會」</b>。差一個字，差很多。",
+        "去「今天」分頁看你的連續天數。那個數字不會說謊，它會替你證明你做得到。"
+      ],
+      go:[{t:"到「今天」看連續天數",id:"p-today"},{t:"抽一句鼓勵小語",id:"p-tools"}],
+      rem:"第一次嘗到「方法對了」的感覺之後，就不需要別人催了。"
+    },
+    {
+      nm:"只練還不會的那些", en:"刻意練習",
+      one:"時間要花在還不會的地方，不是重讀已經會的。",
+      meet:"整本畫滿螢光筆，考試還是不會。",
+      acts:[
+        "課本和講義標三種記號：<b>○ 會了、△ 半會、✕ 不會。</b>之後的時間只花在 △ 和 ✕。",
+        "每一科都有它的死穴，各個擊破：國文的注釋與字音、英文的單字與句型、數學的計算與訂正、歷史的年代順序、地理的圖表判讀、生物的構造與功能、公民的相近概念。",
+        "錯題記三欄：<b>題目｜我錯在哪（題意／觀念／計算／步驟）｜下次要注意什麼。</b>隔幾天再做一次，才知道是真懂還是剛好記得。"
+      ],
+      go:[{t:"線上學習單（拿來練 △✕）",id:"p-links"},{t:"數學：訂正找原因",id:"p-mat"},{t:"國文：形音義",id:"p-chi"}],
+      rem:"重讀已經會的，很舒服，但沒有用。"
+    },
+    {
+      nm:"三步一條龍", en:"系統思維",
+      one:"篩選重點 → 提升吸收 → 寫對答案。三步接起來，才叫讀完一課。",
+      meet:"讀是有讀，但不知道自己讀到哪一步。",
+      acts:[
+        "<b>第一步 篩選重點</b>（＝記住）：這一課哪三件事一定要記？寫下來，只寫三件。",
+        "<b>第二步 提升吸收</b>（＝理解）：闔上課本，用自己的話說一次、寫三句：這段在說什麼／我怎麼判斷／我還不懂的是。",
+        "<b>第三步 寫對答案</b>（＝應用與表達）：做題目、訂正找原因、隔幾天再做一次。三步都走完，這一課才算過。"
+      ],
+      go:[{t:"到「今天」走完三步",id:"p-today"},{t:"回總覽看三步全貌",id:"p-home"}],
+      rem:"從明天的小考、到段考、到會考，用的都是這一套。只是範圍變大，做法不變。"
+    },
+    {
+      nm:"善用工具，不用蠻力", en:"借力思維",
+      one:"不是讀得久，是讀得對。",
+      meet:"坐了三個小時，實際讀進去的只有二十分鐘。",
+      acts:[
+        "<b>五分鐘先掃一遍：</b>標題、黑體字、圖表、每段第一句。先有地圖，再走進去，速度差很多。",
+        "<b>一頁筆記：</b>一課讀完，壓成一張紙。壓不下去，代表重點還沒抓到——那就是第一個開關要回頭做的。",
+        "<b>把工具用起來：</b>這本手冊的語音導覽、學習連結裡的線上學習單、老師的影片播放清單。通勤和排隊用聽的，也算複習。",
+        "<b>AI 這樣用：</b>請它幫你出五題、聽你講一遍再問你問題。<mark>不要請它幫你寫答案</mark>——那是把練習的機會送給它。"
+      ],
+      go:[{t:"各科學習連結",id:"p-links"},{t:"自學工具",id:"p-tools"}],
+      rem:"工具幫你省時間，不能替你理解。省下來的時間，要花回不會的地方。"
+    }
+  ];
+
+  var MDIM = ["回到本質","出題者視角","目標反推","先拿一次成功","只練不會的","三步一條龍","善用工具"];
+  var MOPT = ["常常","有時","幾乎沒有"];
+  var MQ = [
+    [0,"讀新的東西，我會先問「為什麼會這樣」，不是直接背起來。"],
+    [0,"背之前，我能先用自己的話把它講一次。"],
+    [1,"訂正的時候，我會想「這題想考我哪個觀念」。"],
+    [1,"讀完一段，我猜得出老師會從哪裡出題。"],
+    [2,"段考前，我知道自己每天該讀多少。"],
+    [2,"我會先看範圍有多少，再決定怎麼分配時間。"],
+    [3,"遇到不會的，我想的是「我還沒學會」，不是「我就是不行」。"],
+    [3,"這學期我有過一次「方法對了、真的變好」的經驗。"],
+    [4,"我的讀書時間主要花在還不會的地方，不是重讀已經會的。"],
+    [4,"我有一份錯題紀錄，而且會回去看。"],
+    [5,"我的讀書流程是固定的，不是想到哪讀到哪。"],
+    [5,"小考、段考、複習，我用的是同一套做法。"],
+    [6,"我會用工具（線上學習單、影片、語音）幫自己讀，不是只靠課本。"],
+    [6,"我會把一課的重點壓成一頁，而不是整本畫滿螢光筆。"]
+  ];
+
+  var INSTALL = [
+    "第 1 天｜回到本質：讀一段，先用自己的話講一次，再開始背。",
+    "第 2 天｜出題者視角：讀完一段，自己出兩題——一題送分，一題陷阱。",
+    "第 3 天｜目標反推：把下次段考範圍算成每天幾頁，寫進行事曆。",
+    "第 4 天｜先拿一次成功：訂一個小到不可能失敗的目標，今天做到。",
+    "第 5 天｜只練不會的：挑一課標上 ○△✕，只練 △ 和 ✕。",
+    "第 6 天｜三步一條龍：挑一課，把篩選重點、提升吸收、寫對答案完整走一次。",
+    "第 7 天｜善用工具：把一課壓成一頁筆記，或用語音導覽聽一遍。"
+  ];
+
+  /* 七個開關的展開卡 */
+  var mSwitchBox = document.getElementById("mSwitch");
+  function renderSwitches(){
+    mSwitchBox.innerHTML = "";
+    SWITCHES.forEach(function(sw, i){
+      var box = document.createElement("div");
+      box.className = "sw";
+      box.id = "sw-" + i;
+      var head = document.createElement("button");
+      head.type = "button";
+      head.className = "swh";
+      head.innerHTML = '<span class="no">' + (i+1) + '</span>' +
+        '<span class="ttl">' + sw.nm + '<em>' + sw.en + '</em></span>' +
+        '<span class="arw">＋</span>';
+      head.addEventListener("click", function(){
+        var on = box.classList.toggle("open");
+        head.querySelector(".arw").textContent = on ? "－" : "＋";
+      });
+      box.appendChild(head);
+      var body = document.createElement("div");
+      body.className = "swb";
+      var html = '<p class="one">' + sw.one + '</p>' +
+        '<h4>你可能遇到的</h4><p class="meet">' + sw.meet + '</p>' +
+        '<h4>怎麼做</h4><ul>';
+      sw.acts.forEach(function(a){ html += '<li>' + a + '</li>'; });
+      html += '</ul><h4>套到哪一科</h4><div class="swgo">';
+      sw.go.forEach(function(g){
+        html += '<button class="mini" type="button" data-target="' + g.id + '">' + g.t + '</button>';
+      });
+      html += '</div><p class="rem">' + sw.rem + '</p>';
+      body.innerHTML = html;
+      box.appendChild(body);
+      mSwitchBox.appendChild(box);
+    });
+  }
+  function openSwitch(i){
+    var box = document.getElementById("sw-" + i);
+    if(!box){ return; }
+    if(!box.classList.contains("open")){
+      box.classList.add("open");
+      var arw = box.querySelector(".arw");
+      if(arw){ arw.textContent = "－"; }
+    }
+    window.setTimeout(function(){
+      try{ box.scrollIntoView({block:"start"}); }catch(e){ box.scrollIntoView(); }
+    }, 40);
+  }
+
+  /* 方法健檢 */
+  var mCheckBox = document.getElementById("mCheck");
+  var mResult = document.getElementById("mResult");
+
+  function renderCheck(){
+    mCheckBox.innerHTML = "";
+    MQ.forEach(function(q, i){
+      var row = document.createElement("div");
+      row.className = "mrow";
+      var sp = document.createElement("span");
+      sp.textContent = (i+1) + ". " + q[1];
+      var seg = document.createElement("div");
+      seg.className = "mseg";
+      MOPT.forEach(function(label, k){
+        var v = 2 - k;
+        var b = document.createElement("button");
+        b.type = "button";
+        b.textContent = label;
+        b.setAttribute("aria-pressed", (state.method.check[i] === v) ? "true" : "false");
+        b.addEventListener("click", function(){
+          state.method.check[i] = v;
+          save();
+          var bs = seg.querySelectorAll("button");
+          for(var j=0;j<bs.length;j++){
+            bs[j].setAttribute("aria-pressed", bs[j] === b ? "true" : "false");
+          }
+        });
+        seg.appendChild(b);
+      });
+      row.appendChild(sp);
+      row.appendChild(seg);
+      mCheckBox.appendChild(row);
+    });
+  }
+
+  function showCheckResult(){
+    var i, left = 0;
+    for(i=0;i<MQ.length;i++){
+      if(typeof state.method.check[i] !== "number"){ left++; }
+    }
+    mResult.innerHTML = "";
+    if(left > 0){
+      var w = document.createElement("p");
+      w.className = "hint";
+      w.textContent = "還有 " + left + " 題沒選。全部選完，結果才準。";
+      mResult.appendChild(w);
+      return;
+    }
+    var score = [0,0,0,0,0,0,0];
+    for(i=0;i<MQ.length;i++){ score[MQ[i][0]] += state.method.check[i]; }
+    var rank = [];
+    for(i=0;i<7;i++){ rank.push(i); }
+    rank.sort(function(a,b){ return score[a] === score[b] ? a - b : score[a] - score[b]; });
+    var low = [rank[0], rank[1]];
+
+    var h = document.createElement("h4");
+    h.style.cssText = "font-family:var(--serif);font-size:1.05rem;margin:16px 0 10px;";
+    h.textContent = "你的七個開關";
+    mResult.appendChild(h);
+
+    for(i=0;i<7;i++){
+      var isLow = (low.indexOf(i) > -1);
+      var row = document.createElement("div");
+      row.className = "dim" + (isLow ? " low" : "");
+      row.innerHTML = '<span>' + MDIM[i] + '</span>' +
+        '<span class="track"><i style="width:' + (score[i]/4*100) + '%"></i></span>' +
+        '<b>' + score[i] + ' / 4</b>';
+      mResult.appendChild(row);
+    }
+
+    var tip = document.createElement("div");
+    tip.className = "calcout";
+    if(score[low[0]] >= 4){
+      tip.innerHTML = "七個開關你都有在用了。那就往下挑一個做得更細——例如把「一頁筆記」真的做出來一次。";
+    }else{
+      tip.innerHTML = "<b>先裝這兩個：" + MDIM[low[0]] + "、" + MDIM[low[1]] + "。</b><br>" +
+        "不要七個一起改，會撐不住。這兩個練順了，其他的自己會跟上。";
+    }
+    mResult.appendChild(tip);
+
+    if(score[low[0]] < 4){
+      var row2 = document.createElement("div");
+      row2.className = "btnrow";
+      low.forEach(function(k){
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "mini";
+        b.textContent = "打開「" + MDIM[k] + "」";
+        b.addEventListener("click", function(){ openSwitch(k); });
+        row2.appendChild(b);
+      });
+      mResult.appendChild(row2);
+    }
+  }
+
+  document.getElementById("mCheckGo").addEventListener("click", showCheckResult);
+  document.getElementById("mCheckClear").addEventListener("click", function(){
+    state.method.check = {};
+    save();
+    mResult.innerHTML = "";
+    renderCheck();
+  });
+
+  /* 段考倒數換算器 */
+  var mDate = document.getElementById("mDate");
+  var mPages = document.getElementById("mPages");
+  var mCalcOut = document.getElementById("mCalcOut");
+
+  function runCalc(){
+    var dv = mDate.value;
+    var pv = parseInt(mPages.value, 10);
+    if(!dv || !pv || pv < 1){
+      mCalcOut.textContent = "兩格都要填：考試日期，還有範圍總共幾頁。";
+      return;
+    }
+    var ex = new Date(dv + "T00:00:00");
+    if(isNaN(ex.getTime())){
+      mCalcOut.textContent = "日期看不懂，再選一次。";
+      return;
+    }
+    var t0 = new Date();
+    t0.setHours(0,0,0,0);
+    var days = Math.round((ex.getTime() - t0.getTime()) / 86400000);
+    state.method.exam = {d:dv, p:pv};
+    save();
+
+    if(days < 0){
+      mCalcOut.textContent = "這個日期已經過了。改填下一次段考的日期。";
+      return;
+    }
+    if(days === 0){
+      mCalcOut.innerHTML = "<b>就是今天。</b><br>今天不排新進度：把錯題和黑體字過一遍，然後早點睡。睡飽的分數比熬夜高。";
+      return;
+    }
+    if(days <= 3){
+      mCalcOut.innerHTML = "距離段考剩 <b>" + days + "</b> 天。<br>" +
+        "這幾天不要再讀新的了。把錯題、黑體字、圖表過一遍，每一科挑三個最沒把握的地方補起來。";
+      return;
+    }
+    var study = days - 3;
+    var per = Math.ceil(pv / study);
+    var out = "距離段考還有 <b>" + days + "</b> 天。<br>" +
+      "扣掉考前三天留給訂正，讀新進度的有 <b>" + study + "</b> 天。<br>" +
+      "每天大約 <b>" + per + "</b> 頁——八科分下來，一科兩三頁而已。<br>" +
+      "現在把它寫進行事曆，不要放在腦袋裡。";
+    if(per > 20){
+      out += "<br><br>每天 " + per + " 頁偏多。兩個辦法：從今天就開始（多一天就少幾頁），" +
+        "或先用第 5 個開關把已經會的 ○ 劃掉，真正要讀的通常沒那麼多。";
+    }
+    mCalcOut.innerHTML = out;
+  }
+  document.getElementById("mCalc").addEventListener("click", runCalc);
+
+  /* 七日安裝表 */
+  var mInstallBox = document.getElementById("mInstall");
+  var mFill = document.getElementById("mFill");
+  var mLabel = document.getElementById("mLabel");
+
+  function installCount(){
+    var n = 0, k;
+    for(k in state.method.install){
+      if(Object.prototype.hasOwnProperty.call(state.method.install, k) && state.method.install[k]){ n++; }
+    }
+    return n;
+  }
+  function updateInstallBar(){
+    var n = installCount();
+    mFill.style.width = Math.round(n / INSTALL.length * 100) + "%";
+    if(n === 0){ mLabel.textContent = "還沒開始。從第 1 天開始就好。"; }
+    else if(n === INSTALL.length){ mLabel.textContent = "七個開關都裝上了。接下來就是每天用它。"; }
+    else { mLabel.textContent = "已完成 " + n + " / " + INSTALL.length + " 天"; }
+  }
+  function renderInstall(){
+    mInstallBox.innerHTML = "";
+    var list = document.createElement("div");
+    list.className = "list";
+    INSTALL.forEach(function(txt, i){
+      var lab = document.createElement("label");
+      var on = !!state.method.install[i];
+      lab.className = "checkline" + (on ? " on" : "");
+      var input = document.createElement("input");
+      input.type = "checkbox";
+      input.checked = on;
+      var sp = document.createElement("span");
+      sp.textContent = txt;
+      input.addEventListener("change", function(){
+        if(input.checked){ state.method.install[i] = 1; }
+        else { delete state.method.install[i]; }
+        save();
+        lab.classList.toggle("on", input.checked);
+        updateInstallBar();
+        if(input.checked && installCount() === INSTALL.length){
+          popCheer(["七個開關都裝好了。從今天起，讀書是有系統的事。","All seven switches are on. Studying is a system now."]);
+        }
+      });
+      lab.appendChild(input);
+      lab.appendChild(sp);
+      list.appendChild(lab);
+    });
+    mInstallBox.appendChild(list);
+    updateInstallBar();
+  }
+  document.getElementById("mInstallClear").addEventListener("click", function(){
+    state.method.install = {};
+    save();
+    renderInstall();
+  });
+
+  /* 學習連結 */
+  var linkList = document.getElementById("linkList");
+  LINKS.forEach(function(g){
+    var box = document.createElement("div");
+    box.className = "lnkgroup";
+    var h = document.createElement("h3");
+    h.textContent = g.subject;
+    box.appendChild(h);
+    if(!g.items.length){
+      var e = document.createElement("div");
+      e.className = "empty";
+      e.textContent = "這一科的學習連結陸續建置中。";
+      box.appendChild(e);
+    }else{
+      g.items.forEach(function(it){
+        var a = document.createElement("a");
+        a.className = "lnk";
+        a.href = it.u;
+        a.target = "_blank";
+        a.rel = "noopener";
+        var t = document.createElement("span"); t.className = "t"; t.textContent = it.t;
+        var d = document.createElement("span"); d.className = "d"; d.textContent = it.d;
+        var u = document.createElement("span"); u.className = "u"; u.textContent = it.u;
+        a.appendChild(t); a.appendChild(d); a.appendChild(u);
+        box.appendChild(a);
+      });
+    }
+    linkList.appendChild(box);
+  });
+
+  /* 啟動 */
+  load();
+  for(var pid in LISTS){
+    if(Object.prototype.hasOwnProperty.call(LISTS, pid)){ buildList(pid); }
+  }
+  buildGuides();
+  buildOutputs();
+  renderSwitches();
+  renderCheck();
+  renderInstall();
+  if(state.method.exam && state.method.exam.d){
+    mDate.value = state.method.exam.d;
+    if(state.method.exam.p){ mPages.value = state.method.exam.p; }
+  }
+  dayNote.value = rec(TODAY).note;
+  updateNoteCount();
+  cheerOn.checked = !!state.cheer;
+  renderDaily();
+  renderFocus();
+  renderStats();
+  renderLog();
+  refreshMarks();
+  scheduleCheer();
+  initCoach();
+})();
+</script>
+</body>
+</html>
