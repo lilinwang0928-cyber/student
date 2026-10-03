@@ -193,14 +193,14 @@ mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;pad
 
 /* 鼓勵小語 */
 .toast{
-  position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(18px);
-  max-width:min(520px,calc(100% - 32px));background:var(--ink);color:#EAF2EE;
+  position:fixed;left:16px;right:16px;bottom:20px;margin:0 auto;width:fit-content;transform:translateY(18px);
+  max-width:520px;background:var(--ink);color:#EAF2EE;
   padding:14px 18px;border-radius:10px;font-family:var(--serif);font-size:1.04rem;
   line-height:1.6;box-shadow:0 6px 24px rgba(27,58,50,.28);opacity:0;pointer-events:none;
   transition:opacity .3s,transform .3s;z-index:60;text-align:left;cursor:pointer;
   display:flex;align-items:center;gap:12px;
 }
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto;}
+.toast.show{opacity:1;transform:translateY(0);pointer-events:auto;}
 .toast .ten{font-family:var(--sans);font-size:.84rem;color:#9DBBB0;margin-top:7px;line-height:1.55;}
 #cheerEn{font-family:var(--sans);font-size:.86rem;color:#93B3A8;margin-top:7px;line-height:1.6;}
 
@@ -258,7 +258,7 @@ mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;pad
 .feat b{color:var(--ink);margin-right:7px;font-weight:600;}
 .toast .cav{width:38px;height:38px;flex:0 0 auto;}
 .toast.card{display:block;text-align:center;padding:12px 12px 14px;
-  max-width:min(300px,calc(100% - 32px));}
+  max-width:300px;}
 .toast.card img{width:100%;display:block;border-radius:8px;}
 .toast.card .ctxt{margin-top:11px;text-align:left;}
 .toast.card .tspk{margin-top:11px;width:100%;}
@@ -276,6 +276,136 @@ mark{background:linear-gradient(transparent 58%,var(--hi) 58%);color:inherit;pad
   font-size:.92rem;font-family:var(--sans);color:var(--ink);background:#fff;margin-bottom:8px;}
 .toast .ctxt{flex:1;min-width:0;}
 @media print{.gate{display:none!important;}}
+
+/* 七步學習循環：四層配色 */
+:root{
+  --c1:#2B6490;--c1s:#E4EEF6;
+  --c2:#2A7A60;--c2s:#E1F1EA;
+  --c3:#A4560F;--c3s:#FBECD9;
+  --c4:#6A4C9C;--c4s:#EDE7F6;
+}
+.L1{--lc:var(--c1);--ls:var(--c1s);}
+.L2{--lc:var(--c2);--ls:var(--c2s);}
+.L3{--lc:var(--c3);--ls:var(--c3s);}
+.L4{--lc:var(--c4);--ls:var(--c4s);}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 24px;}
+.vs div{border-radius:10px;padding:13px 15px;font-size:.92rem;line-height:1.7;}
+.vs b{display:block;font-family:var(--serif);font-size:1.02rem;margin-bottom:3px;}
+.vs .no{background:#ECEFED;color:var(--slate);}
+.vs .no b{color:var(--ink2);text-decoration:line-through;text-decoration-color:var(--red);}
+.vs .yes{background:var(--ink);color:#DCE9E3;}
+.vs .yes b{color:#fff;}
+.ladder{display:grid;gap:8px;margin:0 0 10px;}
+.lrow{display:grid;grid-template-columns:86px 1fr;gap:12px;align-items:center;
+  background:var(--ls);border-left:5px solid var(--lc);border-radius:0 10px 10px 0;padding:11px 12px;}
+.lname{font-family:var(--serif);font-size:1.02rem;font-weight:600;color:var(--lc);line-height:1.35;}
+.lname small{display:block;font-family:var(--sans);font-size:.7rem;font-weight:500;letter-spacing:.14em;}
+.lsteps{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.lchip{border:1px solid var(--lc);background:#fff;color:var(--lc);border-radius:20px;
+  padding:5px 13px 5px 5px;font-size:.9rem;cursor:pointer;display:inline-flex;gap:7px;
+  align-items:center;font-family:var(--sans);line-height:1.4;}
+.lchip i{font-style:normal;background:var(--lc);color:#fff;border-radius:50%;
+  width:23px;height:23px;line-height:23px;text-align:center;font-size:.76rem;flex:0 0 auto;}
+.lchip:hover{background:var(--lc);color:#fff;}
+.lchip:hover i{background:#fff;color:var(--lc);}
+.larrow{color:var(--lc);font-weight:700;font-size:.9rem;}
+.loop{font-size:.86rem;color:var(--slate);text-align:center;margin:0 0 20px;}
+.st{border:1px solid var(--line);border-left:5px solid var(--lc);border-radius:0 10px 10px 0;
+  background:var(--card);margin-bottom:10px;overflow:hidden;}
+.sth{width:100%;text-align:left;background:none;border:0;padding:13px 15px;cursor:pointer;
+  font-family:var(--serif);font-size:1.08rem;color:var(--ink);display:flex;gap:11px;
+  align-items:flex-start;line-height:1.5;}
+.sth:hover{background:var(--ls);}
+.st .no{flex:0 0 auto;font-size:.8rem;color:#fff;background:var(--lc);border-radius:50%;
+  width:24px;height:24px;line-height:24px;text-align:center;font-family:var(--sans);margin-top:2px;}
+.st .ttl{flex:1;}
+.st .ttl em{display:block;font-style:normal;font-family:var(--sans);font-size:.76rem;
+  color:var(--lc);letter-spacing:.06em;margin-top:2px;}
+.st .arw{flex:0 0 auto;color:var(--slate);font-size:.72rem;margin-top:7px;}
+.st .stb{display:none;padding:0 15px 16px;}
+.st.open .stb{display:block;}
+.st.open .sth{background:var(--ls);margin-bottom:14px;}
+.st .one{font-family:var(--serif);font-size:1.03rem;line-height:1.75;margin:0 0 12px;}
+.st h4,.run h4{margin:14px 0 6px;font-size:.78rem;color:var(--slate);letter-spacing:.14em;
+  font-weight:600;font-family:var(--sans);border:0;padding:0;}
+.st ul{margin:0;padding-left:1.25em;font-size:.95rem;}
+.eg{background:var(--paper);border-radius:8px;padding:11px 13px;font-size:.92rem;line-height:1.75;}
+.eg .egrow{display:grid;grid-template-columns:44px 1fr;gap:8px;padding:3px 0;}
+.eg .egrow span:first-child{color:var(--slate);font-size:.84rem;}
+.chain{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin:6px 0 2px;}
+.chain b{background:#fff;border:1px solid var(--line);border-radius:5px;padding:4px 9px;font-weight:500;font-size:.88rem;}
+.chain i{color:var(--lc,var(--ink2));font-style:normal;font-weight:700;}
+.chain em{font-style:normal;font-size:.8rem;color:var(--slate);}
+.ask{background:var(--ls);border-radius:8px;padding:10px 13px;margin:14px 0 0;
+  font-family:var(--serif);font-size:1.02rem;line-height:1.7;color:var(--ink);}
+.ask small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;
+  color:var(--lc);font-weight:600;margin-bottom:1px;}
+.st .rem{font-size:.9rem;color:var(--ink2);margin:12px 0 0;}
+.st .swgo{margin-top:12px;display:flex;gap:6px;flex-wrap:wrap;}
+.kgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.kgrid button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:9px 10px;
+  text-align:left;cursor:pointer;font-family:var(--sans);color:var(--ink);line-height:1.5;}
+.kgrid button b{display:block;font-size:.93rem;font-weight:600;}
+.kgrid button small{display:block;font-size:.78rem;color:var(--slate);}
+.kgrid button .cnt{float:right;font-size:.78rem;background:var(--soft);border-radius:10px;padding:0 8px;color:var(--ink2);}
+.kgrid button[aria-pressed="true"]{border-color:var(--lc,var(--ink));background:var(--ls,var(--soft));
+  box-shadow:inset 0 0 0 1px var(--lc,var(--ink));}
+.kout{margin-top:8px;border-radius:8px;padding:10px 13px;font-size:.92rem;line-height:1.7;
+  background:var(--ls,var(--soft));}
+.kout b{font-family:var(--serif);font-size:1rem;}
+.run{border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;}
+.runhead{background:var(--lc);color:#fff;padding:13px 16px;display:flex;justify-content:space-between;
+  align-items:center;gap:10px;}
+.runhead .rn{font-family:var(--serif);font-size:1.14rem;line-height:1.4;}
+.runhead .rn small{display:block;font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;opacity:.9;}
+.runhead .clock{font-family:var(--sans);font-variant-numeric:tabular-nums;font-size:1.75rem;
+  font-weight:600;line-height:1;text-align:right;}
+.runhead .clock small{display:block;font-size:.68rem;font-weight:400;letter-spacing:.1em;opacity:.9;margin-top:4px;}
+.rundots{display:flex;gap:4px;padding:11px 16px 0;}
+.rundots i{flex:1;height:6px;border-radius:3px;background:var(--soft);}
+.runbody{padding:13px 16px 16px;}
+.runbody .todo{font-size:.97rem;margin:0 0 10px;line-height:1.75;}
+.runin{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px 12px;
+  font-family:var(--sans);font-size:.95rem;color:var(--ink);background:#fff;}
+.plan{list-style:none;margin:0 0 4px;padding:0;}
+.plan li{display:grid;grid-template-columns:24px 1fr auto;gap:10px;align-items:center;
+  padding:7px 0;border-bottom:1px dashed var(--line);margin:0;font-size:.94rem;}
+.plan li:last-child{border-bottom:0;}
+.plan i{font-style:normal;background:var(--lc);color:#fff;border-radius:50%;width:22px;height:22px;
+  line-height:22px;text-align:center;font-size:.74rem;}
+.plan span:last-child{font-size:.8rem;color:var(--slate);}
+.recap{font-size:.92rem;margin:0 0 6px;}
+.recap dt{font-size:.74rem;letter-spacing:.12em;color:var(--slate);margin-top:9px;}
+.recap dd{margin:1px 0 0;white-space:pre-wrap;}
+.lv3{display:grid;gap:7px;}
+.lvb{border:1px solid var(--lc);background:#fff;border-radius:9px;padding:11px 14px;cursor:pointer;
+  text-align:left;font-family:var(--sans);color:var(--ink);display:flex;gap:11px;align-items:center;line-height:1.5;}
+.lvb:nth-child(1){width:64%;}
+.lvb:nth-child(2){width:82%;}
+.lvb:nth-child(3){width:100%;}
+.lvb i{font-style:normal;flex:0 0 auto;background:var(--ls);color:var(--lc);border-radius:6px;
+  padding:1px 8px;font-size:.74rem;letter-spacing:.06em;font-weight:600;}
+.lvb b{font-family:var(--serif);font-size:1.02rem;font-weight:600;}
+.lvb[aria-pressed="true"]{background:var(--lc);color:#fff;}
+.lvb[aria-pressed="true"] i{background:#fff;}
+.stab{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.stab button{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:18px;
+  padding:6px 14px;font-size:.88rem;cursor:pointer;font-family:var(--sans);}
+.stab button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink);}
+.srow{padding:10px 0;border-bottom:1px dashed var(--line);font-size:.95rem;line-height:1.7;}
+.srow:last-of-type{border-bottom:0;}
+.srow .sk{display:inline-block;font-size:.78rem;color:var(--lc,var(--ink2));font-weight:600;
+  background:var(--ls,var(--soft));border-radius:5px;padding:1px 9px;margin:0 0 3px;}
+.srow .sk + span{display:block;}
+@media (max-width:460px){
+  .vs{grid-template-columns:1fr;}
+  .lrow{grid-template-columns:1fr;gap:7px;}
+  .lname small{display:inline;margin-right:7px;}
+  .kgrid{grid-template-columns:1fr;}
+  .lvb:nth-child(1){width:78%;}
+  .lvb:nth-child(2){width:90%;}
+}
+@media print{.st .stb{display:block!important;}.st .arw,.run,.stab{display:none;}}
 
 /* 讀書方法：七個開關 */
 .sw{border:1px solid var(--line);border-radius:10px;background:var(--card);margin-bottom:10px;overflow:hidden;}
@@ -405,7 +535,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
   </div>
 
   <div class="btnrow">
-    <button class="btn" type="button" data-target="p-method">七個讀書方法</button>
+    <button class="btn" type="button" data-target="p-method">七步學習循環</button>
     <button class="btn ghost" type="button" data-target="p-today">今天要做什麼</button>
     <button class="btn ghost" type="button" data-target="p-tools">自學工具</button>
   </div>
@@ -414,16 +544,40 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 <!-- 讀書方法 -->
 <section class="panel" id="p-method" role="tabpanel">
   <h2>讀書方法</h2>
-  <p class="lead">八科的內容不一樣，讀書的方法只有一套。這裡是七個開關，一天裝一個，七天裝完。</p>
+  <p class="lead">讀書不是「看課本」一個動作，是七個不同的動作。每一課、每一章、每次考前，都照這七步跑一輪。</p>
 
-  <div class="say">這七個開關在別的地方有很厲害的名字——外掛、秒殺、飆分。<mark>真正有用的不是名字，是名字底下那三個動作。</mark>動作做出來，名字忘掉也沒關係。</div>
+  <div class="vs">
+    <div class="no"><b>看課本</b>只是眼睛碰到資訊。不代表懂了、記住了，更不代表會用。</div>
+    <div class="yes"><b>七步學習循環</b>每一步做的事都不一樣：找方向、建知識、長能力、能遷移。</div>
+  </div>
 
-  <div class="flow"><b>篩選重點</b><i>→</i><b>提升吸收</b><i>→</i><b>寫對答案</b></div>
-  <p style="font-size:.9rem;color:var(--slate);margin:-8px 0 20px;">這三步，就是手冊裡一直在說的<mark>記住 → 理解 → 應用與表達</mark>。七個開關都是裝在這三步上面的。</p>
+  <h3>七步學習循環</h3>
+  <div class="ladder" id="cyLadder"></div>
+  <p class="loop">↻ 第 7 步做完，下一課再從第 1 步開始。點任何一步看做法。</p>
+  <div id="cySteps"></div>
 
   <div class="tool">
-    <h3>先做一次方法健檢</h3>
-    <p style="font-size:.92rem;color:var(--slate);margin-bottom:6px;">十四題，一分鐘。沒有及格不及格，只是要找出你目前最缺的那兩個開關——先補那兩個，進步最快。</p>
+    <h3>跑一輪：30～40 分鐘學習循環</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:12px;">挑一課，照著計時器把七步走完。寫的東西會自動存在這台裝置上，中途離開再回來可以接著做。</p>
+    <div id="cyRun"></div>
+  </div>
+
+  <div class="tool" id="cyLvBox">
+    <h3>三層學會標準</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:12px;">不要再問自己「讀完了嗎？」。改問：今天這一課，我到第幾層？第三層才算真的學會。</p>
+    <div id="cyLv"></div>
+  </div>
+
+  <div class="tool">
+    <h3>各科怎麼跑</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:12px;">七步一樣，但每一科填進去的東西不同。</p>
+    <div class="stab" id="cySubTabs"></div>
+    <div id="cySub"></div>
+  </div>
+
+  <div class="tool">
+    <h3>七步健檢</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:6px;">十四題，一分鐘。沒有及格不及格，只是要找出你目前最少做的那兩步——先補那兩步，進步最快。</p>
     <div id="mCheck"></div>
     <div class="btnrow">
       <button class="btn" type="button" id="mCheckGo">看結果</button>
@@ -432,13 +586,18 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
     <div id="mResult"></div>
   </div>
 
-  <h3>七個開關</h3>
-  <p class="hint" style="margin:-4px 0 14px;">點標題展開。每一個都有：一句話、你可能遇到的情況、三個動作、套到哪一科。</p>
-  <div id="mSwitch"></div>
+  <div class="tool">
+    <h3>七日上手表</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:12px;">一天只練一步，七天把七步都摸過一次。做到就打勾，紀錄存在這台裝置上。</p>
+    <div class="bar"><i id="mFill"></i></div>
+    <p class="barlabel" id="mLabel">還沒開始</p>
+    <div id="mInstall"></div>
+    <div class="btnrow"><button class="mini" type="button" id="mInstallClear">清空七日表</button></div>
+  </div>
 
   <div class="tool">
     <h3>段考倒數換算器</h3>
-    <p style="font-size:.92rem;color:var(--slate);margin-bottom:2px;">第三個開關「從考試那天倒著排」用的。填考試日期和範圍頁數，考前三天會自動留給訂正。</p>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:2px;">先知道每天要讀多少，再用七步循環去讀。填考試日期和範圍頁數，考前三天會自動留給訂正。</p>
     <div class="calc">
       <div>
         <label for="mDate">段考第一天</label>
@@ -456,17 +615,17 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
   </div>
 
   <div class="tool">
-    <h3>七日安裝表</h3>
-    <p style="font-size:.92rem;color:var(--slate);margin-bottom:12px;">一天裝一個開關，一次只練一件事。做到就打勾，紀錄存在這台裝置上。</p>
-    <div class="bar"><i id="mFill"></i></div>
-    <p class="barlabel" id="mLabel">還沒開始</p>
-    <div id="mInstall"></div>
-    <div class="btnrow"><button class="mini" type="button" id="mInstallClear">清空七日表</button></div>
+    <h3>進階：七個心法</h3>
+    <p style="font-size:.92rem;color:var(--slate);margin-bottom:10px;">七步循環跑順了再來看。這七個是「為什麼要這樣讀」的想法：回到本質、站到出題老師那一邊、從考試那天倒著排……</p>
+    <div class="btnrow" style="margin-top:0;"><button class="mini" type="button" id="mSwToggle" aria-expanded="false">展開七個心法</button></div>
+    <div id="mSwitchWrap" hidden style="margin-top:14px;"><div id="mSwitch"></div></div>
   </div>
+
+  <div class="say">每天不必問「今天要讀幾頁」。<br>改問：<mark>今天我要把哪一個知識，從「看過」變成「能自己用」？</mark></div>
 
   <div class="redbox">
     <b>一段實話。</b><br>
-    有些說法會告訴你，方法一換，速度馬上變三倍、分數立刻飆起來。實際會發生的是：第一個星期你反而覺得比較累，因為你開始做以前沒做的事——講出來、自己出題、訂正找原因。大約兩三個星期之後，你會發現同樣的時間讀完更多，而且記得住。<br>
+    有些說法會告訴你，方法一換，速度馬上變三倍、分數立刻飆起來。實際會發生的是：第一個星期你反而覺得比較累，因為你開始做以前沒做的事——關書說出來、自己出題、訂正找原因。大約兩三個星期之後，你會發現同樣的時間讀完更多，而且記得住。<br>
     方法會讓努力有回報，但它不會替你努力。
   </div>
 
@@ -876,7 +1035,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
       <p class="gsub">今天的比賽計畫</p>
       <ol>
         <li>先到「今天」：五件事，一次做一件。</li>
-        <li>卡住就翻「方法」：七個開關挑一個用。</li>
+        <li>要讀新的一課，到「方法」跑一輪七步循環。</li>
         <li>收工前輸出一次：闔上課本，說三句。</li>
       </ol>
       <div class="btnrow" style="justify-content:center;">
@@ -885,6 +1044,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
       </div>
     </div>
   </div>
+</div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -980,7 +1140,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 
   /* 各科語音導覽稿 */
   var GUIDE = {
-    "p-method":"這一頁是讀書方法，一共七個開關。第一個，回到本質：讀不好通常不是不夠聰明，是方法還沒對，所以讀新東西之前先問三句：這在講什麼、為什麼會這樣、跟我已經會的哪一件事很像。第二個，站到出題老師那一邊：考卷是人出的，讀完一段自己出兩題，一題送分，一題有陷阱。第三個，從考試那天倒著排：先算出範圍有幾頁，除以剩下幾天，寫進行事曆，考前三天只留給訂正。第四個，先拿到一次成功：討厭讀書多半是努力很久卻沒有結果，所以先挑一個小到不可能失敗的目標，做到就打勾。第五個，只練還不會的：課本標上會、半會、不會，時間只花在半會和不會的地方。第六個，三步一條龍：篩選重點、提升吸收、寫對答案，這三步從明天的小考到會考都一樣，只是範圍變大。第七個，善用工具：五分鐘先掃一遍標題、黑體字和圖表，一課壓成一頁筆記，零碎時間用聽的複習。重點不是讀得久，是讀得對。",
+    "p-method":"這一頁是讀書方法，叫做七步學習循環。很多人把讀書濃縮成一個動作，就是看課本。但看課本只是眼睛碰到資訊，不代表會。所以要拆成七步。第一步，看懂任務：先弄清楚這一課學完要會什麼。第二步，判斷重點：一課只抓三到五個核心。第三步，選擇方法：要背的、要理解的、要算的、要表達的，做法都不一樣。第四步，理解與組織：把一課整理成一張A4。第五步，主動提取：關書，不看課本說一次。第六步，檢查真的會：做題，錯了要找出錯的原因。第七步，換情境再使用：題目換個問法還會，才算真的學會。學會有三層：我看得懂，我不看也說得出來，換一題我也會。第三層才算數。",
     "p-chi":"國文是日積月累的科目。每一課先熟讀形、音、義、作者和課文賞析，再多做題目，從題目回頭彙整重點。閱讀題分成文言文、韻文和白話文三類。文言文要判斷虛字，找出可以換成白話的字詞。韻文要找出詩眼，也就是關鍵字詞。白話文則先看清題目問的方向，再回文章找關鍵句，最後把答案放回題幹驗證一次。平常多讀時事、散文和科普文章，讀完寫一段一百到兩百字的心得。",
     "p-eng":"會考的英文題型不外乎單字、文法和閱讀理解。上課分成單字、文法、課文和對話四塊，上完就會有小考和作業。雜誌和核心單字是自學課程，每週都有測試，要依照排定的考程準備。如果覺得自己寫作比較弱，那不是能力問題，而是文法和句型結構還沒有建構完成，國中英文課就是要幫你把這兩個能力補起來。小學沒學好，國中一樣可以學好。",
     "p-esl":"ESL 的目標，是讓你習慣使用生活英語，敢開口說。主要教材是 Smart Choice，紙本搭配線上系統，課本有級數之分，每學期依能力更換。每學期有姊妹校交流活動，期末還有全英語的成果發表會。測驗有三種：期中期末測驗、期末的 OPT 分級測驗，還有每學年一次的多益普及測驗。成績達到八十四分以上，國八時會確認是否改考多益。",
@@ -993,7 +1153,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
   };
 
   var GUIDE_TIP = {
-    "p-method":"先聽一遍七個開關，大約一分半。",
+    "p-method":"先聽一遍七步學習循環，大約一分鐘。",
     "p-tools":"先聽一遍這三個工具怎麼用。"
   };
 
@@ -1230,7 +1390,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
   ];
 
   var KEY = "g7student.v1";
-  var state = {lists:{}, log:{}, cheer:1, voice:"", gate:{on:1, day:""}, method:{check:{}, install:{}, exam:{}}};
+  var state = {lists:{}, log:{}, cheer:1, voice:"", gate:{on:1, day:""}, method:{check:{}, install:{}, exam:{}, check2:{}, cyc:{}, run:{}, lv:{}, rounds:{}}};
 
   function load(){
     try{
@@ -1250,6 +1410,11 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
             state.method.check   = o.method.check   || {};
             state.method.install = o.method.install || {};
             state.method.exam    = o.method.exam    || {};
+            state.method.check2  = o.method.check2  || {};
+            state.method.cyc     = o.method.cyc     || {};
+            state.method.run     = o.method.run     || {};
+            state.method.lv      = o.method.lv      || {};
+            state.method.rounds  = o.method.rounds  || {};
           }
         }
       }
@@ -2638,33 +2803,33 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
     }
   ];
 
-  var MDIM = ["回到本質","出題者視角","目標反推","先拿一次成功","只練不會的","三步一條龍","善用工具"];
+  var MDIM = ["看懂任務","判斷重點","選擇方法","理解與組織","主動提取","檢查真的會","換情境再使用"];
   var MOPT = ["常常","有時","幾乎沒有"];
   var MQ = [
-    [0,"讀新的東西，我會先問「為什麼會這樣」，不是直接背起來。"],
-    [0,"背之前，我能先用自己的話把它講一次。"],
-    [1,"訂正的時候，我會想「這題想考我哪個觀念」。"],
-    [1,"讀完一段，我猜得出老師會從哪裡出題。"],
-    [2,"段考前，我知道自己每天該讀多少。"],
-    [2,"我會先看範圍有多少，再決定怎麼分配時間。"],
-    [3,"遇到不會的，我想的是「我還沒學會」，不是「我就是不行」。"],
-    [3,"這學期我有過一次「方法對了、真的變好」的經驗。"],
-    [4,"我的讀書時間主要花在還不會的地方，不是重讀已經會的。"],
-    [4,"我有一份錯題紀錄，而且會回去看。"],
-    [5,"我的讀書流程是固定的，不是想到哪讀到哪。"],
-    [5,"小考、段考、複習，我用的是同一套做法。"],
-    [6,"我會用工具（線上學習單、影片、語音）幫自己讀，不是只靠課本。"],
-    [6,"我會把一課的重點壓成一頁，而不是整本畫滿螢光筆。"]
+    [0,"開始讀之前，我會先看這一課要學會什麼。"],
+    [0,"我說得出今天讀完應該會做哪一件事。"],
+    [1,"讀完一課，我挑得出最重要的三件事。"],
+    [1,"我分得出核心和細節，不會整頁都畫線。"],
+    [2,"要背的、要理解的、要算的，我用的做法不一樣。"],
+    [2,"背單字和讀歷史，我用的不是同一招。"],
+    [3,"我會把一課整理成圖或表，不是照抄課本。"],
+    [3,"我的筆記一課一頁就放得下。"],
+    [4,"讀完我會關書，試著自己說出來或寫出來。"],
+    [4,"我會自己出題考自己。"],
+    [5,"錯的題目我會找出錯的原因，不只是抄正確答案。"],
+    [5,"我分得出「看懂答案」和「自己會做」。"],
+    [6,"我會找換了問法的題目來練。"],
+    [6,"題目換句話說，我還認得出它在考什麼。"]
   ];
 
   var INSTALL = [
-    "第 1 天｜回到本質：讀一段，先用自己的話講一次，再開始背。",
-    "第 2 天｜出題者視角：讀完一段，自己出兩題——一題送分，一題陷阱。",
-    "第 3 天｜目標反推：把下次段考範圍算成每天幾頁，寫進行事曆。",
-    "第 4 天｜先拿一次成功：訂一個小到不可能失敗的目標，今天做到。",
-    "第 5 天｜只練不會的：挑一課標上 ○△✕，只練 △ 和 ✕。",
-    "第 6 天｜三步一條龍：挑一課，把篩選重點、提升吸收、寫對答案完整走一次。",
-    "第 7 天｜善用工具：把一課壓成一頁筆記，或用語音導覽聽一遍。"
+    "第 1 天｜看懂任務：挑一課，寫下「今天學完，我應該能夠＿＿」。",
+    "第 2 天｜判斷重點：同一課，只寫 3 個核心。",
+    "第 3 天｜選擇方法：先判斷這一課是哪一種內容，再決定怎麼讀。",
+    "第 4 天｜理解與組織：把一課整理成一張 A4。",
+    "第 5 天｜主動提取：關書，在白紙上寫出你記得的。",
+    "第 6 天｜檢查真的會：做五題，錯的每一題都標出錯因。",
+    "第 7 天｜換情境再使用：找一題換了問法的題目做做看。"
   ];
 
   /* 七個開關的展開卡 */
@@ -2733,9 +2898,9 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
         var b = document.createElement("button");
         b.type = "button";
         b.textContent = label;
-        b.setAttribute("aria-pressed", (state.method.check[i] === v) ? "true" : "false");
+        b.setAttribute("aria-pressed", (state.method.check2[i] === v) ? "true" : "false");
         b.addEventListener("click", function(){
-          state.method.check[i] = v;
+          state.method.check2[i] = v;
           save();
           var bs = seg.querySelectorAll("button");
           for(var j=0;j<bs.length;j++){
@@ -2753,7 +2918,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
   function showCheckResult(){
     var i, left = 0;
     for(i=0;i<MQ.length;i++){
-      if(typeof state.method.check[i] !== "number"){ left++; }
+      if(typeof state.method.check2[i] !== "number"){ left++; }
     }
     mResult.innerHTML = "";
     if(left > 0){
@@ -2764,7 +2929,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
       return;
     }
     var score = [0,0,0,0,0,0,0];
-    for(i=0;i<MQ.length;i++){ score[MQ[i][0]] += state.method.check[i]; }
+    for(i=0;i<MQ.length;i++){ score[MQ[i][0]] += state.method.check2[i]; }
     var rank = [];
     for(i=0;i<7;i++){ rank.push(i); }
     rank.sort(function(a,b){ return score[a] === score[b] ? a - b : score[a] - score[b]; });
@@ -2772,7 +2937,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 
     var h = document.createElement("h4");
     h.style.cssText = "font-family:var(--serif);font-size:1.05rem;margin:16px 0 10px;";
-    h.textContent = "你的七個開關";
+    h.textContent = "你的七步";
     mResult.appendChild(h);
 
     for(i=0;i<7;i++){
@@ -2788,10 +2953,10 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
     var tip = document.createElement("div");
     tip.className = "calcout";
     if(score[low[0]] >= 4){
-      tip.innerHTML = "七個開關你都有在用了。那就往下挑一個做得更細——例如把「一頁筆記」真的做出來一次。";
+      tip.innerHTML = "七步你都有在做了。接下來用上面的計時器完整跑一輪，看看哪一步最花時間。";
     }else{
-      tip.innerHTML = "<b>先裝這兩個：" + MDIM[low[0]] + "、" + MDIM[low[1]] + "。</b><br>" +
-        "不要七個一起改，會撐不住。這兩個練順了，其他的自己會跟上。";
+      tip.innerHTML = "<b>先練這兩步：" + MDIM[low[0]] + "、" + MDIM[low[1]] + "。</b><br>" +
+        "不要七步一起改，會撐不住。這兩步練順了，其他的會跟上。";
     }
     mResult.appendChild(tip);
 
@@ -2802,8 +2967,8 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
         var b = document.createElement("button");
         b.type = "button";
         b.className = "mini";
-        b.textContent = "打開「" + MDIM[k] + "」";
-        b.addEventListener("click", function(){ openSwitch(k); });
+        b.textContent = "看第 " + (k+1) + " 步「" + MDIM[k] + "」";
+        b.addEventListener("click", function(){ openStep(k); });
         row2.appendChild(b);
       });
       mResult.appendChild(row2);
@@ -2812,7 +2977,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 
   document.getElementById("mCheckGo").addEventListener("click", showCheckResult);
   document.getElementById("mCheckClear").addEventListener("click", function(){
-    state.method.check = {};
+    state.method.check2 = {};
     save();
     mResult.innerHTML = "";
     renderCheck();
@@ -2862,7 +3027,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
       "現在把它寫進行事曆，不要放在腦袋裡。";
     if(per > 20){
       out += "<br><br>每天 " + per + " 頁偏多。兩個辦法：從今天就開始（多一天就少幾頁），" +
-        "或先用第 5 個開關把已經會的 ○ 劃掉，真正要讀的通常沒那麼多。";
+        "或先把已經會的劃掉（關書說得出來的才算會），真正要讀的通常沒那麼多。";
     }
     mCalcOut.innerHTML = out;
   }
@@ -2875,8 +3040,8 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
 
   function installCount(){
     var n = 0, k;
-    for(k in state.method.install){
-      if(Object.prototype.hasOwnProperty.call(state.method.install, k) && state.method.install[k]){ n++; }
+    for(k in state.method.cyc){
+      if(Object.prototype.hasOwnProperty.call(state.method.cyc, k) && state.method.cyc[k]){ n++; }
     }
     return n;
   }
@@ -2884,7 +3049,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
     var n = installCount();
     mFill.style.width = Math.round(n / INSTALL.length * 100) + "%";
     if(n === 0){ mLabel.textContent = "還沒開始。從第 1 天開始就好。"; }
-    else if(n === INSTALL.length){ mLabel.textContent = "七個開關都裝上了。接下來就是每天用它。"; }
+    else if(n === INSTALL.length){ mLabel.textContent = "七步都練過了。接下來每一課都這樣跑一輪。"; }
     else { mLabel.textContent = "已完成 " + n + " / " + INSTALL.length + " 天"; }
   }
   function renderInstall(){
@@ -2893,7 +3058,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
     list.className = "list";
     INSTALL.forEach(function(txt, i){
       var lab = document.createElement("label");
-      var on = !!state.method.install[i];
+      var on = !!state.method.cyc[i];
       lab.className = "checkline" + (on ? " on" : "");
       var input = document.createElement("input");
       input.type = "checkbox";
@@ -2901,13 +3066,13 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
       var sp = document.createElement("span");
       sp.textContent = txt;
       input.addEventListener("change", function(){
-        if(input.checked){ state.method.install[i] = 1; }
-        else { delete state.method.install[i]; }
+        if(input.checked){ state.method.cyc[i] = 1; }
+        else { delete state.method.cyc[i]; }
         save();
         lab.classList.toggle("on", input.checked);
         updateInstallBar();
         if(input.checked && installCount() === INSTALL.length){
-          popCheer(["七個開關都裝好了。從今天起，讀書是有系統的事。","All seven switches are on. Studying is a system now."]);
+          popCheer(["七步都練過一輪了。從今天起，每一課都這樣跑。","All seven steps done. Run them on every lesson from now on."]);
         }
       });
       lab.appendChild(input);
@@ -2918,10 +3083,593 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
     updateInstallBar();
   }
   document.getElementById("mInstallClear").addEventListener("click", function(){
-    state.method.install = {};
+    state.method.cyc = {};
     save();
     renderInstall();
   });
+
+  /* ── 七步學習循環 ── */
+  var LAYERS = [null,
+    {tag:"第一層", n:"找方向"},
+    {tag:"第二層", n:"建知識"},
+    {tag:"第三層", n:"長能力"},
+    {tag:"第四層", n:"能遷移"}
+  ];
+  var KINDS = [
+    {t:"要記得很精確", eg:"英文單字、年代、生物名詞", how:"間隔複習＋主動提取",
+     d:"今天背、明天考自己、三天後再考一次。每一次都先蓋住答案再想。"},
+    {t:"要理解關係", eg:"歷史事件、自然現象、公民制度", how:"概念圖、因果圖、比較表",
+     d:"畫出「誰影響誰」。箭頭畫不出來的地方，就是還沒懂的地方。"},
+    {t:"要會操作步驟", eg:"數學計算、之後的理化", how:"例題分析＋變化題",
+     d:"先看懂例題每一步為什麼這樣做，蓋住再做一次，然後換數字、換條件。"},
+    {t:"要用語言表達", eg:"英文句型、國文閱讀", how:"聽、說、讀、寫＋重述",
+     d:"唸出聲音，再用自己的話重說一次。說不順的那一句，就是要再練的。"}
+  ];
+  var ERRS = [
+    {t:"不知道", sub:"記憶錯", fix:"沒記住。回第 5 步，關書再提取一次。"},
+    {t:"看錯",   sub:"題意錯", fix:"圈出題目的條件和問句，把題目再讀一次。"},
+    {t:"想錯",   sub:"概念錯", fix:"觀念沒弄懂。回第 4 步，把關係圖重畫一次。"},
+    {t:"算錯",   sub:"程序錯", fix:"把步驟一行一行寫出來，重做一次。"}
+  ];
+  var STEPS = [
+    {L:1, nm:"看懂任務", time:"5 分鐘",
+     one:"不要一坐下就開始抄。先弄清楚：這一課學完，我要會什麼。",
+     acts:["看三個地方：<b>課本標題、老師筆記、習作或考卷</b>。",
+           "翻到課後的題目，看它怎麼問——那就是老師要你會的事。",
+           "寫一句：<b>「今天學完，我應該能夠＿＿＿。」</b>"],
+     eg:'<div class="egrow"><span>數學</span><span>我能判斷兩個數相加時，正負號怎麼決定。</span></div>' +
+        '<div class="egrow"><span>英文</span><span>我能用現在簡單式說出自己每天做的事。</span></div>' +
+        '<div class="egrow"><span>歷史</span><span>我能說明荷蘭人為什麼來臺灣，帶來什麼影響。</span></div>' +
+        '<div class="egrow"><span>生物</span><span>我能解釋光合作用需要哪些條件。</span></div>',
+     ask:"這一課最後我要會什麼？"},
+    {L:1, nm:"判斷重點", time:"5 分鐘",
+     one:"一課只抓 3～5 個核心。先立骨架，細節之後再掛上去。",
+     acts:["圈出這一課的<b>關鍵概念、公式、因果、比較點</b>。",
+           "把核心排成一條線，這就是知識骨架。",
+           "小心「每一句都重要」的陷阱——整頁畫滿螢光筆，等於沒畫。"],
+     eg:'歷史「荷西時期的臺灣」不要背整頁，先抓骨架：' +
+        '<div class="chain"><b>為什麼來</b><i>→</i><b>占了哪裡</b><i>→</i><b>做了什麼</b><i>→</i><b>影響了誰</b><i>→</i><b>怎麼結束</b></div>',
+     ask:"如果只能記 3 件事，是哪 3 件？"},
+    {L:2, nm:"選擇方法", time:"2 分鐘",
+     one:"讀書方法不是固定一套。先看內容是哪一種，再決定怎麼學。",
+     acts:[], kind:true,
+     rem:"要問的不是「我要不要用讀書法」，而是「這個內容需要我的大腦做哪一種事」。",
+     ask:"這個內容適合背，還是要理解？"},
+    {L:2, nm:"理解與組織", time:"10 分鐘",
+     one:"把零散的資訊變成一張圖或一張表。不要照抄課本。",
+     acts:["<b>一課只整理成一張 A4。</b>放不下，代表重點還沒抓到，回第 2 步。",
+           "只放四種東西：<b>關鍵詞、關係、例子、易錯點</b>。",
+           "挑一種形狀：心智圖、表格、時間線、因果圖。"],
+     eg:'生物「光合作用」一張圖就夠：' +
+        '<div class="chain"><b>二氧化碳＋水</b><i>→</i><em>光能、葉綠體</em><i>→</i><b>葡萄糖＋氧氣</b></div>' +
+        '旁邊加一個易錯點：植物白天、晚上都會呼吸。',
+     ask:"它和我原本知道的什麼有關？"},
+    {L:3, nm:"主動提取", time:"5 分鐘",
+     one:"關書、蓋答案、把筆記翻面，然後問自己：剛才學了什麼？",
+     acts:["三種做法選一種：<b>白紙寫出來、開口說一次、自己出三題</b>。",
+           "寫不出來的地方做記號，回去只讀那一段。",
+           "你常會在這一步第一次發現：「我剛剛以為我會。」這個發現很重要，不是壞事。"],
+     go:[{t:"到「今天」練提取", id:"p-today"}, {t:"三分鐘自問", id:"p-tools"}],
+     ask:"不看課本，我說得出來嗎？"},
+    {L:3, nm:"檢查真的會", time:"5～10 分鐘",
+     one:"做題不是為了刷題量，是為了診斷：找出「假會」和盲點。",
+     acts:["做題、限時小測驗，或把這一課教給別人聽。",
+           "錯了不要只寫正確答案，先問：<b>我為什麼錯？</b>"],
+     err:true,
+     rem:"沒寫錯因的錯題本，只是「錯題收藏本」。",
+     go:[{t:"線上學習單（拿來做題）", id:"p-links"}],
+     ask:"我是看懂答案，還是真的會做？"},
+    {L:4, nm:"換情境再使用", time:"3 分鐘",
+     one:"題目換個問法還會，才算真的學會。最後一定要做一道「陌生題」。",
+     acts:["找這四種題目：<b>變化題、跨章題、生活情境題、比較題</b>。",
+           "找不到就自己改：換數字、換條件、把問句反過來問。"],
+     eg:'學完十三行文化，不要只問「十三行文化在哪裡？」<br>改成：<b>「遺址裡發現煉鐵技術和大量玻璃珠，最可能是哪一個文化？」</b>',
+     ask:"如果換個問法，我還會嗎？"}
+  ];
+  /* 計時循環：每一步的任務 */
+  var RUN = [
+    {m:5,  todo:"看三個地方：課本標題、老師筆記、習作或考卷。然後把下面這一句寫完。", f:"goal", type:"text", ph:"今天學完，我應該能夠……"},
+    {m:5,  todo:"這一課只抓 3～5 個核心，一行寫一個。先立骨架，細節之後再掛上去。", f:"cores", type:"area", ph:"1.\n2.\n3."},
+    {m:2,  todo:"這一課的內容是哪一種？選一個，就知道該用什麼方法。", type:"kind"},
+    {m:10, todo:"拿一張 A4，把這一課整理成一張圖或一張表。只放四種東西：關鍵詞、關係、例子、易錯點。畫好再回來。", type:"none"},
+    {m:5,  todo:"關書、蓋答案、把筆記翻面。不看任何東西，把剛才學的寫在這裡（也可以大聲說一次，或自己出三題）。", f:"recall", type:"area", ph:"不看課本，我記得的是……"},
+    {m:8,  todo:"做幾題。錯的每一題都點一下錯因——不要只抄正確答案。", type:"err"},
+    {m:3,  todo:"找一題「換了問法」的題目，或自己把題目改一個條件再答。寫下你換了什麼。", f:"twist", type:"text", ph:"我把題目改成……"}
+  ];
+  var SUBJ = [
+    {t:"國文", go:[{t:"到國文頁", id:"p-chi"}], rows:[
+      [1,"這一篇要讀懂的是主旨，還是修辭和寫作手法？"],
+      [2,"人物、事件、轉折、主旨。"],
+      [4,"排成一條線：<b>事件 → 情緒 → 轉折 → 主旨</b>。"],
+      [5,"關書，用 1 分鐘把整篇說完。"],
+      [7,"換一篇文章，找出相同的寫作手法。"]]},
+    {t:"英文", go:[{t:"到英文頁", id:"p-eng"}, {t:"到 ESL 頁", id:"p-esl"}], rows:[
+      [1,"今天是單字、句型，還是閱讀？"],
+      [2,"聲音、字形、語意、句型的功能。"],
+      [4,"單字不要只背中文，要把<b>聲音—字形—語意</b>連起來。"],
+      [5,"看中文說英文；聽聲音寫單字。"],
+      [7,"同一個句型，換人稱、換時間、換情境再說一次。"]]},
+    {t:"數學", go:[{t:"到數學頁", id:"p-mat"}], rows:[
+      [1,"這一課到底在解決什麼問題？"],
+      [2,"條件、公式、什麼時候用。"],
+      [4,"整理成：<b>看到什麼條件 → 想到什麼方法</b>。"],
+      [5,"蓋住例題，自己重做一次。"],
+      [7,"做變化題，不是做一模一樣的題目。"]]},
+    {t:"生物", go:[{t:"到生物頁", id:"p-bio"}], rows:[
+      [2,"不要只背定義。"],
+      [4,"整理成：<b>條件 → 過程 → 結果 → 變因</b>。"],
+      [5,"蓋住圖，自己把構造和功能說一遍。"],
+      [7,"把變因換掉：如果沒有光、溫度變高，結果會怎樣？"]]},
+    {t:"社會", go:[{t:"到歷史頁", id:"p-his"}, {t:"到地理頁", id:"p-geo"}, {t:"到公民頁", id:"p-civ"}], rows:[
+      [4,"四種架構最好用：<b>時間線、因果圖、比較表、空間圖</b>。"],
+      ["歷史","原因 → 事件 → 結果 → 長期影響"],
+      ["地理","位置 → 環境 → 產業 → 人口"],
+      ["公民","規則 → 權利 → 義務 → 情境案例"]]}
+  ];
+  var LV = [
+    {L:2, tag:"第一層", t:"我看得懂",
+     tip:"看得懂只是第一層。現在關書，做第 5 步：不看課本說一次。", go:4},
+    {L:3, tag:"第二層", t:"我不看也說得出來",
+     tip:"記住了。接著做第 6、7 步：做題，再找一題換了問法的。", go:5},
+    {L:4, tag:"第三層", t:"換一題我也會",
+     tip:"這一課真的學會了。隔幾天再抽一題，確認它還在。", go:-1}
+  ];
+
+  function mk(tag, cls, html){
+    var e = document.createElement(tag);
+    if(cls){ e.className = cls; }
+    if(html){ e.innerHTML = html; }
+    return e;
+  }
+  function stepLabel(i){ return "第 " + (i+1) + " 步"; }
+
+  /* 四種內容 → 選方法 */
+  function kindPicker(sel, onPick){
+    var wrap = mk("div");
+    var grid = mk("div", "kgrid");
+    var out = mk("div", "kout");
+    out.hidden = true;
+    function show(k){
+      var bs = grid.querySelectorAll("button"), j;
+      for(j = 0; j < bs.length; j++){ bs[j].setAttribute("aria-pressed", j === k ? "true" : "false"); }
+      out.innerHTML = "用這個方法：<b>" + KINDS[k].how + "</b><br>" + KINDS[k].d;
+      out.hidden = false;
+    }
+    KINDS.forEach(function(item, k){
+      var b = mk("button", "", "<b>" + item.t + "</b><small>" + item.eg + "</small>");
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      b.addEventListener("click", function(){ show(k); if(onPick){ onPick(k); } });
+      grid.appendChild(b);
+    });
+    wrap.appendChild(grid);
+    wrap.appendChild(out);
+    if(typeof sel === "number" && sel >= 0 && sel < KINDS.length){ show(sel); }
+    return wrap;
+  }
+
+  /* 四層階梯 */
+  function renderLadder(){
+    var host = document.getElementById("cyLadder"), L;
+    host.innerHTML = "";
+    for(L = 1; L <= 4; L++){
+      var row = mk("div", "lrow L" + L);
+      row.appendChild(mk("div", "lname", "<small>" + LAYERS[L].tag + "</small>" + LAYERS[L].n));
+      var box = mk("div", "lsteps"), first = true;
+      STEPS.forEach(function(st, i){
+        if(st.L !== L){ return; }
+        if(!first){ box.appendChild(mk("span", "larrow", "→")); }
+        first = false;
+        var c = mk("button", "lchip", "<i>" + (i+1) + "</i>" + st.nm);
+        c.type = "button";
+        c.addEventListener("click", function(){ openStep(i); });
+        box.appendChild(c);
+      });
+      row.appendChild(box);
+      host.appendChild(row);
+    }
+  }
+
+  /* 七張步驟卡 */
+  function renderSteps(){
+    var host = document.getElementById("cySteps");
+    host.innerHTML = "";
+    STEPS.forEach(function(st, i){
+      var box = mk("div", "st L" + st.L);
+      box.id = "st-" + i;
+      var head = mk("button", "sth",
+        '<span class="no">' + (i+1) + '</span>' +
+        '<span class="ttl">' + st.nm + '<em>' + LAYERS[st.L].n + '・約 ' + st.time + '</em></span>' +
+        '<span class="arw">＋</span>');
+      head.type = "button";
+      head.addEventListener("click", function(){
+        var on = box.classList.toggle("open");
+        head.querySelector(".arw").textContent = on ? "－" : "＋";
+      });
+      box.appendChild(head);
+      var body = mk("div", "stb");
+      body.appendChild(mk("p", "one", st.one));
+      if(st.acts && st.acts.length){
+        body.appendChild(mk("h4", "", "怎麼做"));
+        var ul = mk("ul");
+        st.acts.forEach(function(a){ ul.appendChild(mk("li", "", a)); });
+        body.appendChild(ul);
+      }
+      if(st.kind){
+        body.appendChild(mk("h4", "", "這一課是哪一種內容？點一種看看"));
+        body.appendChild(kindPicker(-1, null));
+      }
+      if(st.err){
+        body.appendChild(mk("h4", "", "四種錯因，四種補法"));
+        var eb = mk("div", "eg");
+        ERRS.forEach(function(e){
+          eb.appendChild(mk("div", "egrow", "<span>" + e.t + "</span><span><b>" + e.sub + "</b>——" + e.fix + "</span>"));
+        });
+        body.appendChild(eb);
+      }
+      if(st.eg){
+        body.appendChild(mk("h4", "", "例子"));
+        body.appendChild(mk("div", "eg", st.eg));
+      }
+      body.appendChild(mk("p", "ask", "<small>問自己</small>「" + st.ask + "」"));
+      if(st.rem){ body.appendChild(mk("p", "rem", st.rem)); }
+      if(st.go){
+        var g = mk("div", "swgo");
+        st.go.forEach(function(x){
+          var b = mk("button", "mini", x.t);
+          b.type = "button";
+          b.setAttribute("data-target", x.id);
+          g.appendChild(b);
+        });
+        body.appendChild(g);
+      }
+      box.appendChild(body);
+      host.appendChild(box);
+    });
+  }
+  function openStep(i){
+    var box = document.getElementById("st-" + i);
+    if(!box){ return; }
+    if(!box.classList.contains("open")){
+      box.classList.add("open");
+      var arw = box.querySelector(".arw");
+      if(arw){ arw.textContent = "－"; }
+    }
+    window.setTimeout(function(){
+      try{ box.scrollIntoView({block:"start"}); }catch(e){ box.scrollIntoView(); }
+      window.scrollBy(0, -64);
+    }, 40);
+  }
+
+  /* 計時循環 */
+  var runBox = document.getElementById("cyRun");
+  var runTick = null;
+  function runState(){
+    var r = state.method.run;
+    if(!r || typeof r !== "object"){ r = state.method.run = {}; }
+    if(typeof r.i !== "number"){ r.i = -1; }
+    if(typeof r.kind !== "number"){ r.kind = -1; }
+    if(!r.err || r.err.length !== 4){ r.err = [0,0,0,0]; }
+    ["goal","cores","recall","twist"].forEach(function(k){ if(typeof r[k] !== "string"){ r[k] = ""; } });
+    if(typeof r.left !== "number"){ r.left = 0; }
+    if(typeof r.end !== "number"){ r.end = 0; }
+    return r;
+  }
+  function fmt(sec){
+    sec = Math.max(0, sec);
+    var m = Math.floor(sec / 60), x = sec % 60;
+    return m + ":" + (x < 10 ? "0" : "") + x;
+  }
+  function runLeft(){
+    var r = runState();
+    return r.end ? Math.max(0, Math.ceil((r.end - Date.now()) / 1000)) : r.left;
+  }
+  function runStop(){
+    if(runTick){ window.clearInterval(runTick); runTick = null; }
+  }
+  function runLoop(){
+    runStop();
+    runTick = window.setInterval(function(){
+      var r = runState(), left = runLeft();
+      var c = document.getElementById("cyClock");
+      if(c){ c.textContent = fmt(left); }
+      if(left <= 0){
+        r.left = 0; r.end = 0;
+        save();
+        runStop();
+        renderRun();
+        popCheer(["時間到。這一步做到哪算哪，按「下一步」繼續。","Time's up. Whatever you got done counts. Move to the next step."]);
+      }
+    }, 500);
+  }
+  function runStart(){
+    var r = runState();
+    if(r.left <= 0){ return; }
+    r.end = Date.now() + r.left * 1000;
+    save();
+    runLoop();
+  }
+  function runPause(){
+    var r = runState();
+    r.left = runLeft();
+    r.end = 0;
+    save();
+    runStop();
+  }
+  function runGo(i){
+    var r = runState();
+    runStop();
+    r.i = i;
+    r.end = 0;
+    r.left = (i >= 0 && i < RUN.length) ? RUN[i].m * 60 : 0;
+    if(i === RUN.length){
+      state.method.rounds[TODAY] = (state.method.rounds[TODAY] || 0) + 1;
+    }
+    save();
+    if(i >= 0 && i < RUN.length){ runStart(); }
+    renderRun();
+  }
+  function runReset(){
+    runStop();
+    state.method.run = {};
+    save();
+    renderRun();
+  }
+  function roundsLine(){
+    var n = state.method.rounds[TODAY] || 0;
+    return n ? "今天已經跑完 " + n + " 輪。" : "";
+  }
+  function errPicker(r){
+    var wrap = mk("div");
+    var grid = mk("div", "kgrid");
+    var out = mk("div", "kout");
+    out.hidden = true;
+    ERRS.forEach(function(e, k){
+      var b = mk("button");
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      function paint(){
+        b.innerHTML = '<span class="cnt">' + r.err[k] + ' 題</span><b>' + e.t + '</b><small>' + e.sub + '</small>';
+      }
+      paint();
+      b.addEventListener("click", function(){
+        r.err[k]++;
+        save();
+        paint();
+        var bs = grid.querySelectorAll("button"), j;
+        for(j = 0; j < bs.length; j++){ bs[j].setAttribute("aria-pressed", bs[j] === b ? "true" : "false"); }
+        out.innerHTML = "<b>" + e.t + "（" + e.sub + "）</b><br>" + e.fix;
+        out.hidden = false;
+      });
+      grid.appendChild(b);
+    });
+    wrap.appendChild(grid);
+    wrap.appendChild(out);
+    var z = mk("button", "mini", "錯因歸零");
+    z.type = "button";
+    z.style.marginTop = "8px";
+    z.addEventListener("click", function(){ r.err = [0,0,0,0]; save(); renderRun(); });
+    wrap.appendChild(z);
+    return wrap;
+  }
+  function renderRun(){
+    var r = runState();
+    runBox.innerHTML = "";
+    var btns, b;
+
+    /* 還沒開始：先看這一輪的時間分配 */
+    if(r.i < 0){
+      var ol = mk("ol", "plan");
+      STEPS.forEach(function(st, i){
+        var li = mk("li", "L" + st.L);
+        li.appendChild(mk("i", "", String(i+1)));
+        li.appendChild(mk("span", "", st.nm));
+        li.appendChild(mk("span", "", RUN[i].m + " 分鐘"));
+        ol.appendChild(li);
+      });
+      runBox.appendChild(ol);
+      var note = roundsLine();
+      if(note){ runBox.appendChild(mk("p", "hint", note)); }
+      btns = mk("div", "btnrow");
+      b = mk("button", "btn", "開始這一輪");
+      b.type = "button";
+      b.addEventListener("click", function(){ runGo(0); });
+      btns.appendChild(b);
+      runBox.appendChild(btns);
+      return;
+    }
+
+    /* 跑完：回顧 */
+    if(r.i >= RUN.length){
+      var done = mk("div", "run L4");
+      done.appendChild(mk("div", "runhead", '<div class="rn"><small>七步都走完了</small>這一輪完成</div><div class="clock">✓</div>'));
+      var body2 = mk("div", "runbody");
+      var dl = mk("dl", "recap");
+      function addRow(k, v){
+        if(!v){ return; }
+        dl.appendChild(mk("dt", "", k));
+        var dd = mk("dd");
+        dd.textContent = v;
+        dl.appendChild(dd);
+      }
+      addRow("今天學完，我應該能夠", r.goal);
+      addRow("這一課的核心", r.cores);
+      addRow("我選的方法", r.kind >= 0 ? KINDS[r.kind].t + " → " + KINDS[r.kind].how : "");
+      addRow("關書後我記得的", r.recall);
+      var es = [];
+      ERRS.forEach(function(e, k){ if(r.err[k]){ es.push(e.t + " " + r.err[k] + " 題"); } });
+      addRow("錯因", es.join("、"));
+      addRow("我換的問法", r.twist);
+      if(dl.childNodes.length){ body2.appendChild(dl); }
+      body2.appendChild(mk("p", "hint", roundsLine() + "最後一件事：到下面的「三層學會標準」，標一下這一課到第幾層。"));
+      btns = mk("div", "btnrow");
+      b = mk("button", "btn", "標記學會到第幾層");
+      b.type = "button";
+      b.addEventListener("click", function(){
+        var t = document.getElementById("cyLvBox");
+        try{ t.scrollIntoView({block:"start"}); }catch(e){ t.scrollIntoView(); }
+        window.scrollBy(0, -64);
+      });
+      btns.appendChild(b);
+      b = mk("button", "btn ghost", "再跑一輪");
+      b.type = "button";
+      b.addEventListener("click", runReset);
+      btns.appendChild(b);
+      body2.appendChild(btns);
+      done.appendChild(body2);
+      runBox.appendChild(done);
+      return;
+    }
+
+    /* 進行中 */
+    var st = STEPS[r.i], job = RUN[r.i];
+    var left = runLeft();
+    var running = !!r.end && left > 0;
+    var card = mk("div", "run L" + st.L);
+    card.appendChild(mk("div", "runhead",
+      '<div class="rn"><small>' + stepLabel(r.i) + '・' + LAYERS[st.L].n + '</small>' + st.nm + '</div>' +
+      '<div class="clock"><span id="cyClock">' + fmt(left) + '</span><small>' +
+      (left <= 0 ? "時間到" : (running ? "計時中" : "暫停中")) + '</small></div>'));
+    var dots = mk("div", "rundots");
+    STEPS.forEach(function(s2, i){
+      var d = mk("i");
+      if(i <= r.i){ d.style.background = "var(--c" + s2.L + ")"; }
+      if(i === r.i){ d.style.opacity = ".55"; }
+      dots.appendChild(d);
+    });
+    card.appendChild(dots);
+    var body = mk("div", "runbody");
+    body.appendChild(mk("p", "todo", job.todo));
+    if(job.type === "text" || job.type === "area"){
+      var inp = document.createElement(job.type === "area" ? "textarea" : "input");
+      if(job.type === "text"){ inp.type = "text"; inp.className = "runin"; }
+      else { inp.className = "noteinput"; inp.rows = 4; }
+      inp.placeholder = job.ph;
+      inp.value = r[job.f];
+      inp.setAttribute("aria-label", st.nm);
+      inp.addEventListener("input", function(){ r[job.f] = inp.value; save(); });
+      body.appendChild(inp);
+    }else if(job.type === "kind"){
+      body.appendChild(kindPicker(r.kind, function(k){ r.kind = k; save(); }));
+    }else if(job.type === "err"){
+      body.appendChild(errPicker(r));
+    }
+    body.appendChild(mk("p", "ask", "<small>問自己</small>「" + st.ask + "」"));
+    btns = mk("div", "btnrow");
+    b = mk("button", "btn", r.i === RUN.length - 1 ? "完成這一輪" : "下一步 →");
+    b.type = "button";
+    b.addEventListener("click", function(){ runGo(r.i + 1); });
+    btns.appendChild(b);
+    if(left > 0){
+      b = mk("button", "btn ghost", running ? "暫停" : "繼續計時");
+      b.type = "button";
+      b.addEventListener("click", function(){
+        if(runState().end){ runPause(); } else { runStart(); }
+        renderRun();
+      });
+      btns.appendChild(b);
+    }
+    if(r.i > 0){
+      b = mk("button", "mini", "← 上一步");
+      b.type = "button";
+      b.addEventListener("click", function(){ runGo(r.i - 1); });
+      btns.appendChild(b);
+    }
+    b = mk("button", "mini", "整輪重來");
+    b.type = "button";
+    b.addEventListener("click", runReset);
+    btns.appendChild(b);
+    body.appendChild(btns);
+    card.appendChild(body);
+    runBox.appendChild(card);
+    if(running){ runLoop(); }
+  }
+
+  /* 三層學會標準 */
+  function renderLv(){
+    var host = document.getElementById("cyLv");
+    host.innerHTML = "";
+    var cur = state.method.lv[TODAY];
+    var box = mk("div", "lv3");
+    var out = mk("div", "kout");
+    out.style.marginTop = "12px";
+    LV.forEach(function(lv, k){
+      var b = mk("button", "lvb L" + lv.L, "<i>" + lv.tag + "</i><b>" + lv.t + "</b>");
+      b.type = "button";
+      b.setAttribute("aria-pressed", cur === k ? "true" : "false");
+      b.addEventListener("click", function(){
+        state.method.lv[TODAY] = k;
+        save();
+        renderLv();
+        if(k === 2){ popCheer(["換一題也會，這一課是你的了。","You can do it even when the question changes. This lesson is yours."]); }
+      });
+      box.appendChild(b);
+    });
+    host.appendChild(box);
+    if(typeof cur === "number" && LV[cur]){
+      out.className = "kout L" + LV[cur].L;
+      out.style.marginTop = "12px";
+      out.innerHTML = "<b>今天：" + LV[cur].t + "</b><br>" + LV[cur].tip;
+      host.appendChild(out);
+      if(LV[cur].go >= 0){
+        var row = mk("div", "btnrow");
+        var g = mk("button", "mini", "看" + stepLabel(LV[cur].go) + "「" + STEPS[LV[cur].go].nm + "」");
+        g.type = "button";
+        g.addEventListener("click", function(){ openStep(LV[cur].go); });
+        row.appendChild(g);
+        host.appendChild(row);
+      }
+    }
+  }
+
+  /* 各科怎麼跑 */
+  var subCur = 0;
+  function renderSub(){
+    var tabs = document.getElementById("cySubTabs"), host = document.getElementById("cySub");
+    tabs.innerHTML = "";
+    host.innerHTML = "";
+    SUBJ.forEach(function(sj, k){
+      var b = mk("button", "", sj.t);
+      b.type = "button";
+      b.setAttribute("aria-pressed", k === subCur ? "true" : "false");
+      b.addEventListener("click", function(){ subCur = k; renderSub(); });
+      tabs.appendChild(b);
+    });
+    var sj = SUBJ[subCur];
+    sj.rows.forEach(function(rw){
+      var isStep = (typeof rw[0] === "number");
+      var row = mk("div", "srow" + (isStep ? " L" + STEPS[rw[0]-1].L : ""));
+      row.appendChild(mk("span", "sk", isStep ? rw[0] + " " + STEPS[rw[0]-1].nm : rw[0]));
+      row.appendChild(mk("span", "", rw[1]));
+      host.appendChild(row);
+    });
+    var go = mk("div", "btnrow");
+    sj.go.forEach(function(x){
+      var b = mk("button", "mini", x.t);
+      b.type = "button";
+      b.setAttribute("data-target", x.id);
+      go.appendChild(b);
+    });
+    host.appendChild(go);
+  }
+
+  /* 進階心法的收合 */
+  (function(){
+    var t = document.getElementById("mSwToggle"), w = document.getElementById("mSwitchWrap");
+    t.addEventListener("click", function(){
+      w.hidden = !w.hidden;
+      t.setAttribute("aria-expanded", w.hidden ? "false" : "true");
+      t.textContent = w.hidden ? "展開七個心法" : "收起七個心法";
+    });
+  })();
+
+  function renderCycle(){
+    renderLadder();
+    renderSteps();
+    renderRun();
+    renderLv();
+    renderSub();
+  }
 
   /* 學習連結 */
   var linkList = document.getElementById("linkList");
@@ -2963,6 +3711,7 @@ footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-si
   renderSwitches();
   renderCheck();
   renderInstall();
+  renderCycle();
   if(state.method.exam && state.method.exam.d){
     mDate.value = state.method.exam.d;
     if(state.method.exam.p){ mPages.value = state.method.exam.p; }
